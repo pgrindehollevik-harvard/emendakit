@@ -7,7 +7,6 @@ const products = defineCollection({
   schema: z.object({
     title: z.string(),
     locale: localeSchema,
-    slug: z.string(),
     altSlug: z.string(),                    // counterpart in the other locale
     productNumber: z.number().int(),         // 1 = Hospital, 2 = Dentist
     audience: z.string(),                    // "for helsepersonell" / "for tannlegeklinikker"
@@ -42,7 +41,6 @@ const services = defineCollection({
   schema: z.object({
     title: z.string(),
     locale: localeSchema,
-    slug: z.string(),
     altSlug: z.string(),
     summary: z.string(),
     audience: z.string(),
@@ -55,7 +53,6 @@ const team = defineCollection({
   schema: z.object({
     name: z.string(),
     locale: localeSchema,
-    slug: z.string(),
     role: z.string(),
     portraitPhoto: z.string().optional(),
     bio: z.string(),
@@ -86,7 +83,6 @@ const posts = defineCollection({
   schema: z.object({
     title: z.string(),
     locale: localeSchema,
-    slug: z.string(),
     description: z.string(),
     publishDate: z.coerce.date(),
     reviewedByKjersti: z.boolean().default(false),

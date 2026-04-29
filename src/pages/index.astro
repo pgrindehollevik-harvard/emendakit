@@ -1,6 +1,13 @@
 ---
 import { getCollection } from "astro:content";
+import { Image } from "astro:assets";
 import BaseLayout from "~/layouts/BaseLayout.astro";
+
+import heroPhoto from "~/assets/photos/hero-helicopter-hangar.jpg";
+import productHospitalPhoto from "~/assets/photos/product-hospital-studio.webp";
+import fieldAmbulancePhoto from "~/assets/photos/field-ambulance-interior.jpg";
+import kjerstiPhoto from "~/assets/photos/founder-kjersti-portrait.jpg";
+import gregersPhoto from "~/assets/photos/founder-gregers-portrait.jpg";
 
 const products = (await getCollection("products", ({ data }) => data.locale === "no"))
   .sort((a, b) => a.data.productNumber - b.data.productNumber);
@@ -13,18 +20,33 @@ const products = (await getCollection("products", ({ data }) => data.locale === 
   description="EmendaKit utvikler anafylaksiskrin for sykehus, ambulanse, fødestue og tannlegeklinikk. Designet av en anestesilege og en jordmor. Pakket etter nasjonalt flytskjema."
 >
   <section class="hero">
-    <div class="container">
-      <span class="hero-tag">
-        <span class="pulse"></span>
-        Designet, testet og produsert i Norge
-      </span>
-      <h1 class="display">
-        Et akuttskrin tegnet <span>for hvert sekund.</span>
-      </h1>
-      <p class="lede">
-        Anafylaksiskrin utviklet av en anestesilege og en jordmor — for klinikere som
-        ikke har tid til å lete. Vanntett. Støtsikkert. Pakket etter norsk anafylaksiprotokoll.
-      </p>
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <span class="hero-tag">
+          <span class="pulse"></span>
+          Designet, testet og produsert i Norge
+        </span>
+        <h1 class="display">
+          Et akuttskrin tegnet <span>for hvert sekund.</span>
+        </h1>
+        <p class="lede">
+          Anafylaksiskrin utviklet av en anestesilege og en jordmor — for klinikere som
+          ikke har tid til å lete. Vanntett. Støtsikkert. Pakket etter norsk anafylaksiprotokoll.
+        </p>
+      </div>
+      <figure class="hero-photo">
+        <Image
+          src={heroPhoto}
+          alt="Gregers Halvorsen i flygedrakt foran luftambulansen, med EmendaKit anafylaksiskrin"
+          widths={[720, 1080, 1440, 1920]}
+          sizes="(min-width: 1024px) 50vw, 100vw"
+          loading="eager"
+          fetchpriority="high"
+        />
+        <figcaption>
+          <span class="stamp">FOTO 01 · Helikopterhangar · Helse Førde</span>
+        </figcaption>
+      </figure>
     </div>
   </section>
 
@@ -34,17 +56,99 @@ const products = (await getCollection("products", ({ data }) => data.locale === 
       <div class="grid">
         {products.map((p) => (
           <article class="card">
-            <div class="card-img" data-pn={p.data.productNumber}>
+            <div class={`card-img ${p.data.productNumber === 1 ? "has-photo" : "is-placeholder"}`} data-pn={p.data.productNumber}>
+              {p.data.productNumber === 1 ? (
+                <Image
+                  src={productHospitalPhoto}
+                  alt="EmendaKit Hospital — anafylaksiskrin for sykehus, ambulanse og fødestue"
+                  widths={[480, 720, 1080]}
+                  sizes="(min-width: 1024px) 40vw, 100vw"
+                />
+              ) : null}
               <span class="label">{p.data.audience}</span>
             </div>
             <div class="card-body">
               <div class="eyebrow">№{p.data.productNumber.toString().padStart(2, "0")} · Anafylaksiskrin</div>
               <h3>{p.data.title}</h3>
               <p>{p.data.summary}</p>
-              <a href={`/produkt/${p.data.slug}`} class="more">Se datakort →</a>
+              <a href={`/produkt/${p.slug}`} class="more">Se datakort →</a>
             </div>
           </article>
         ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="field">
+    <div class="container field-grid">
+      <figure class="field-photo">
+        <Image
+          src={fieldAmbulancePhoto}
+          alt="Inne i luftambulansen — pasientbehandling med anafylaksiskrinet tilgjengelig"
+          widths={[640, 960, 1280]}
+          sizes="(min-width: 1024px) 55vw, 100vw"
+        />
+        <figcaption>
+          <span class="stamp">FOTO 04 · Ambulanse interiør · pasientbehandling</span>
+        </figcaption>
+      </figure>
+      <div class="field-copy">
+        <div class="eyebrow">Felt-erfaring · Helse Førde</div>
+        <h2>Designet ved en pasient — ikke ved et skrivebord.</h2>
+        <p>
+          EmendaKit ble til på en avdeling, ikke i et møterom. Hver detalj —
+          adrenalindekselet, flytskjemaet bak på lokket, QR-feltet på siden — er et
+          resultat av at noen sto med en pasient og ønsket at noe var litt annerledes.
+        </p>
+        <blockquote>«Innovasjon gjennom kunnskap og erfaring.»</blockquote>
+      </div>
+    </div>
+  </section>
+
+  <section class="founders">
+    <div class="container">
+      <div class="founders-head">
+        <div class="eyebrow">Bygd av klinikere</div>
+        <h2>To stemmer fra praksis — ett akuttskrin med én logikk.</h2>
+      </div>
+      <div class="founders-grid">
+        <article class="founder">
+          <figure class="founder-photo">
+            <Image
+              src={kjerstiPhoto}
+              alt="Kjersti Grinde — jordmor og medstifter av EmendaKit"
+              widths={[400, 600, 800]}
+              sizes="(min-width: 1024px) 30vw, 100vw"
+            />
+          </figure>
+          <div class="founder-body">
+            <div class="role">Medstifter · Jordmor</div>
+            <h3>Kjersti Grinde</h3>
+            <p>
+              Jordmor med fagutvikling og medisinsk simulering som spesialfelt.
+              Designet EmendaKit for de avdelingene hun selv har stått på.
+            </p>
+          </div>
+        </article>
+        <article class="founder">
+          <figure class="founder-photo">
+            <Image
+              src={gregersPhoto}
+              alt="Gregers Halvorsen — anestesilege og medstifter av EmendaKit"
+              widths={[400, 600, 800]}
+              sizes="(min-width: 1024px) 30vw, 100vw"
+            />
+          </figure>
+          <div class="founder-body">
+            <div class="role">Medstifter · Anestesilege</div>
+            <h3>Gregers Halvorsen</h3>
+            <p>
+              Anestesilege ved Helse Førde, med erfaring fra luftambulanse og
+              medisinsk simulering. Pakker skrinet slik han selv ville hatt det
+              åpent foran seg.
+            </p>
+          </div>
+        </article>
       </div>
     </div>
   </section>
@@ -53,7 +157,17 @@ const products = (await getCollection("products", ({ data }) => data.locale === 
 <style>
   .container { max-width: 1320px; margin: 0 auto; padding: 0 32px; }
 
-  .hero { padding: 80px 0; }
+  /* ─── hero ─── */
+  .hero { padding: 80px 0 64px; }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 56px;
+    align-items: center;
+  }
+  @media (max-width: 960px) {
+    .hero-grid { grid-template-columns: 1fr; gap: 32px; }
+  }
   .hero-tag {
     display: inline-flex; align-items: center; gap: 10px;
     background: var(--color-cyan-soft);
@@ -83,8 +197,39 @@ const products = (await getCollection("products", ({ data }) => data.locale === 
     color: var(--color-ink-2);
     max-width: 540px;
   }
+  .hero-photo {
+    margin: 0;
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    background: #0a0e15;
+    position: relative;
+  }
+  .hero-photo img {
+    width: 100%; height: auto; display: block;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+  }
+  .hero-photo figcaption {
+    position: absolute;
+    inset: auto 0 0 0;
+    padding: 14px 18px;
+    background: linear-gradient(180deg, transparent 0%, rgba(8, 12, 20, 0.7) 100%);
+  }
+  .stamp {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.78);
+  }
 
-  .products { padding: 80px 0; background: var(--color-cyan-soft); border-top: 1px solid var(--color-rule); border-bottom: 1px solid var(--color-rule); }
+  /* ─── products ─── */
+  .products {
+    padding: 80px 0;
+    background: var(--color-cyan-soft);
+    border-top: 1px solid var(--color-rule);
+    border-bottom: 1px solid var(--color-rule);
+  }
   .products h2 {
     font-family: var(--font-display);
     font-size: 40px; font-weight: 500;
@@ -92,6 +237,7 @@ const products = (await getCollection("products", ({ data }) => data.locale === 
     margin: 0 0 32px;
   }
   .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  @media (max-width: 800px) { .grid { grid-template-columns: 1fr; } }
   .card {
     background: var(--color-surface);
     border: 1px solid var(--color-rule);
@@ -100,8 +246,20 @@ const products = (await getCollection("products", ({ data }) => data.locale === 
   }
   .card-img {
     aspect-ratio: 16 / 11;
-    background: linear-gradient(180deg, #161e2a 0%, #0a0e15 100%);
     position: relative;
+    overflow: hidden;
+  }
+  .card-img.is-placeholder {
+    background: linear-gradient(180deg, #161e2a 0%, #0a0e15 100%);
+  }
+  .card-img.has-photo {
+    background: #ffffff;
+  }
+  .card-img img {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: contain;
+    padding: 16px;
   }
   .card-img .label {
     position: absolute; top: 18px; left: 18px;
@@ -112,7 +270,14 @@ const products = (await getCollection("products", ({ data }) => data.locale === 
     font-family: var(--font-mono);
     font-size: 11px; letter-spacing: 0.1em;
     text-transform: uppercase;
-    padding: 5px 10px; border-radius: var(--radius-sm);
+    padding: 5px 10px;
+    border-radius: var(--radius-sm);
+    z-index: 1;
+  }
+  .card-img.has-photo .label {
+    background: rgba(15, 37, 71, 0.85);
+    border-color: transparent;
+    color: #fff;
   }
   .card-body { padding: 32px; }
   .card-body .eyebrow {
@@ -134,4 +299,103 @@ const products = (await getCollection("products", ({ data }) => data.locale === 
     border-bottom: 1px solid var(--color-navy);
     padding-bottom: 2px;
   }
+
+  /* ─── field ─── */
+  .field { padding: 96px 0; }
+  .field-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+    gap: 56px;
+    align-items: center;
+  }
+  @media (max-width: 960px) { .field-grid { grid-template-columns: 1fr; gap: 32px; } }
+  .field-photo {
+    margin: 0; position: relative;
+    border-radius: var(--radius-xl); overflow: hidden;
+    background: #0a0e15;
+  }
+  .field-photo img {
+    width: 100%; height: auto; display: block;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+  }
+  .field-photo figcaption {
+    position: absolute; inset: auto 0 0 0;
+    padding: 14px 18px;
+    background: linear-gradient(180deg, transparent 0%, rgba(8, 12, 20, 0.7) 100%);
+  }
+  .field-copy .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 12px; color: var(--color-navy);
+    text-transform: uppercase; letter-spacing: 0.1em;
+    margin-bottom: 14px;
+  }
+  .field-copy h2 {
+    font-family: var(--font-display);
+    font-size: clamp(28px, 3.4vw, 40px); font-weight: 500;
+    letter-spacing: -0.025em; line-height: 1.1;
+    margin: 0 0 20px;
+  }
+  .field-copy p { font-size: 16px; line-height: 1.6; color: var(--color-ink-2); margin: 0 0 24px; }
+  .field-copy blockquote {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: 22px; line-height: 1.35;
+    color: var(--color-navy);
+    border-left: 3px solid var(--color-navy);
+    padding-left: 16px;
+  }
+
+  /* ─── founders ─── */
+  .founders {
+    padding: 96px 0;
+    background: var(--color-cyan-soft);
+    border-top: 1px solid var(--color-rule);
+  }
+  .founders-head { margin-bottom: 40px; max-width: 720px; }
+  .founders-head .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 12px; color: var(--color-navy);
+    text-transform: uppercase; letter-spacing: 0.1em;
+    margin-bottom: 14px;
+  }
+  .founders-head h2 {
+    font-family: var(--font-display);
+    font-size: clamp(28px, 3.4vw, 40px); font-weight: 500;
+    letter-spacing: -0.025em; line-height: 1.1;
+    margin: 0;
+  }
+  .founders-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  @media (max-width: 800px) { .founders-grid { grid-template-columns: 1fr; } }
+  .founder {
+    background: var(--color-surface);
+    border: 1px solid var(--color-rule);
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+  }
+  .founder-photo {
+    margin: 0;
+    aspect-ratio: 1 / 1;
+    background: #0a0e15;
+    overflow: hidden;
+  }
+  .founder-photo img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .founder-body { padding: 28px; }
+  .founder-body .role {
+    font-family: var(--font-mono);
+    font-size: 12px; color: var(--color-navy);
+    text-transform: uppercase; letter-spacing: 0.1em;
+    margin-bottom: 10px;
+  }
+  .founder-body h3 {
+    font-family: var(--font-display);
+    font-size: 24px; font-weight: 500;
+    letter-spacing: -0.02em;
+    margin: 0 0 12px;
+  }
+  .founder-body p { font-size: 15px; line-height: 1.6; color: var(--color-ink-2); margin: 0; }
 </style>

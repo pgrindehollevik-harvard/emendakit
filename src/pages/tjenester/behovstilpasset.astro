@@ -1,0 +1,379 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "~/layouts/BaseLayout.astro";
+
+const services = await getCollection(
+  "services",
+  ({ data }) => data.locale === "no",
+);
+const service = services.find((entry) => entry.slug === "behovstilpasset");
+
+if (!service) {
+  throw new Error("Missing Norwegian service entry: behovstilpasset");
+}
+
+const { Content } = await service.render();
+const process = [
+  {
+    number: "01",
+    title: "Designsamtale",
+    text: "Vi går gjennom scenarioene, prosedyrene, rommene og avvikene som gjør behovet deres konkret.",
+  },
+  {
+    number: "02",
+    title: "Forslag til pakking",
+    text: "Vi skisserer innhold, layout, merking og hvordan skrinet skal støtte arbeidsflyten under akutt hendelse.",
+  },
+  {
+    number: "03",
+    title: "Pilot i klinikken",
+    text: "Én eller noen få enheter testes av teamet som faktisk skal bruke skrinet.",
+  },
+  {
+    number: "04",
+    title: "Justering og levering",
+    text: "Erfaringene fra pilot brukes til endelig pakking, merking og levering av ferdige skrin.",
+  },
+];
+---
+
+<BaseLayout
+  locale="no"
+  altUrl={`/en/services/${service.data.altSlug}`}
+  title={`${service.data.title} — EmendaKit`}
+  description={service.data.summary}
+>
+  <article>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <p class="eyebrow">Behovstilpasset · {service.data.audience}</p>
+          <h1>{service.data.title}</h1>
+        </div>
+        <div class="hero-card">
+          <p>{service.data.summary}</p>
+          <a
+            href={`mailto:kjersti@emendakit.com?subject=${encodeURIComponent("Designsamtale om behovstilpasset skrin")}`}
+          >
+            Be om designsamtale →
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="audience" aria-labelledby="audience-heading">
+      <div class="container audience-grid">
+        <div>
+          <p class="eyebrow">For hvem</p>
+          <h2 id="audience-heading">Når standardpakken ikke er presis nok.</h2>
+        </div>
+        <div class="audience-copy">
+          <p>
+            Behovstilpassede medisinske skrin er for avdelinger der
+            akuttberedskapen må speile en bestemt pasientgruppe, prosedyre eller
+            fysisk arbeidsflyt. Det kan være fødeavdelinger, vaksinestasjoner,
+            akuttmottak, ambulansetjenester eller enheter med spesielle krav til
+            innhold og merking.
+          </p>
+          <ul>
+            <li>Fast plass for hvert legemiddel og hver komponent.</li>
+            <li>Merking som støtter deres prosedyre under tidspress.</li>
+            <li>Mulighet for pilot før endelig levering.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="process" aria-labelledby="process-heading">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">Slik jobber vi</p>
+          <h2 id="process-heading">
+            Fra klinisk behov til ferdig pakket skrin.
+          </h2>
+        </div>
+
+        <ol class="process-list">
+          {
+            process.map((step) => (
+              <li>
+                <span>{step.number}</span>
+                <div>
+                  <h3>{step.title}</h3>
+                  <p>{step.text}</p>
+                </div>
+              </li>
+            ))
+          }
+        </ol>
+      </div>
+    </section>
+
+    <section class="content-note" aria-labelledby="source-heading">
+      <div class="container source-grid">
+        <div>
+          <p class="eyebrow">Fra tjenestebeskrivelsen</p>
+          <h2 id="source-heading">
+            Rammeverket er EmendaKit. Innholdet er deres.
+          </h2>
+        </div>
+        <div class="mdx-content">
+          <Content />
+        </div>
+      </div>
+    </section>
+
+    <section class="cta">
+      <div class="container cta-grid">
+        <div>
+          <p class="eyebrow">Neste steg</p>
+          <h2>Send Kjersti en kort beskrivelse av behovet.</h2>
+        </div>
+        <div>
+          <p>
+            Designsamtalen er gratis og uforpliktende. Skriv hvilken avdeling
+            det gjelder, hvilke scenarioer skrinet skal støtte, og om dere
+            ønsker én pilot eller flere enheter.
+          </p>
+          <a
+            href={`mailto:kjersti@emendakit.com?subject=${encodeURIComponent("Behovstilpasset medisinsk skrin")}`}
+            class="button"
+          >
+            kjersti@emendakit.com →
+          </a>
+        </div>
+      </div>
+    </section>
+  </article>
+</BaseLayout>
+
+<style>
+  .container {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  .eyebrow {
+    margin: 0 0 14px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    color: var(--color-navy);
+    text-transform: uppercase;
+  }
+
+  .hero {
+    padding: 84px 0 76px;
+  }
+
+  .hero-grid,
+  .audience-grid,
+  .source-grid,
+  .cta-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(300px, 0.78fr);
+    gap: 56px;
+    align-items: start;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    font-weight: 500;
+    letter-spacing: -0.03em;
+    color: var(--color-ink);
+  }
+
+  h1 {
+    max-width: 780px;
+    margin: 0;
+    font-size: clamp(42px, 6vw, 72px);
+    line-height: 0.98;
+  }
+
+  h2 {
+    margin: 0;
+    font-size: clamp(31px, 4vw, 48px);
+    line-height: 1.04;
+  }
+
+  h3 {
+    margin: 0 0 8px;
+    font-size: 22px;
+    letter-spacing: -0.015em;
+  }
+
+  .hero-card {
+    border: 1px solid var(--color-rule);
+    border-radius: var(--radius-xl);
+    background: var(--color-surface);
+    padding: 30px;
+  }
+
+  .hero-card p,
+  .audience-copy p,
+  .cta p {
+    margin: 0;
+    color: var(--color-ink-2);
+    font-size: 17px;
+    line-height: 1.65;
+  }
+
+  .hero-card a,
+  .button {
+    display: inline-flex;
+    align-items: center;
+    width: fit-content;
+    margin-top: 24px;
+    border-radius: var(--radius-pill);
+    background: var(--color-navy);
+    color: var(--color-bg);
+    padding: 14px 22px;
+    font-weight: 500;
+  }
+
+  .audience,
+  .content-note {
+    padding: 78px 0;
+    border-top: 1px solid var(--color-rule);
+  }
+
+  .audience-copy ul {
+    display: grid;
+    gap: 12px;
+    margin: 24px 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .audience-copy li {
+    border-top: 1px solid var(--color-rule);
+    padding-top: 12px;
+    color: var(--color-ink);
+    font-size: 15px;
+  }
+
+  .process {
+    padding: 78px 0 86px;
+    border-top: 1px solid var(--color-rule);
+    background: var(--color-cyan-soft);
+  }
+
+  .section-head {
+    max-width: 720px;
+    margin-bottom: 34px;
+  }
+
+  .process-list {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 18px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .process-list li {
+    min-height: 250px;
+    border: 1px solid var(--color-rule);
+    border-radius: var(--radius-xl);
+    background: var(--color-surface);
+    padding: 24px;
+  }
+
+  .process-list span {
+    display: block;
+    margin-bottom: 44px;
+    font-family: var(--font-mono);
+    color: var(--color-navy);
+    font-size: 12px;
+    letter-spacing: 0.12em;
+  }
+
+  .process-list p {
+    margin: 0;
+    color: var(--color-ink-2);
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  .mdx-content {
+    color: var(--color-ink-2);
+    font-size: 16px;
+    line-height: 1.65;
+  }
+
+  .mdx-content :global(h2) {
+    margin: 0 0 14px;
+    font-family: var(--font-display);
+    color: var(--color-ink);
+    font-size: 24px;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+  }
+
+  .mdx-content :global(h2:not(:first-child)) {
+    margin-top: 34px;
+  }
+
+  .mdx-content :global(p) {
+    margin: 0 0 18px;
+  }
+
+  .mdx-content :global(ol) {
+    margin: 0 0 18px;
+    padding-left: 1.2rem;
+  }
+
+  .mdx-content :global(li) {
+    margin-bottom: 9px;
+  }
+
+  .cta {
+    padding: 74px 0;
+    border-top: 1px solid var(--color-rule);
+    background: #111b2b;
+    color: var(--color-bg);
+  }
+
+  .cta .eyebrow {
+    color: var(--color-cyan);
+  }
+
+  .cta h2 {
+    color: var(--color-bg);
+  }
+
+  .cta p {
+    color: rgba(250, 250, 247, 0.78);
+  }
+
+  .cta .button {
+    background: var(--color-bg);
+    color: var(--color-navy);
+  }
+
+  @media (max-width: 920px) {
+    .hero-grid,
+    .audience-grid,
+    .source-grid,
+    .cta-grid,
+    .process-list {
+      grid-template-columns: 1fr;
+    }
+
+    .hero {
+      padding-top: 64px;
+    }
+
+    .process-list li {
+      min-height: 0;
+    }
+
+    .process-list span {
+      margin-bottom: 28px;
+    }
+  }
+</style>

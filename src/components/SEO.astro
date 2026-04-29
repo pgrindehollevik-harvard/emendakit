@@ -15,7 +15,7 @@ const url = canonical ?? new URL(Astro.url.pathname, SITE.url).href;
 const altLocale = locale === "no" ? "en" : "no";
 const langTag = locale === "no" ? "nb-NO" : "en-US";
 const altLangTag = altLocale === "no" ? "nb-NO" : "en-US";
-const fullOgImage = ogImage ?? `${SITE.url}/og-default.png`;
+const fullOgImage = new URL(ogImage ?? "/og-default.jpg", SITE.url).href;
 ---
 
 <title>{title}</title>
@@ -38,6 +38,9 @@ const fullOgImage = ogImage ?? `${SITE.url}/og-default.png`;
 <meta property="og:locale" content={langTag.replace("-", "_")} />
 <meta property="og:site_name" content={SITE.name} />
 <meta property="og:image" content={fullOgImage} />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="EmendaKit anafylaksiskrin i klinisk luftambulanse-miljø" />
 
 {/* Twitter */}
 <meta name="twitter:card" content="summary_large_image" />

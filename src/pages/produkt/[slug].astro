@@ -3,6 +3,7 @@ import { getCollection } from "astro:content";
 import BaseLayout from "~/layouts/BaseLayout.astro";
 import SchemaProduct from "~/components/SchemaProduct.astro";
 import SchemaFAQPage from "~/components/SchemaFAQPage.astro";
+import CTAStrip from "~/components/CTAStrip.astro";
 
 export async function getStaticPaths() {
   const products = await getCollection("products", ({ data }) => data.locale === "no");
@@ -65,11 +66,18 @@ const altUrl = `/en/product/${product.data.altSlug}`;
         </details>
       ))}
     </div>
-
-    <div style="margin-top: 56px; padding: 32px; background: var(--color-cyan-soft); border-radius: var(--radius-xl);">
-      <h2 style="font-family: var(--font-display); font-size: 22px; font-weight: 500; margin: 0 0 12px;">Be om tilbud</h2>
-      <p style="font-size: 14px; color: var(--color-ink-2); margin: 0 0 16px;">{product.data.priceLabel} · Leveringstid {product.data.deliveryTime.toLowerCase()}</p>
-      <a href={`mailto:kjersti@emendakit.com?subject=${encodeURIComponent("Tilbud på " + product.data.title)}`} style="display: inline-block; background: var(--color-navy); color: var(--color-bg); padding: 14px 22px; border-radius: var(--radius-pill); font-weight: 500;">Send e-post til Kjersti →</a>
-    </div>
   </article>
+
+  <CTAStrip
+    title={`Be om tilbud på ${product.data.title}`}
+    body={`${product.data.priceLabel} · Leveringstid ${product.data.deliveryTime.toLowerCase()}. Send en kort beskrivelse av avdeling, antall skrin og ønsket leveringssted.`}
+    primary={{
+      href: `mailto:kjersti@emendakit.com?subject=${encodeURIComponent("Tilbud på " + product.data.title)}`,
+      label: "Send e-post til Kjersti →",
+    }}
+    secondary={{
+      href: "/opplaering",
+      label: "Se opplæringsfilmer",
+    }}
+  />
 </BaseLayout>

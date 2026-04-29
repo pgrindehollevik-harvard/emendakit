@@ -1,0 +1,242 @@
+---
+import type { CollectionEntry } from "astro:content";
+import SchemaVideoObject from "./SchemaVideoObject.astro";
+
+type VideoSource = {
+  src: string;
+  type: `video/${string}`;
+};
+
+type VideoTrack = {
+  src: string;
+  srclang: string;
+  label: string;
+  kind?: "subtitles" | "captions";
+};
+
+export type VideoFilm = {
+  id: string;
+  title: string;
+  description: string;
+  poster: string;
+  sources: readonly VideoSource[];
+  transcript: string;
+  duration: string;
+  durationLabel?: string;
+  uploadDate?: string;
+  inLanguage?: "nb-NO" | "en-US";
+  subtitles?: VideoTrack | null;
+  hasBurnedInSubtitles?: boolean;
+};
+
+interface Props {
+  film: VideoFilm | CollectionEntry<"videos">;
+  indexLabel?: string;
+  showMeta?: boolean;
+  transcriptLabel?: string;
+  transcriptHint?: string;
+  subtitles?: VideoTrack | null;
+  hasBurnedInSubtitles?: boolean;
+}
+
+const {
+  film,
+  indexLabel,
+  showMeta = true,
+  transcriptLabel = "Vis fullstendig transkripsjon",
+  transcriptHint = "AEO + tilgjengelighet",
+  subtitles,
+  hasBurnedInSubtitles,
+} = Astro.props;
+
+function isVideoEntry(value: Props["film"]): value is CollectionEntry<"videos"> {
+  return "data" in value;
+}
+
+const data = isVideoEntry(film)
+  ? {
+      id: film.data.id,
+      title: film.data.title,
+      description: film.data.description,
+      poster: film.data.poster,
+      sources: [
+        ...(film.data.sourceWebm ? [{ src: film.data.sourceWebm, type: "video/webm" as const }] : []),
+        { src: film.data.sourceMp4, type: "video/mp4" as const },
+      ],
+      transcript: film.data.transcript,
+      duration: film.data.duration,
+      durationLabel: undefined,
+      uploadDate: film.data.uploadDate,
+      inLanguage: film.data.locale === "no" ? "nb-NO" as const : "en-US" as const,
+      subtitles: null,
+      hasBurnedInSubtitles: false,
+    }
+  : film;
+
+const track = subtitles ?? data.subtitles ?? null;
+const burnedIn = hasBurnedInSubtitles ?? data.hasBurnedInSubtitles ?? false;
+const schemaLanguage = data.inLanguage ?? "nb-NO";
+---
+
+<article class="video" id={data.id}>
+  {data.uploadDate && (
+    <SchemaVideoObject
+      title={data.title}
+      description={data.description}
+      thumbnailUrl={data.poster}
+      uploadDate={data.uploadDate}
+      duration={data.duration}
+      contentUrl={data.sources[0].src}
+      transcript={data.transcript}
+      inLanguage={schemaLanguage}
+    />
+  )}
+
+  <div class="video-grid">
+    {showMeta && (
+      <div class="video-meta">
+        {(indexLabel || data.durationLabel || data.duration) && (
+          <div class="eyebrow">
+            {indexLabel && <span>{indexLabel}</span>}
+            {indexLabel && (data.durationLabel || data.duration) && <span>·</span>}
+            {(data.durationLabel || data.duration) && <span>{data.durationLabel ?? data.duration}</span>}
+          </div>
+        )}
+        <h2>{data.title}</h2>
+        <p>{data.description}</p>
+      </div>
+    )}
+
+    <div class="video-player">
+      <video controls preload="metadata" poster={data.poster} crossorigin="anonymous">
+        {data.sources.map((source) => <source src={source.src} type={source.type} />)}
+        {track && !burnedIn && (
+          <track
+            kind={track.kind ?? "subtitles"}
+            srclang={track.srclang}
+            label={track.label}
+            src={track.src}
+          />
+        )}
+      </video>
+    </div>
+  </div>
+
+  <details class="transcript">
+    <summary>
+      {transcriptLabel}
+      <span>{transcriptHint}</span>
+    </summary>
+    <div class="transcript-body">
+      {data.transcript.split("\n").filter(Boolean).map((line) => <p>{line}</p>)}
+    </div>
+  </details>
+</article>
+
+<style>
+  .video {
+    padding: 40px 0 56px;
+    border-top: 1px solid var(--color-rule);
+  }
+  .video:first-child {
+    border-top: 0;
+  }
+  .video-grid {
+    display: grid;
+    grid-template-columns: 280px minmax(0, 1fr);
+    gap: 40px;
+    align-items: start;
+  }
+  .eyebrow {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--color-navy);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 12px;
+  }
+  .video-meta h2 {
+    font-family: var(--font-display);
+    font-size: 24px;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+    margin: 0 0 14px;
+  }
+  .video-meta p {
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--color-ink-2);
+    margin: 0;
+  }
+  .video-player {
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    background: var(--color-ink);
+    aspect-ratio: 16 / 9;
+  }
+  .video-player video {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+  .transcript {
+    margin-top: 32px;
+    border-top: 1px solid var(--color-rule);
+    padding-top: 20px;
+  }
+  .transcript summary {
+    cursor: pointer;
+    font-family: var(--font-display);
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--color-navy);
+    list-style: none;
+  }
+  .transcript summary::-webkit-details-marker {
+    display: none;
+  }
+  .transcript summary::before {
+    content: "▸";
+    display: inline-block;
+    margin-right: 8px;
+    transition: transform 120ms var(--ease-soft);
+  }
+  .transcript[open] summary::before {
+    transform: rotate(90deg);
+  }
+  .transcript summary span {
+    color: var(--color-ink-3);
+    font-family: var(--font-sans);
+    font-weight: 400;
+    font-size: 13px;
+    margin-left: 8px;
+  }
+  .transcript-body {
+    margin-top: 18px;
+    background: var(--color-cyan-soft);
+    border-radius: var(--radius-md);
+    padding: 24px 28px;
+    max-height: 480px;
+    overflow: auto;
+  }
+  .transcript-body p {
+    font-size: 14px;
+    line-height: 1.65;
+    color: var(--color-ink);
+    margin: 0 0 10px;
+  }
+  @media (max-width: 800px) {
+    .video-grid {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+    .transcript summary span {
+      display: block;
+      margin: 6px 0 0 24px;
+    }
+  }
+</style>

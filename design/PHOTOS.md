@@ -4,15 +4,30 @@ This file lists every photo slot used in the design mockups, what photo belongs 
 
 All production photos should live at `src/assets/photos/` and be served via Astro's `<Image>` component (auto-resized + AVIF/WebP).
 
-| Slot         | Filename                                  | Description                                                                 | Crop                                                       | Treatment                                                                                  |
-|--------------|-------------------------------------------|-----------------------------------------------------------------------------|------------------------------------------------------------|--------------------------------------------------------------------------------------------|
-| FOTO 01      | `hero-helicopter-hangar.jpg`              | Gregers in red flight suit, holding the anafylaksiskrin, helicopter behind. | 4:3, subject centered, hangar symmetry preserved.          | None — hero image stands on its own. Optional: subtle bottom gradient for caption legibility. |
-| FOTO 02      | `product-clinic-in-situ.jpg`              | The Klinikk-skrinet in clinical context (e.g. sitting open in ambulance).   | 16:11 landscape.                                           | None.                                                                                       |
-| FOTO 03      | `product-dental-in-situ.jpg`              | The Tannlege-skrinet on a dental clinic surface.                            | 16:11 landscape.                                           | None. (TODO: this photo doesn't exist yet — needs a shoot.)                                 |
-| FOTO 04      | `field-ambulance-interior.jpg`            | Gregers tending to a patient inside the air ambulance, kit visible.         | 4:5 portrait, vertical for field-section.                  | None.                                                                                       |
-| FOTO 05      | `founder-kjersti-portrait.jpg`            | Kjersti, white scrubs, black background, warm professional smile.           | 1:1 square.                                                | None — leave the existing studio black background.                                          |
-| FOTO 06      | `founder-gregers-portrait.jpg`            | Gregers, surgical scrub cap and teal scrubs, black background.              | 1:1 square.                                                | None.                                                                                       |
-| FOTO 07–10   | _reserved_                                | Future: behovstilpasset case studies, Helse Førde mediaomtale callouts.     | TBD                                                        | TBD                                                                                         |
+| Slot         | Filename                                  | Status     | Description                                                                 | Crop                                                       |
+|--------------|-------------------------------------------|------------|-----------------------------------------------------------------------------|------------------------------------------------------------|
+| FOTO 01      | `hero-helicopter-hangar.jpg`              | ✅ wired   | Gregers in red flight suit, holding the anafylaksiskrin, helicopter behind. | 4:3, subject centered, hangar symmetry preserved.          |
+| FOTO 02      | `product-hospital-studio.webp`            | ⚠ partial | Hospital kit on neutral background — **studio substitute**, not in-situ.    | Studio cutout (transparent / white).                       |
+| FOTO 03      | `product-dental-in-situ.jpg`              | ❌ missing | Dental kit on a dental clinic surface — **needs a shoot**.                  | 16:11 landscape.                                           |
+| FOTO 04      | `field-ambulance-interior.jpg`            | ✅ wired   | Air ambulance interior, kit context.                                        | 4:5 portrait, vertical for field-section.                  |
+| FOTO 05      | `founder-kjersti-portrait.jpg`            | ✅ wired   | Kjersti, dark background — `_edited_edited` variant.                        | 1:1 square.                                                |
+| FOTO 06      | `founder-gregers-portrait.jpg`            | ✅ wired   | Gregers, "Kult portrett" — edited variant.                                  | 1:1 square.                                                |
+| FOTO 07–10   | _reserved_                                | —          | Future: behovstilpasset case studies, Helse Førde mediaomtale callouts.     | TBD                                                        |
+
+### Outstanding shoots needed
+
+- **FOTO 02 (in-situ)** — current production uses a studio cutout because no in-situ shot of the hospital kit exists. Worth commissioning when a Helse Førde shoot is next on the calendar: kit open in ambulance interior, mid-procedure light.
+- **FOTO 03** — dental clinic shoot still needed: tannlege wearing scrubs, kit on a dental tray, cinematic lighting consistent with the rest of the brand.
+
+### Bonus material on hand (not yet wired)
+
+In `~/Desktop/projects/websites/emendakit/src/assets/`:
+
+- `field_shots/` — four Kjersti-as-midwife shots (forløsning, jordmorstetoskop, med baby, undersøker gravid mage), two Gregers-with-patient shots, helicopter side view (alt FOTO 01).
+- `portraits/` — alt edits of both founders + a "serious" Gregers (`Portrett Gregers.Alvorlig.jpg`).
+- `logo/` — Monochrome on Transparent, Original on Transparent, White on Black, Blå på kvit bakgrunn variants.
+
+These are candidates for `/om-oss`, the founders' bios, or a "in the field" strip on `/opplaering`. They have not been copied into this worktree's `src/assets/photos/` yet.
 
 ## Photo notes
 

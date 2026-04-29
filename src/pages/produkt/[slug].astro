@@ -7,14 +7,14 @@ import SchemaFAQPage from "~/components/SchemaFAQPage.astro";
 export async function getStaticPaths() {
   const products = await getCollection("products", ({ data }) => data.locale === "no");
   return products.map((product) => ({
-    params: { slug: product.data.slug },
+    params: { slug: product.slug },
     props: { product },
   }));
 }
 
 const { product } = Astro.props;
 const { Content } = await product.render();
-const url = `/produkt/${product.data.slug}`;
+const url = `/produkt/${product.slug}`;
 const altUrl = `/en/product/${product.data.altSlug}`;
 ---
 

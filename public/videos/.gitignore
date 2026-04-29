@@ -1,0 +1,5 @@
+# Source video files — too large for git (~200MB total).
+# For production: move to Vercel Blob Storage, S3, or Cloudflare R2,
+# OR enable Git LFS. Keep posters + transcripts checked in.
+*.mp4
+*.wav

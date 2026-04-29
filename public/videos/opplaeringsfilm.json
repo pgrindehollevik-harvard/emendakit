@@ -1,0 +1,879 @@
+{
+	"systeminfo": "WHISPER : COREML = 0 | OPENVINO = 0 | MTL : EMBED_LIBRARY = 1 | CPU : NEON = 1 | ARM_FMA = 1 | FP16_VA = 1 | MATMUL_INT8 = 1 | DOTPROD = 1 | SME = 1 | ACCELERATE = 1 | OPENMP = 1 | REPACK = 1 | ",
+	"model": {
+		"type": "large",
+		"multilingual": true,
+		"vocab": 51866,
+		"audio": {
+			"ctx": 1500,
+			"state": 1280,
+			"head": 20,
+			"layer": 32
+		},
+		"text": {
+			"ctx": 448,
+			"state": 1280,
+			"head": 20,
+			"layer": 4
+		},
+		"mels": 128,
+		"ftype": 1
+	},
+	"params": {
+		"model": "/Users/peterflo/conductor/workspaces/emendakit-v1/tehran/.context/whisper-models/ggml-large-v3-turbo.bin",
+		"language": "no",
+		"translate": false
+	},
+	"result": {
+		"language": "no"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:01,000",
+				"to": "00:00:07,060"
+			},
+			"offsets": {
+				"from": 1000,
+				"to": 7060
+			},
+			"text": " Velkommen til en informasjonsfilm om bruken av det her anafylaksiskrine."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:07,060",
+				"to": "00:00:19,300"
+			},
+			"offsets": {
+				"from": 7060,
+				"to": 19300
+			},
+			"text": " Som helsepersonell møter en pasienter som får allergiske reaksjoner og såkalt anafylaksi."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:19,300",
+				"to": "00:00:23,800"
+			},
+			"offsets": {
+				"from": 19300,
+				"to": 23800
+			},
+			"text": " Anafylaktiske reaksjoner kan i løpet av få minutter bli livstruende,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,800",
+				"to": "00:00:28,700"
+			},
+			"offsets": {
+				"from": 23800,
+				"to": 28700
+			},
+			"text": " og rask diagnose og behandling kan derfor være livreddende."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:29,120",
+				"to": "00:00:36,780"
+			},
+			"offsets": {
+				"from": 29120,
+				"to": 36780
+			},
+			"text": " Førstehandsbehandling med anafylaktisk sjokk er å gi adrenalin intramuskulært raskest mulig."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:36,780",
+				"to": "00:00:42,380"
+			},
+			"offsets": {
+				"from": 36780,
+				"to": 42380
+			},
+			"text": " Hei!"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:42,380",
+				"to": "00:00:42,980"
+			},
+			"offsets": {
+				"from": 42380,
+				"to": 42980
+			},
+			"text": " Hei!"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:42,980",
+				"to": "00:00:45,620"
+			},
+			"offsets": {
+				"from": 42980,
+				"to": 45620
+			},
+			"text": " Jeg heter Marit og er intensivsykepleier."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:45,620",
+				"to": "00:00:46,500"
+			},
+			"offsets": {
+				"from": 45620,
+				"to": 46500
+			},
+			"text": " Ja, Paul."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:46,500",
+				"to": "00:00:50,900"
+			},
+			"offsets": {
+				"from": 46500,
+				"to": 50900
+			},
+			"text": " Nå skal du få antibiotika mot den lungebetennelsen som du har."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:50,900",
+				"to": "00:00:52,740"
+			},
+			"offsets": {
+				"from": 50900,
+				"to": 52740
+			},
+			"text": " Ja, det snakker de om, ja."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:52,740",
+				"to": "00:00:55,020"
+			},
+			"offsets": {
+				"from": 52740,
+				"to": 55020
+			},
+			"text": " Ja, her er da panselinen."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:58,240",
+				"to": "00:01:01,340"
+			},
+			"offsets": {
+				"from": 58240,
+				"to": 61340
+			},
+			"text": " Har du reagert på penselin tidligere?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:01,340",
+				"to": "00:01:05,800"
+			},
+			"offsets": {
+				"from": 61340,
+				"to": 65800
+			},
+			"text": " Nei, jeg har aldri reagert på en medisin, tror jeg."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:05,800",
+				"to": "00:01:12,180"
+			},
+			"offsets": {
+				"from": 65800,
+				"to": 72180
+			},
+			"text": " Da er det viktig at du sier fra hvis du kjenner noe ubehag, kløe,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:12,180",
+				"to": "00:01:15,260"
+			},
+			"offsets": {
+				"from": 72180,
+				"to": 75260
+			},
+			"text": " eller at du får tungt for å puste."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:15,260",
+				"to": "00:01:17,400"
+			},
+			"offsets": {
+				"from": 75260,
+				"to": 77400
+			},
+			"text": " Da ringer jeg bare her da."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:17,400",
+				"to": "00:01:18,820"
+			},
+			"offsets": {
+				"from": 77400,
+				"to": 78820
+			},
+			"text": " Da bare ringer du på med den, ja."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:18,820",
+				"to": "00:01:19,740"
+			},
+			"offsets": {
+				"from": 78820,
+				"to": 79740
+			},
+			"text": " Ja, ja."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:19,740",
+				"to": "00:01:21,020"
+			},
+			"offsets": {
+				"from": 79740,
+				"to": 81020
+			},
+			"text": " Ja, men det er greit."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:21,020",
+				"to": "00:01:50,600"
+			},
+			"offsets": {
+				"from": 81020,
+				"to": 110600
+			},
+			"text": " Kodan går da."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:50,600",
+				"to": "00:01:52,320"
+			},
+			"offsets": {
+				"from": 110600,
+				"to": 112320
+			},
+			"text": " Jeg begynte å klø litt, altså."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:52,320",
+				"to": "00:01:54,620"
+			},
+			"offsets": {
+				"from": 112320,
+				"to": 114620
+			},
+			"text": " Jeg er litt tung i pusten."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:54,620",
+				"to": "00:01:57,840"
+			},
+			"offsets": {
+				"from": 114620,
+				"to": 117840
+			},
+			"text": " Ja, jeg tror du har fått en allergisk reaksjon."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:57,840",
+				"to": "00:02:01,060"
+			},
+			"offsets": {
+				"from": 117840,
+				"to": 121060
+			},
+			"text": " Og Kola håndterer en anofilaksi når det oppstår."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:01,060",
+				"to": "00:02:03,660"
+			},
+			"offsets": {
+				"from": 121060,
+				"to": 123660
+			},
+			"text": " Stopp utløsende årsak."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:03,660",
+				"to": "00:02:07,360"
+			},
+			"offsets": {
+				"from": 123660,
+				"to": 127360
+			},
+			"text": " Alarmer."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:13,360",
+				"to": "00:02:15,740"
+			},
+			"offsets": {
+				"from": 133360,
+				"to": 135740
+			},
+			"text": " Så da skal jeg ta og varsle på hjelp."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:15,740",
+				"to": "00:02:16,060"
+			},
+			"offsets": {
+				"from": 135740,
+				"to": 136060
+			},
+			"text": " Ja."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:16,060",
+				"to": "00:02:21,160"
+			},
+			"offsets": {
+				"from": 136060,
+				"to": 141160
+			},
+			"text": " Hva skjer her?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:21,420",
+				"to": "00:02:24,760"
+			},
+			"offsets": {
+				"from": 141420,
+				"to": 144760
+			},
+			"text": " Pasienten har fått en allergisk reaksjon etter pensilininfusjon."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:24,760",
+				"to": "00:02:28,440"
+			},
+			"offsets": {
+				"from": 144760,
+				"to": 148440
+			},
+			"text": " Han har respiratorisk fridog og han har mye oppstått til karier."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:28,440",
+				"to": "00:02:30,700"
+			},
+			"offsets": {
+				"from": 148440,
+				"to": 150700
+			},
+			"text": " Kan du hente anofilaksiskrine?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:30,700",
+				"to": "00:02:31,540"
+			},
+			"offsets": {
+				"from": 150700,
+				"to": 151540
+			},
+			"text": " Ja."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:31,540",
+				"to": "00:02:33,300"
+			},
+			"offsets": {
+				"from": 151540,
+				"to": 153300
+			},
+			"text": " Jeg går og henter anofilaksiskrine."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:33,300",
+				"to": "00:02:34,280"
+			},
+			"offsets": {
+				"from": 153300,
+				"to": 154280
+			},
+			"text": " Skal jeg varsle?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:34,280",
+				"to": "00:02:36,140"
+			},
+			"offsets": {
+				"from": 154280,
+				"to": 156140
+			},
+			"text": " Ja."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:36,140",
+				"to": "00:02:37,380"
+			},
+			"offsets": {
+				"from": 156140,
+				"to": 157380
+			},
+			"text": " Hei, det er Greger Sponsusin."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:37,380",
+				"to": "00:02:38,480"
+			},
+			"offsets": {
+				"from": 157380,
+				"to": 158480
+			},
+			"text": " Hei."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:38,480",
+				"to": "00:02:41,000"
+			},
+			"offsets": {
+				"from": 158480,
+				"to": 161000
+			},
+			"text": " Det her er intensivsykepleier Marit."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:41,000",
+				"to": "00:02:43,480"
+			},
+			"offsets": {
+				"from": 161000,
+				"to": 163480
+			},
+			"text": " Jeg ringer fra medisinsk avdeling Rom 3."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:43,480",
+				"to": "00:02:46,260"
+			},
+			"offsets": {
+				"from": 163480,
+				"to": 166260
+			},
+			"text": " Det gjelder pasienten Poul."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:46,260",
+				"to": "00:02:47,060"
+			},
+			"offsets": {
+				"from": 166260,
+				"to": 167060
+			},
+			"text": " 40 år."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:47,060",
+				"to": "00:02:48,380"
+			},
+			"offsets": {
+				"from": 167060,
+				"to": 168380
+			},
+			"text": " Han er innlagt med pneumoni."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:48,380",
+				"to": "00:02:51,860"
+			},
+			"offsets": {
+				"from": 168380,
+				"to": 171860
+			},
+			"text": " Han har akkurat startet opp med pensilinbehandling."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:52,720",
+				"to": "00:02:54,980"
+			},
+			"offsets": {
+				"from": 172720,
+				"to": 174980
+			},
+			"text": " Og jeg mistenker han har fått en anofilaksisk reaksjon."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:54,980",
+				"to": "00:03:00,560"
+			},
+			"offsets": {
+				"from": 174980,
+				"to": 180560
+			},
+			"text": " Han har respiratoriske stridor og han har ny oppstått urticarier."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:00,560",
+				"to": "00:03:04,220"
+			},
+			"offsets": {
+				"from": 180560,
+				"to": 184220
+			},
+			"text": " Kan jeg gi han adrenalin etter prosedyret?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:04,220",
+				"to": "00:03:08,060"
+			},
+			"offsets": {
+				"from": 184220,
+				"to": 188060
+			},
+			"text": " Ja, du kan gi han adrenalin etter prosedyret."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:08,060",
+				"to": "00:03:14,840"
+			},
+			"offsets": {
+				"from": 188060,
+				"to": 194840
+			},
+			"text": " Da gir jeg han adrenalin 1 mg per milliliter 0,5 mg intramuskulært i låret."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:14,840",
+				"to": "00:03:20,420"
+			},
+			"offsets": {
+				"from": 194840,
+				"to": 200420
+			},
+			"text": " Adrenalin 1 mg per milliliter 1,5 ml intramuskulært i låret."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:20,420",
+				"to": "00:03:22,880"
+			},
+			"offsets": {
+				"from": 200420,
+				"to": 202880
+			},
+			"text": " Det er helt i orden."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:22,880",
+				"to": "00:03:28,360"
+			},
+			"offsets": {
+				"from": 202880,
+				"to": 208360
+			},
+			"text": " Så skal jeg komme opp og i mellomtida kan du varsle ut medisinsk akutt-team."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:28,360",
+				"to": "00:03:30,220"
+			},
+			"offsets": {
+				"from": 208360,
+				"to": 210220
+			},
+			"text": " Jeg ringer medisinsk akutt-team."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:30,220",
+				"to": "00:03:32,520"
+			},
+			"offsets": {
+				"from": 210220,
+				"to": 212520
+			},
+			"text": " Gi adrenalin."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:32,520",
+				"to": "00:03:47,000"
+			},
+			"offsets": {
+				"from": 212520,
+				"to": 227000
+			},
+			"text": " Kan du trekke opp adrenalin 1 mg per milliliter 0,5 ml?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:47,000",
+				"to": "00:03:51,180"
+			},
+			"offsets": {
+				"from": 227000,
+				"to": 231180
+			},
+			"text": " Jeg trekker opp adrenalin 1 mg per milliliter 0,5 ml."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:51,180",
+				"to": "00:03:55,840"
+			},
+			"offsets": {
+				"from": 231180,
+				"to": 235840
+			},
+			"text": " Pål, nå blir det et stikk."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:55,840",
+				"to": "00:04:10,980"
+			},
+			"offsets": {
+				"from": 235840,
+				"to": 250980
+			},
+			"text": " Går det bedre med deg nå, Pål?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:10,980",
+				"to": "00:04:14,240"
+			},
+			"offsets": {
+				"from": 250980,
+				"to": 254240
+			},
+			"text": " Ja, nå flyste meg bedre."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:14,240",
+				"to": "00:04:15,740"
+			},
+			"offsets": {
+				"from": 254240,
+				"to": 255740
+			},
+			"text": " Det var godt."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:15,740",
+				"to": "00:04:16,500"
+			},
+			"offsets": {
+				"from": 255740,
+				"to": 256500
+			},
+			"text": " Ja."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:16,500",
+				"to": "00:04:26,020"
+			},
+			"offsets": {
+				"from": 256500,
+				"to": 266020
+			},
+			"text": " I dette tilfellet så fikk pasienten god effekt av adrenalin etter få minutter."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:27,640",
+				"to": "00:04:30,080"
+			},
+			"offsets": {
+				"from": 267640,
+				"to": 270080
+			},
+			"text": " Hvis pasienten ikke har god bedring,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:30,080",
+				"to": "00:04:35,720"
+			},
+			"offsets": {
+				"from": 270080,
+				"to": 275720
+			},
+			"text": " så kan du gjenta adrenalindosen etter 5-20 minutter."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:35,720",
+				"to": "00:04:41,560"
+			},
+			"offsets": {
+				"from": 275720,
+				"to": 281560
+			},
+			"text": " Dette og annen medisinsk behandling, det ordineres av lege."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:41,560",
+				"to": "00:04:50,240"
+			},
+			"offsets": {
+				"from": 281560,
+				"to": 290240
+			},
+			"text": " Eller så kan du se på baksida av anefylaksiskrine for videre medisinsk behandling."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:51,640",
+				"to": "00:04:56,840"
+			},
+			"offsets": {
+				"from": 291640,
+				"to": 296840
+			},
+			"text": " Dette og annen medisinsk behandlinger for videre medisinsk behandling."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:56,840",
+				"to": "00:04:57,560"
+			},
+			"offsets": {
+				"from": 296840,
+				"to": 297560
+			},
+			"text": " Dette og annen medisinsk behandling."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:57,560",
+				"to": "00:04:58,980"
+			},
+			"offsets": {
+				"from": 297560,
+				"to": 298980
+			},
+			"text": " Dette og annen medisinsk behandling."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:58,980",
+				"to": "00:05:00,900"
+			},
+			"offsets": {
+				"from": 298980,
+				"to": 300900
+			},
+			"text": " Dette og annen medisinsk behandling."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:00,900",
+				"to": "00:05:02,520"
+			},
+			"offsets": {
+				"from": 300900,
+				"to": 302520
+			},
+			"text": " Dette og annen medisinsk behandling."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:02,520",
+				"to": "00:05:04,140"
+			},
+			"offsets": {
+				"from": 302520,
+				"to": 304140
+			},
+			"text": " Dette og annen medisinsk behandling."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:04,140",
+				"to": "00:05:05,640"
+			},
+			"offsets": {
+				"from": 304140,
+				"to": 305640
+			},
+			"text": " Dette og annen medisinsk behandling."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:05,640",
+				"to": "00:05:06,540"
+			},
+			"offsets": {
+				"from": 305640,
+				"to": 306540
+			},
+			"text": " Dette og annen medisinsk behandling."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:06,540",
+				"to": "00:05:08,400"
+			},
+			"offsets": {
+				"from": 306540,
+				"to": 308400
+			},
+			"text": " Dette og annen medisinsk behandling."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:08,400",
+				"to": "00:05:10,520"
+			},
+			"offsets": {
+				"from": 308400,
+				"to": 310520
+			},
+			"text": " Dette og annen medisinsk behandling."
+		}
+	]
+}

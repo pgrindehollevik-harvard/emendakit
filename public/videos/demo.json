@@ -1,0 +1,516 @@
+{
+	"systeminfo": "WHISPER : COREML = 0 | OPENVINO = 0 | MTL : EMBED_LIBRARY = 1 | CPU : NEON = 1 | ARM_FMA = 1 | FP16_VA = 1 | MATMUL_INT8 = 1 | DOTPROD = 1 | SME = 1 | ACCELERATE = 1 | OPENMP = 1 | REPACK = 1 | ",
+	"model": {
+		"type": "large",
+		"multilingual": true,
+		"vocab": 51866,
+		"audio": {
+			"ctx": 1500,
+			"state": 1280,
+			"head": 20,
+			"layer": 32
+		},
+		"text": {
+			"ctx": 448,
+			"state": 1280,
+			"head": 20,
+			"layer": 4
+		},
+		"mels": 128,
+		"ftype": 1
+	},
+	"params": {
+		"model": "/Users/peterflo/conductor/workspaces/emendakit-v1/tehran/.context/whisper-models/ggml-large-v3-turbo.bin",
+		"language": "no",
+		"translate": false
+	},
+	"result": {
+		"language": "no"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:18,700"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 18700
+			},
+			"text": " Dette anafylaksiskrine er innheld, medikament og utstyr til bruk i en akutt situasjon der en pasient får en allergisk reaksjon, også kalt anafylaksi."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,700",
+				"to": "00:00:25,000"
+			},
+			"offsets": {
+				"from": 18700,
+				"to": 25000
+			},
+			"text": " Anafylaktiske reaksjoner kan i løpet av få minutter bli lyftstruende for pasienten."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:25,000",
+				"to": "00:00:29,220"
+			},
+			"offsets": {
+				"from": 25000,
+				"to": 29220
+			},
+			"text": " Rask diagnose og behandling kan derfor være livredende."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:31,000",
+				"to": "00:00:35,000"
+			},
+			"offsets": {
+				"from": 31000,
+				"to": 35000
+			},
+			"text": " Anafylaksiskrine er vanntett, støvtett og uknuslig."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:35,000",
+				"to": "00:00:44,000"
+			},
+			"offsets": {
+				"from": 35000,
+				"to": 44000
+			},
+			"text": " Skomklossen inni absorberer ikke væske. Dette beskytter medikamentene og utstyret godt."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:44,000",
+				"to": "00:00:53,000"
+			},
+			"offsets": {
+				"from": 44000,
+				"to": 53000
+			},
+			"text": " Anafylaksiskrine er gjennomsiktig slik at en lett har oversikt over innholdet uten å åpne skrine."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:54,000",
+				"to": "00:01:01,000"
+			},
+			"offsets": {
+				"from": 54000,
+				"to": 61000
+			},
+			"text": " Den gule bakgrunnen gjør anafylaksiskrine godt synlig og lett å finne i en akutt situasjon."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:01,000",
+				"to": "00:01:07,000"
+			},
+			"offsets": {
+				"from": 61000,
+				"to": 67000
+			},
+			"text": " Navn, mengde og styrke på utstyr og medikament er gravert inn."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:08,000",
+				"to": "00:01:15,000"
+			},
+			"offsets": {
+				"from": 68000,
+				"to": 75000
+			},
+			"text": " Det er laget et deksel over adrenalinampullene, dette på grunn av at adrenalin skal oppbevares mørkt."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:15,000",
+				"to": "00:01:20,000"
+			},
+			"offsets": {
+				"from": 75000,
+				"to": 80000
+			},
+			"text": " Over dekselet på fremsiden er det gravert inn ny kontroll."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:21,000",
+				"to": "00:01:26,000"
+			},
+			"offsets": {
+				"from": 81000,
+				"to": 86000
+			},
+			"text": " Her kan en teipe på dato for ny kontroll av anafylaksiskrine."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:26,000",
+				"to": "00:01:31,000"
+			},
+			"offsets": {
+				"from": 86000,
+				"to": 91000
+			},
+			"text": " Baksida av anafylaksiskrine har et flytkjema."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:31,000",
+				"to": "00:01:38,000"
+			},
+			"offsets": {
+				"from": 91000,
+				"to": 98000
+			},
+			"text": " Flytkjema viser trinnvis hvordan en skal håndtere anafylaksi hos en pasient."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:39,000",
+				"to": "00:01:42,000"
+			},
+			"offsets": {
+				"from": 99000,
+				"to": 102000
+			},
+			"text": " På baksida av anafylaksiskrine er det også en QR-kode."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:42,000",
+				"to": "00:01:48,000"
+			},
+			"offsets": {
+				"from": 102000,
+				"to": 108000
+			},
+			"text": " Her ligger det to filmer til bruk i opplæring og øving på anafylaksi."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:48,000",
+				"to": "00:01:54,000"
+			},
+			"offsets": {
+				"from": 108000,
+				"to": 114000
+			},
+			"text": " I tillegg ligger her informasjon om produsenten av skrine Fosentools."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:56,000",
+				"to": "00:02:03,000"
+			},
+			"offsets": {
+				"from": 116000,
+				"to": 123000
+			},
+			"text": " Anafylaksiskrine inneholder to ampuller adrenalin, et milligram per milliliter, en milliliter."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:03,000",
+				"to": "00:02:12,000"
+			},
+			"offsets": {
+				"from": 123000,
+				"to": 132000
+			},
+			"text": " Her er også to ampuller dexglofenaramin, fem milligram per milliliter, en milliliter."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:12,000",
+				"to": "00:02:15,000"
+			},
+			"offsets": {
+				"from": 132000,
+				"to": 135000
+			},
+			"text": " Dette er et antihistamin."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:15,000",
+				"to": "00:02:22,000"
+			},
+			"offsets": {
+				"from": 135000,
+				"to": 142000
+			},
+			"text": " Anafylaksiskrine inneholder også en ampuller solukorteff, 250 milligram."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:22,000",
+				"to": "00:02:25,000"
+			},
+			"offsets": {
+				"from": 142000,
+				"to": 145000
+			},
+			"text": " Dette er et hydrokortison."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:26,000",
+				"to": "00:02:32,000"
+			},
+			"offsets": {
+				"from": 146000,
+				"to": 152000
+			},
+			"text": " Anafylaksiskrine inneholder fire stykk desinfeksjonstark til å tørke av injeksjonstark."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:32,000",
+				"to": "00:02:37,000"
+			},
+			"offsets": {
+				"from": 152000,
+				"to": 157000
+			},
+			"text": " Her er også fire sprøyter på 2,5 milliliter."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:37,000",
+				"to": "00:02:42,000"
+			},
+			"offsets": {
+				"from": 157000,
+				"to": 162000
+			},
+			"text": " Og fire sprøytespisser til intramuskulær injeksjon."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:42,000",
+				"to": "00:02:46,000"
+			},
+			"offsets": {
+				"from": 162000,
+				"to": 166000
+			},
+			"text": " Kan her også brukes som opptrekkskanyle."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:46,000",
+				"to": "00:02:54,000"
+			},
+			"offsets": {
+				"from": 166000,
+				"to": 174000
+			},
+			"text": " Anafylaksiskrine kan vaskes utenpå og inni med klut, fukta i såpe og vatten."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:55,000",
+				"to": "00:03:00,000"
+			},
+			"offsets": {
+				"from": 175000,
+				"to": 180000
+			},
+			"text": " Skrine kan også sprite oss utenpå. Vi unngår å sprite materialet inni."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:00,000",
+				"to": "00:03:05,000"
+			},
+			"offsets": {
+				"from": 180000,
+				"to": 185000
+			},
+			"text": " Lykke til med bruk av anafylaksiskrine!"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:06,000",
+				"to": "00:03:08,000"
+			},
+			"offsets": {
+				"from": 186000,
+				"to": 188000
+			},
+			"text": " Teksting av Nicolai Winther"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:08,000",
+				"to": "00:03:09,000"
+			},
+			"offsets": {
+				"from": 188000,
+				"to": 189000
+			},
+			"text": " Teksting av Nicolai Winther"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:09,000",
+				"to": "00:03:09,000"
+			},
+			"offsets": {
+				"from": 189000,
+				"to": 189000
+			},
+			"text": " Teksting av Nicolai Winther"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:09,000",
+				"to": "00:03:10,000"
+			},
+			"offsets": {
+				"from": 189000,
+				"to": 190000
+			},
+			"text": " Teksting av Nicolai Winther"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:10,000",
+				"to": "00:03:11,000"
+			},
+			"offsets": {
+				"from": 190000,
+				"to": 191000
+			},
+			"text": " Teksting av Nicolai Winther"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:11,000",
+				"to": "00:03:12,000"
+			},
+			"offsets": {
+				"from": 191000,
+				"to": 192000
+			},
+			"text": " Teksting av Nicolai Winther"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:12,000",
+				"to": "00:03:12,000"
+			},
+			"offsets": {
+				"from": 192000,
+				"to": 192000
+			},
+			"text": " Teksting av Nicolai Winther"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:12,000",
+				"to": "00:03:13,000"
+			},
+			"offsets": {
+				"from": 192000,
+				"to": 193000
+			},
+			"text": " Teksting av Nicolai Winther"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:13,000",
+				"to": "00:03:14,000"
+			},
+			"offsets": {
+				"from": 193000,
+				"to": 194000
+			},
+			"text": " Teksting av Nicolai Winther"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:14,000",
+				"to": "00:03:21,000"
+			},
+			"offsets": {
+				"from": 194000,
+				"to": 201000
+			},
+			"text": " Teksting av Nicolai Winther"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:21,000",
+				"to": "00:03:22,000"
+			},
+			"offsets": {
+				"from": 201000,
+				"to": 202000
+			},
+			"text": " Teksting av Nicolai Winther"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:22,000",
+				"to": "00:03:23,000"
+			},
+			"offsets": {
+				"from": 202000,
+				"to": 203000
+			},
+			"text": " Teksting av Nicolai Winther"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:23,000",
+				"to": "00:03:24,000"
+			},
+			"offsets": {
+				"from": 203000,
+				"to": 204000
+			},
+			"text": " Teksting av Nicolai Winther"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:24,000",
+				"to": "00:03:25,000"
+			},
+			"offsets": {
+				"from": 204000,
+				"to": 205000
+			},
+			"text": " Teksting av Nicolai Winther"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:25,000",
+				"to": "00:03:26,000"
+			},
+			"offsets": {
+				"from": 205000,
+				"to": 206000
+			},
+			"text": " Teksting av Nicolai Winther"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:26,000",
+				"to": "00:03:34,000"
+			},
+			"offsets": {
+				"from": 206000,
+				"to": 214000
+			},
+			"text": " Teksting av Nicolai Winther"
+		}
+	]
+}

@@ -1,0 +1,229 @@
+---
+import BaseLayout from "~/layouts/BaseLayout.astro";
+import { readFileSync } from "node:fs";
+import { resolve } from "node:path";
+
+const root = resolve(import.meta.dirname, "../../public/videos");
+
+function loadTranscript(name: string): string {
+  return readFileSync(resolve(root, `${name}.txt`), "utf8")
+    .split("\n")
+    .map((l) => l.replace(/^ /, "").trim())
+    .filter(Boolean)
+    .join("\n");
+}
+
+type Film = {
+  id: string;
+  title: string;
+  duration: string;
+  description: string;
+  poster: string;
+  src: string;
+  vtt: string | null;
+  transcript: string;
+};
+
+const films: Film[] = [
+  {
+    id: "opplaeringsfilm",
+    title: "Opplæringsfilm — anafylaksi i klinisk situasjon",
+    duration: "5:10",
+    description:
+      "Trinn-for-trinn-håndtering av en anafylaktisk reaksjon på sengepost. Intensivsykepleier varsler lege, henter anafylaksiskrinet, gir adrenalin etter prosedyre.",
+    poster: "/videos/opplaeringsfilm-poster.jpg",
+    src: "/videos/opplaeringsfilm.mp4",
+    vtt: "/videos/opplaeringsfilm.vtt",
+    transcript: loadTranscript("opplaeringsfilm"),
+  },
+  {
+    id: "demo",
+    title: "Skrinet — innhold, oppbygning og bruk",
+    duration: "3:35",
+    description:
+      "Gjennomgang av anafylaksiskrinets fysiske oppbygning, innhold (medikamenter og hjelpemidler), flytskjema, QR-kode, samt rengjøringsanvisning.",
+    poster: "/videos/demo-poster.jpg",
+    src: "/videos/demo.mp4",
+    vtt: null,
+    transcript: loadTranscript("demo"),
+  },
+];
+---
+
+<BaseLayout
+  locale="no"
+  altUrl="/en/training/"
+  title="Opplæringsfilmer — EmendaKit"
+  description="To opplæringsfilmer om håndtering av anafylaksi og bruk av EmendaKit anafylaksiskrin. Med fullstendige transkripsjoner."
+>
+  <section class="intro">
+    <div class="container">
+      <div class="eyebrow">Opplæring · Anafylaksi</div>
+      <h1>Opplæringsfilmer</h1>
+      <p class="lede">
+        To filmer laget av EmendaKit. Hver film vises med fullstendig
+        transkripsjon — slik at klinikere kan slå opp innhold raskt, og slik at
+        innholdet er tilgjengelig for alle.
+      </p>
+      <p class="caveat">
+        <strong>Foreløpig versjon.</strong> Transkripsjonene er generert
+        automatisk og venter på klinisk gjennomgang av Kjersti før de
+        publiseres.
+      </p>
+    </div>
+  </section>
+
+  {films.map((film) => (
+    <section class="film">
+      <div class="container">
+        <div class="film-grid">
+          <div class="film-meta">
+            <div class="eyebrow">№ {film.id === "opplaeringsfilm" ? "01" : "02"} · {film.duration}</div>
+            <h2>{film.title}</h2>
+            <p>{film.description}</p>
+          </div>
+          <div class="film-player">
+            <video
+              controls
+              preload="metadata"
+              poster={film.poster}
+              crossorigin="anonymous"
+            >
+              <source src={film.src} type="video/mp4" />
+              {film.vtt && (
+                <track
+                  kind="subtitles"
+                  srclang="no"
+                  label="Norsk"
+                  src={film.vtt}
+                />
+              )}
+            </video>
+          </div>
+        </div>
+
+        <details class="transcript">
+          <summary>
+            Vis fullstendig transkripsjon
+            <span class="hint">·  AEO + tilgjengelighet</span>
+          </summary>
+          <div class="transcript-body">
+            {film.transcript.split("\n").map((line) => <p>{line}</p>)}
+          </div>
+        </details>
+      </div>
+    </section>
+  ))}
+</BaseLayout>
+
+<style>
+  .container { max-width: 1080px; margin: 0 auto; padding: 0 32px; }
+  .intro { padding: 80px 0 32px; }
+  .intro .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 12px; color: var(--color-navy);
+    text-transform: uppercase; letter-spacing: 0.1em;
+    margin-bottom: 18px;
+  }
+  .intro h1 {
+    font-family: var(--font-display);
+    font-size: clamp(40px, 5.5vw, 64px); font-weight: 500;
+    letter-spacing: -0.03em; line-height: 0.98;
+    margin: 0 0 22px;
+  }
+  .intro .lede {
+    font-size: 18px; line-height: 1.55;
+    color: var(--color-ink-2);
+    max-width: 620px;
+    margin: 0 0 18px;
+  }
+  .intro .caveat {
+    background: #fff8e6;
+    border: 1px solid #f1d775;
+    border-radius: var(--radius-md);
+    padding: 12px 16px;
+    font-size: 14px;
+    color: #5b4612;
+    max-width: 620px;
+    margin: 0;
+  }
+
+  .film { padding: 40px 0 56px; border-top: 1px solid var(--color-rule); }
+  .film:first-of-type { border-top: 0; }
+  .film-grid {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 40px;
+    align-items: start;
+  }
+  @media (max-width: 800px) {
+    .film-grid { grid-template-columns: 1fr; gap: 24px; }
+  }
+  .film-meta .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 12px; color: var(--color-navy);
+    text-transform: uppercase; letter-spacing: 0.1em;
+    margin-bottom: 12px;
+  }
+  .film-meta h2 {
+    font-family: var(--font-display);
+    font-size: 24px; font-weight: 500;
+    letter-spacing: -0.02em;
+    margin: 0 0 14px;
+  }
+  .film-meta p {
+    font-size: 14px; line-height: 1.55;
+    color: var(--color-ink-2);
+    margin: 0;
+  }
+  .film-player {
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    background: #000;
+    aspect-ratio: 16 / 9;
+  }
+  .film-player video {
+    width: 100%; height: 100%;
+    display: block;
+  }
+
+  .transcript {
+    margin-top: 32px;
+    border-top: 1px solid var(--color-rule);
+    padding-top: 20px;
+  }
+  .transcript summary {
+    cursor: pointer;
+    font-family: var(--font-display);
+    font-size: 15px; font-weight: 500;
+    color: var(--color-navy);
+    list-style: none;
+  }
+  .transcript summary::-webkit-details-marker { display: none; }
+  .transcript summary::before {
+    content: "▸ ";
+    margin-right: 4px;
+    transition: transform 120ms;
+    display: inline-block;
+  }
+  .transcript[open] summary::before { transform: rotate(90deg); }
+  .transcript .hint {
+    color: var(--color-ink-3);
+    font-weight: 400;
+    font-size: 13px;
+    margin-left: 8px;
+  }
+  .transcript-body {
+    margin-top: 18px;
+    background: var(--color-cyan-soft);
+    border-radius: var(--radius-md);
+    padding: 24px 28px;
+    max-height: 480px;
+    overflow: auto;
+  }
+  .transcript-body p {
+    font-size: 14px; line-height: 1.65;
+    color: var(--color-ink);
+    margin: 0 0 10px;
+  }
+</style>

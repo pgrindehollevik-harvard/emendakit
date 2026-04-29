@@ -1,0 +1,94 @@
+---
+import { SITE, type Locale } from "~/lib/site";
+import LangSwitch from "./LangSwitch.astro";
+import logo from "~/assets/logo/emendakit-logo-blue-on-grey.png";
+
+interface Props {
+  locale: Locale;
+  altUrl: string;
+}
+
+const { locale, altUrl } = Astro.props;
+
+const nav = locale === "no"
+  ? [
+      { href: "/produkter", label: "Anafylaksiskrin" },
+      { href: "/tjenester", label: "Tjenester" },
+      { href: "/opplaering", label: "Klinisk grunnlag" },
+      { href: "/om-oss", label: "Om oss" },
+    ]
+  : [
+      { href: "/en/products", label: "Anaphylaxis kits" },
+      { href: "/en/services", label: "Services" },
+      { href: "/en/training", label: "Clinical reference" },
+      { href: "/en/about", label: "About" },
+    ];
+
+const ctaLabel = locale === "no" ? "Be om tilbud" : "Request a quote";
+const ctaHref = `mailto:${SITE.email}?subject=${encodeURIComponent(
+  locale === "no" ? "Be om tilbud" : "Request a quote",
+)}`;
+---
+
+<header>
+  <div class="container nav">
+    <a href={locale === "no" ? "/" : "/en/"} class="brand" aria-label="EmendaKit hjem">
+      <img src={logo.src} alt="EmendaKit" width="160" height="28" />
+    </a>
+    <nav class="nav-links" aria-label="Hovedmeny">
+      {nav.map((item) => <a href={item.href}>{item.label}</a>)}
+    </nav>
+    <div class="nav-spacer"></div>
+    <LangSwitch current={locale} altUrl={altUrl} variant="header" />
+    <a href={ctaHref} class="cta-button">
+      <span class="dot"></span> {ctaLabel}
+    </a>
+  </div>
+</header>
+
+<style>
+  header {
+    position: sticky; top: 0; z-index: 10;
+    background: rgba(250, 250, 247, 0.85);
+    backdrop-filter: blur(14px) saturate(1.4);
+    border-bottom: 1px solid var(--color-rule);
+  }
+  .container {
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+  .nav {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    padding: 18px 0;
+  }
+  .brand img { height: 28px; width: auto; display: block; }
+  .nav-links {
+    display: flex;
+    gap: 28px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--color-ink-2);
+  }
+  .nav-links a:hover { color: var(--color-navy); }
+  .nav-spacer { flex: 1; }
+  .cta-button {
+    background: var(--color-navy);
+    color: var(--color-bg);
+    border-radius: var(--radius-pill);
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .cta-button .dot {
+    width: 6px;
+    height: 6px;
+    background: var(--color-cyan);
+    border-radius: var(--radius-pill);
+  }
+</style>

@@ -1,0 +1,393 @@
+<!doctype html>
+<html lang="nb-NO">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Direction A — Editorial Medical · Emendakit</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,300;8..60,400;8..60,500;8..60,600&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --paper: #f5f1e8;
+        --paper-2: #ece6d6;
+        --ink: #15212d;
+        --ink-2: #3a4a5c;
+        --rule: #c8bea8;
+        --accent: #7a1f1f;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        background: var(--paper);
+        color: var(--ink);
+        font-family: "Inter", system-ui, sans-serif;
+        font-feature-settings: "ss01", "cv11";
+        -webkit-font-smoothing: antialiased;
+      }
+      .serif {
+        font-family: "Source Serif 4", Georgia, serif;
+      }
+      .container {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 0 48px;
+      }
+      header {
+        border-bottom: 1px solid var(--rule);
+        padding: 22px 0;
+      }
+      .nav {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+      }
+      .brand {
+        font-family: "Source Serif 4", Georgia, serif;
+        font-size: 22px;
+        font-weight: 500;
+        letter-spacing: 0.01em;
+      }
+      .brand sup {
+        font-size: 11px;
+        color: var(--ink-2);
+        font-family: "Inter", sans-serif;
+        font-weight: 500;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        margin-left: 8px;
+      }
+      .nav-links {
+        display: flex;
+        gap: 36px;
+        font-size: 13px;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--ink-2);
+      }
+      .nav-links a {
+        color: inherit;
+        text-decoration: none;
+      }
+      .lang {
+        font-size: 12px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--ink-2);
+      }
+      .lang b {
+        color: var(--ink);
+        font-weight: 500;
+      }
+      .hero {
+        padding: 96px 0 80px;
+        border-bottom: 1px solid var(--rule);
+      }
+      .kicker {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        font-size: 12px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--accent);
+        font-weight: 500;
+        margin-bottom: 32px;
+      }
+      .kicker .dash {
+        height: 1px;
+        width: 56px;
+        background: var(--accent);
+      }
+      .hero-grid {
+        display: grid;
+        grid-template-columns: 1.05fr 0.95fr;
+        gap: 64px;
+        align-items: end;
+      }
+      h1.display {
+        font-family: "Source Serif 4", Georgia, serif;
+        font-weight: 400;
+        font-size: clamp(48px, 6.6vw, 96px);
+        line-height: 1;
+        letter-spacing: -0.02em;
+        margin: 0 0 32px;
+      }
+      h1.display em {
+        font-style: italic;
+        color: var(--accent);
+      }
+      .lede {
+        font-family: "Source Serif 4", Georgia, serif;
+        font-size: 22px;
+        line-height: 1.5;
+        color: var(--ink-2);
+        max-width: 520px;
+        margin: 0 0 40px;
+      }
+      .by {
+        font-size: 13px;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--ink-2);
+        border-top: 1px solid var(--rule);
+        padding-top: 16px;
+        max-width: 520px;
+      }
+      .product-card {
+        background: #fff;
+        border: 1px solid var(--rule);
+        padding: 32px;
+        position: relative;
+      }
+      .product-img {
+        aspect-ratio: 4 / 5;
+        background: linear-gradient(180deg, #1a2632 0%, #243140 100%);
+        position: relative;
+        overflow: hidden;
+        margin-bottom: 28px;
+      }
+      .product-img svg {
+        position: absolute;
+        inset: 0;
+        margin: auto;
+      }
+      .product-meta {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        font-size: 13px;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--ink-2);
+        border-top: 1px solid var(--rule);
+        padding-top: 16px;
+      }
+      .product-meta b {
+        color: var(--ink);
+        font-weight: 500;
+      }
+      .product-name {
+        font-family: "Source Serif 4", Georgia, serif;
+        font-size: 26px;
+        font-weight: 400;
+        margin: 0 0 8px;
+      }
+      .product-sub {
+        font-size: 14px;
+        color: var(--ink-2);
+        margin: 0 0 20px;
+      }
+      .pill {
+        display: inline-block;
+        font-size: 11px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--accent);
+        border: 1px solid var(--accent);
+        padding: 4px 10px;
+        border-radius: 999px;
+      }
+
+      .standfirst {
+        padding: 72px 0;
+        border-bottom: 1px solid var(--rule);
+      }
+      .standfirst-grid {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        gap: 64px;
+      }
+      .standfirst .label {
+        font-size: 13px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--accent);
+      }
+      .standfirst p {
+        font-family: "Source Serif 4", Georgia, serif;
+        font-size: 28px;
+        line-height: 1.45;
+        margin: 0;
+        color: var(--ink);
+      }
+      .standfirst p .drop {
+        float: left;
+        font-size: 84px;
+        line-height: 0.9;
+        padding-right: 12px;
+        padding-top: 6px;
+      }
+
+      .credentials {
+        padding: 64px 0;
+      }
+      .credentials-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 48px;
+      }
+      .cred .num {
+        font-family: "Source Serif 4", Georgia, serif;
+        font-size: 64px;
+        line-height: 1;
+        font-weight: 300;
+        margin-bottom: 12px;
+      }
+      .cred h3 {
+        font-family: "Source Serif 4", Georgia, serif;
+        font-size: 20px;
+        font-weight: 500;
+        margin: 0 0 8px;
+      }
+      .cred p {
+        font-size: 14px;
+        line-height: 1.6;
+        color: var(--ink-2);
+        margin: 0;
+      }
+      .cta-bar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 32px 48px;
+        background: var(--ink);
+        color: var(--paper);
+        margin-top: 48px;
+      }
+      .cta-bar .head {
+        font-family: "Source Serif 4", Georgia, serif;
+        font-size: 22px;
+      }
+      .cta-bar a {
+        font-size: 13px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--paper);
+        text-decoration: none;
+        border: 1px solid var(--paper-2);
+        padding: 14px 24px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="container nav">
+        <div class="brand">
+          Emendakit<sup>AS · est. 2017</sup>
+        </div>
+        <nav class="nav-links">
+          <a href="#">Produkter</a>
+          <a href="#">Tjenester</a>
+          <a href="#">Klinisk grunnlag</a>
+          <a href="#">Om oss</a>
+          <a href="#">Kontakt</a>
+        </nav>
+        <div class="lang"><b>NO</b> &nbsp;/&nbsp; EN</div>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="container">
+        <div class="kicker">
+          <span class="dash"></span>
+          Norsk akuttmedisin, fra klinisk praksis
+        </div>
+        <div class="hero-grid">
+          <div>
+            <h1 class="display">
+              Når <em>sekundene</em><br />teller, er&nbsp;skrinet<br />allerede klart.
+            </h1>
+            <p class="lede">
+              Anafylaksiskrin og behovstilpassede medisinske skrin, utviklet av en anestesilege og
+              en jordmor med lang erfaring fra norske akuttmottak.
+            </p>
+            <div class="by">
+              Designet, testet og produsert i Norge · Brukt ved Helse Førde · Co-utviklet med
+              fagmiljøer.
+            </div>
+          </div>
+          <div class="product-card">
+            <div class="product-img">
+              <svg width="220" height="280" viewBox="0 0 220 280" fill="none">
+                <rect x="20" y="40" width="180" height="200" rx="6" fill="#0f6e56" stroke="#5dcaa5" stroke-width="2"/>
+                <rect x="36" y="60" width="148" height="40" rx="3" fill="#0a4f3e"/>
+                <rect x="36" y="108" width="68" height="58" rx="3" fill="#0a4f3e"/>
+                <rect x="116" y="108" width="68" height="58" rx="3" fill="#0a4f3e"/>
+                <rect x="36" y="174" width="148" height="50" rx="3" fill="#0a4f3e"/>
+                <circle cx="200" cy="50" r="8" fill="#7a1f1f"/>
+                <text x="36" y="86" font-family="Inter" font-size="9" fill="#9fe1cb" letter-spacing="2">ANAFYLAKSISKRIN</text>
+              </svg>
+            </div>
+            <div>
+              <span class="pill">Klinisk dokumentert</span>
+            </div>
+            <h3 class="product-name" style="margin-top: 16px;">Anafylaksiskrin</h3>
+            <p class="product-sub">
+              Vanntett. Støtsikkert. Pakket etter nasjonal protokoll. QR-merket med
+              opplæringsfilmer.
+            </p>
+            <div class="product-meta">
+              <span>Til helsepersonell</span>
+              <span><b>Pris på forespørsel →</b></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="standfirst">
+      <div class="container">
+        <div class="standfirst-grid">
+          <div class="label">Filosofi</div>
+          <p>
+            <span class="drop serif">I</span>nnovasjon gjennom kunnskap og erfaring. Et akuttskrin
+            er ikke et produkt. Det er en del av prosedyren — og må behandles deretter.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="credentials">
+      <div class="container">
+        <div class="credentials-grid">
+          <div class="cred">
+            <div class="num">01</div>
+            <h3>Klinisk troverdighet</h3>
+            <p>
+              Utviklet av Gregers Halvorsen (anestesilege) og Kjersti Grinde (jordmor), begge med
+              fagutvikling og medisinsk simulering som spesialfelt.
+            </p>
+          </div>
+          <div class="cred">
+            <div class="num">02</div>
+            <h3>Bygd for praksis</h3>
+            <p>
+              Vanntett, støtsikkert, gjennomsiktig. Skreddersydde rom for hver komponent.
+              Lyssikret deksel over adrenalin. Nasjonal flytskjema bak på lokket.
+            </p>
+          </div>
+          <div class="cred">
+            <div class="num">03</div>
+            <h3>Behovstilpasset</h3>
+            <p>
+              Vi co-designer skrin for fødeavdelinger, vaksinestasjoner, akuttmottak og avdelinger
+              med spesielle behov — sammen med dere.
+            </p>
+          </div>
+        </div>
+        <div class="cta-bar">
+          <div class="head">Trenger dere et skrin tilpasset deres avdeling?</div>
+          <a href="#">Be om tilbud →</a>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>

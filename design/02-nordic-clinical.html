@@ -1,0 +1,577 @@
+<!doctype html>
+<html lang="nb-NO">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Direction B — Nordic Clinical · Emendakit</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #fafaf7;
+        --surface: #ffffff;
+        --ink: #0c1614;
+        --ink-2: #4b5b58;
+        --ink-3: #8a9591;
+        --rule: #e6e2d8;
+        --teal: #0f6e56;
+        --teal-soft: #e1f5ee;
+        --teal-deep: #08372c;
+        --cream: #f4ead8;
+        --signal: #c54a3a;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: "Inter", system-ui, sans-serif;
+        font-feature-settings: "ss01", "cv11";
+        -webkit-font-smoothing: antialiased;
+        letter-spacing: -0.005em;
+      }
+      .display-font {
+        font-family: "Inter Tight", "Inter", system-ui, sans-serif;
+      }
+      .mono {
+        font-family: "JetBrains Mono", ui-monospace, monospace;
+      }
+      .container {
+        max-width: 1240px;
+        margin: 0 auto;
+        padding: 0 32px;
+      }
+
+      /* nav */
+      header {
+        position: sticky;
+        top: 0;
+        background: rgba(250, 250, 247, 0.85);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--rule);
+        z-index: 10;
+      }
+      .nav {
+        display: flex;
+        align-items: center;
+        gap: 48px;
+        padding: 18px 0;
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-family: "Inter Tight";
+        font-weight: 600;
+        font-size: 17px;
+        letter-spacing: -0.02em;
+      }
+      .brand .mark {
+        width: 22px;
+        height: 22px;
+        background: var(--teal);
+        border-radius: 6px;
+        position: relative;
+      }
+      .brand .mark::after {
+        content: "";
+        position: absolute;
+        inset: 5px;
+        background: var(--bg);
+        clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
+      }
+      .nav-links {
+        display: flex;
+        gap: 28px;
+        font-size: 14px;
+        font-weight: 500;
+        color: var(--ink-2);
+      }
+      .nav-links a {
+        color: inherit;
+        text-decoration: none;
+      }
+      .nav-spacer {
+        flex: 1;
+      }
+      .lang-toggle {
+        display: inline-flex;
+        background: var(--surface);
+        border: 1px solid var(--rule);
+        border-radius: 999px;
+        padding: 3px;
+        font-size: 12px;
+        font-weight: 500;
+      }
+      .lang-toggle span {
+        padding: 5px 12px;
+        border-radius: 999px;
+        color: var(--ink-3);
+      }
+      .lang-toggle .on {
+        background: var(--ink);
+        color: var(--bg);
+      }
+      .cta-button {
+        background: var(--ink);
+        color: var(--bg);
+        border-radius: 999px;
+        padding: 10px 20px;
+        font-size: 14px;
+        font-weight: 500;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .cta-button .dot {
+        width: 6px;
+        height: 6px;
+        background: var(--teal-soft);
+        border-radius: 999px;
+      }
+
+      /* hero */
+      .hero {
+        padding: 96px 0 64px;
+      }
+      .hero-tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        background: var(--teal-soft);
+        color: var(--teal-deep);
+        font-size: 13px;
+        font-weight: 500;
+        padding: 6px 14px 6px 8px;
+        border-radius: 999px;
+        margin-bottom: 28px;
+      }
+      .hero-tag .pulse {
+        width: 8px;
+        height: 8px;
+        background: var(--teal);
+        border-radius: 999px;
+      }
+      h1.display {
+        font-family: "Inter Tight";
+        font-size: clamp(44px, 6vw, 88px);
+        line-height: 0.98;
+        letter-spacing: -0.035em;
+        font-weight: 500;
+        margin: 0 0 28px;
+        max-width: 14ch;
+      }
+      h1.display span {
+        color: var(--ink-3);
+      }
+      .lede {
+        font-size: 19px;
+        line-height: 1.55;
+        color: var(--ink-2);
+        max-width: 540px;
+        margin: 0 0 36px;
+      }
+      .hero-actions {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+      }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 14px 22px;
+        border-radius: 999px;
+        font-weight: 500;
+        font-size: 15px;
+        text-decoration: none;
+      }
+      .btn-primary {
+        background: var(--ink);
+        color: var(--bg);
+      }
+      .btn-secondary {
+        color: var(--ink);
+        border: 1px solid var(--rule);
+        background: var(--surface);
+      }
+      .stat-row {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 32px;
+        margin-top: 80px;
+        border-top: 1px solid var(--rule);
+        padding-top: 32px;
+      }
+      .stat .k {
+        font-family: "Inter Tight";
+        font-size: 36px;
+        font-weight: 500;
+        letter-spacing: -0.03em;
+      }
+      .stat .l {
+        font-size: 13px;
+        color: var(--ink-2);
+        margin-top: 4px;
+      }
+
+      /* product showcase */
+      .showcase {
+        padding: 80px 0;
+      }
+      .showcase-frame {
+        background: var(--surface);
+        border: 1px solid var(--rule);
+        border-radius: 24px;
+        overflow: hidden;
+        display: grid;
+        grid-template-columns: 1.05fr 0.95fr;
+      }
+      .showcase-img {
+        background: linear-gradient(180deg, #f3eee0 0%, #e6dcc4 100%);
+        position: relative;
+        aspect-ratio: 4 / 3.6;
+        overflow: hidden;
+      }
+      .showcase-img svg {
+        position: absolute;
+        inset: 0;
+        margin: auto;
+      }
+      .callout {
+        position: absolute;
+        font-size: 12px;
+        color: var(--teal-deep);
+        background: rgba(255, 255, 255, 0.92);
+        border: 1px solid var(--rule);
+        padding: 6px 12px;
+        border-radius: 999px;
+        font-weight: 500;
+        white-space: nowrap;
+      }
+      .callout::before {
+        content: "";
+        position: absolute;
+        background: var(--teal);
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+      }
+      .c1 {
+        top: 18%;
+        left: 8%;
+      }
+      .c1::before {
+        right: -22px;
+        top: 7px;
+      }
+      .c2 {
+        top: 44%;
+        right: 8%;
+      }
+      .c2::before {
+        left: -22px;
+        top: 7px;
+      }
+      .c3 {
+        bottom: 14%;
+        left: 14%;
+      }
+      .c3::before {
+        right: -22px;
+        top: 7px;
+      }
+      .showcase-meta {
+        padding: 56px 48px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+      .showcase-meta .eyebrow {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 12px;
+        color: var(--teal);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        margin-bottom: 16px;
+      }
+      .showcase-meta h2 {
+        font-family: "Inter Tight";
+        font-size: 36px;
+        font-weight: 500;
+        letter-spacing: -0.025em;
+        line-height: 1.05;
+        margin: 0 0 20px;
+      }
+      .showcase-meta p {
+        font-size: 16px;
+        line-height: 1.6;
+        color: var(--ink-2);
+        margin: 0 0 32px;
+      }
+      .spec-list {
+        list-style: none;
+        padding: 0;
+        margin: 0 0 32px;
+        display: grid;
+        gap: 14px;
+      }
+      .spec-list li {
+        display: flex;
+        gap: 14px;
+        align-items: baseline;
+        font-size: 14px;
+        border-bottom: 1px solid var(--rule);
+        padding-bottom: 14px;
+      }
+      .spec-list li .k {
+        color: var(--ink-3);
+        font-family: "JetBrains Mono", monospace;
+        font-size: 12px;
+        letter-spacing: 0.04em;
+        min-width: 140px;
+      }
+      .spec-list li .v {
+        color: var(--ink);
+      }
+
+      /* services strip */
+      .services {
+        padding: 80px 0;
+        border-top: 1px solid var(--rule);
+      }
+      .section-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        margin-bottom: 36px;
+      }
+      .section-head h2 {
+        font-family: "Inter Tight";
+        font-size: 36px;
+        font-weight: 500;
+        letter-spacing: -0.025em;
+        margin: 0;
+        max-width: 18ch;
+        line-height: 1.05;
+      }
+      .section-head a {
+        color: var(--ink);
+        font-size: 14px;
+        font-weight: 500;
+        text-decoration: none;
+        border-bottom: 1px solid var(--ink);
+        padding-bottom: 2px;
+      }
+      .service-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 24px;
+      }
+      .service {
+        background: var(--surface);
+        border: 1px solid var(--rule);
+        border-radius: 20px;
+        padding: 36px;
+        position: relative;
+        min-height: 280px;
+        display: flex;
+        flex-direction: column;
+      }
+      .service .num {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 12px;
+        color: var(--ink-3);
+        letter-spacing: 0.06em;
+      }
+      .service h3 {
+        font-family: "Inter Tight";
+        font-size: 22px;
+        font-weight: 500;
+        margin: 14px 0 12px;
+        line-height: 1.2;
+      }
+      .service p {
+        font-size: 15px;
+        line-height: 1.55;
+        color: var(--ink-2);
+        margin: 0 0 24px;
+      }
+      .service .more {
+        margin-top: auto;
+        font-size: 14px;
+        font-weight: 500;
+        color: var(--teal);
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .service.featured {
+        background: var(--teal-deep);
+        color: var(--bg);
+        border-color: var(--teal-deep);
+      }
+      .service.featured .num {
+        color: rgba(255, 255, 255, 0.5);
+      }
+      .service.featured p {
+        color: rgba(255, 255, 255, 0.75);
+      }
+      .service.featured .more {
+        color: var(--teal-soft);
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="container nav">
+        <div class="brand">
+          <span class="mark"></span>
+          Emendakit
+        </div>
+        <nav class="nav-links">
+          <a href="#">Anafylaksiskrin</a>
+          <a href="#">Tjenester</a>
+          <a href="#">Klinisk grunnlag</a>
+          <a href="#">Om oss</a>
+        </nav>
+        <div class="nav-spacer"></div>
+        <div class="lang-toggle">
+          <span class="on">NO</span>
+          <span>EN</span>
+        </div>
+        <a href="#" class="cta-button"><span class="dot"></span> Be om tilbud</a>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="container">
+        <div class="hero-tag">
+          <span class="pulse"></span>
+          Designet, testet og produsert i Norge
+        </div>
+        <h1 class="display">
+          Et akuttskrin tegnet
+          <span>for hvert sekund.</span>
+        </h1>
+        <p class="lede">
+          Vanntett. Støtsikkert. Ferdig pakket etter norsk anafylaksiprotokoll. Bygd for klinikere
+          som ikke har tid til å lete.
+        </p>
+        <div class="hero-actions">
+          <a href="#" class="btn btn-primary">Se anafylaksiskrinet →</a>
+          <a href="#" class="btn btn-secondary">Behovstilpasset løsning</a>
+        </div>
+        <div class="stat-row">
+          <div class="stat">
+            <div class="k">2 stk</div>
+            <div class="l">co-utviklere · anestesilege + jordmor</div>
+          </div>
+          <div class="stat">
+            <div class="k">IP-67</div>
+            <div class="l">vann- og støvtett</div>
+          </div>
+          <div class="stat">
+            <div class="k">QR</div>
+            <div class="l">opplæringsfilmer på lokket</div>
+          </div>
+          <div class="stat">
+            <div class="k">100 %</div>
+            <div class="l">norsk produksjon</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="showcase">
+      <div class="container">
+        <div class="showcase-frame">
+          <div class="showcase-img">
+            <svg width="380" height="320" viewBox="0 0 380 320" fill="none">
+              <rect x="40" y="60" width="300" height="220" rx="14" fill="#0f6e56" stroke="#08372c" stroke-width="3"/>
+              <rect x="60" y="84" width="260" height="42" rx="6" fill="#08372c"/>
+              <rect x="60" y="138" width="120" height="60" rx="6" fill="#08372c"/>
+              <rect x="200" y="138" width="120" height="60" rx="6" fill="#08372c"/>
+              <rect x="60" y="210" width="260" height="60" rx="6" fill="#08372c"/>
+              <circle cx="320" cy="76" r="9" fill="#c54a3a"/>
+            </svg>
+            <div class="callout c1">Lyssikret adrenalindeksel</div>
+            <div class="callout c2">Form-tilpassede rom</div>
+            <div class="callout c3">Flytskjema bak lokket</div>
+          </div>
+          <div class="showcase-meta">
+            <div>
+              <div class="eyebrow">Anafylaksiskrin / 2024</div>
+              <h2>Pakket etter prosedyren — ikke omvendt.</h2>
+              <p>
+                Hver komponent har sin plass. Adrenalin ligger lyssikret. Bak på lokket finner
+                du nasjonalt anafylaksiflytskjema. På siden, et QR-felt som åpner to
+                opplæringsfilmer på under to sekunder.
+              </p>
+              <ul class="spec-list">
+                <li>
+                  <span class="k">MATERIAL</span>
+                  <span class="v">Vanntett, støtsikker, gjennomsiktig polymer</span>
+                </li>
+                <li>
+                  <span class="k">PROTOKOLL</span>
+                  <span class="v">Nasjonal anafylaksiprotokoll, revisjon 2024</span>
+                </li>
+                <li>
+                  <span class="k">VEDLIKEHOLD</span>
+                  <span class="v">«Ny kontroll» felt for utløpsdato</span>
+                </li>
+                <li>
+                  <span class="k">PRIS</span>
+                  <span class="v">På forespørsel</span>
+                </li>
+              </ul>
+            </div>
+            <a href="#" class="btn btn-primary" style="align-self: start;"
+              >Se hele datakortet →</a
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="services">
+      <div class="container">
+        <div class="section-head">
+          <h2>Tjenester vi kan tilby deg som kunde</h2>
+          <a href="#">Alle tjenester</a>
+        </div>
+        <div class="service-grid">
+          <div class="service featured">
+            <span class="num">01 / Skreddersydd</span>
+            <h3>Behovstilpassede medisinske skrin</h3>
+            <p>
+              Vi co-designer skrin med fødeavdelinger, vaksinestasjoner, akuttmottak og
+              ambulansetjenester. Lang erfaring innen kvalitetsarbeid, fagutvikling og
+              akuttmedisin.
+            </p>
+            <span class="more">Be om designsamtale →</span>
+          </div>
+          <div class="service">
+            <span class="num">02 / Standard</span>
+            <h3>Anafylaksiskrin for helsepersonell</h3>
+            <p>
+              Ferdig pakket, klinisk validert, tilgjengelig fra dag én. Brukt på norske
+              akuttmottak og fødestuer.
+            </p>
+            <span class="more">Datakort og pris →</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>

@@ -1,0 +1,48 @@
+{
+  "$ref": "#/definitions/team",
+  "definitions": {
+    "team": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "locale": {
+          "type": "string",
+          "enum": [
+            "no",
+            "en"
+          ]
+        },
+        "slug": {
+          "type": "string"
+        },
+        "role": {
+          "type": "string"
+        },
+        "portraitPhoto": {
+          "type": "string"
+        },
+        "bio": {
+          "type": "string"
+        },
+        "reviewedByKjersti": {
+          "type": "boolean",
+          "default": false
+        },
+        "$schema": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "locale",
+        "slug",
+        "role",
+        "bio"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}

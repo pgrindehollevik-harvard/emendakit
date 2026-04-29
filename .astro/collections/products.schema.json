@@ -1,0 +1,159 @@
+{
+  "$ref": "#/definitions/products",
+  "definitions": {
+    "products": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "locale": {
+          "type": "string",
+          "enum": [
+            "no",
+            "en"
+          ]
+        },
+        "slug": {
+          "type": "string"
+        },
+        "altSlug": {
+          "type": "string"
+        },
+        "productNumber": {
+          "type": "integer"
+        },
+        "audience": {
+          "type": "string"
+        },
+        "descriptor": {
+          "type": "string"
+        },
+        "summary": {
+          "type": "string"
+        },
+        "heroPhoto": {
+          "type": "string"
+        },
+        "galleryPhotos": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": []
+        },
+        "specs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "key": {
+                "type": "string"
+              },
+              "value": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "key",
+              "value"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "contents": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "number": {
+                "type": "string"
+              },
+              "title": {
+                "type": "string"
+              },
+              "description": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "number",
+              "title",
+              "description"
+            ],
+            "additionalProperties": false
+          },
+          "default": []
+        },
+        "useCases": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "title": {
+                "type": "string"
+              },
+              "description": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "title",
+              "description"
+            ],
+            "additionalProperties": false
+          },
+          "default": []
+        },
+        "faq": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "question": {
+                "type": "string"
+              },
+              "answer": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "question",
+              "answer"
+            ],
+            "additionalProperties": false
+          },
+          "default": []
+        },
+        "deliveryTime": {
+          "type": "string",
+          "default": "Ca. 2 uker"
+        },
+        "priceLabel": {
+          "type": "string",
+          "default": "Pris på forespørsel"
+        },
+        "reviewedByKjersti": {
+          "type": "boolean",
+          "default": false
+        },
+        "$schema": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "title",
+        "locale",
+        "slug",
+        "altSlug",
+        "productNumber",
+        "audience",
+        "descriptor",
+        "summary",
+        "specs"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}

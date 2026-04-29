@@ -1,0 +1,137 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "~/layouts/BaseLayout.astro";
+
+const products = (await getCollection("products", ({ data }) => data.locale === "no"))
+  .sort((a, b) => a.data.productNumber - b.data.productNumber);
+---
+
+<BaseLayout
+  locale="no"
+  altUrl="/en/"
+  title="EmendaKit — Anafylaksiskrin designet, testet og produsert i Norge"
+  description="EmendaKit utvikler anafylaksiskrin for sykehus, ambulanse, fødestue og tannlegeklinikk. Designet av en anestesilege og en jordmor. Pakket etter nasjonalt flytskjema."
+>
+  <section class="hero">
+    <div class="container">
+      <span class="hero-tag">
+        <span class="pulse"></span>
+        Designet, testet og produsert i Norge
+      </span>
+      <h1 class="display">
+        Et akuttskrin tegnet <span>for hvert sekund.</span>
+      </h1>
+      <p class="lede">
+        Anafylaksiskrin utviklet av en anestesilege og en jordmor — for klinikere som
+        ikke har tid til å lete. Vanntett. Støtsikkert. Pakket etter norsk anafylaksiprotokoll.
+      </p>
+    </div>
+  </section>
+
+  <section class="products">
+    <div class="container">
+      <h2>To skrin · ett rammeverk</h2>
+      <div class="grid">
+        {products.map((p) => (
+          <article class="card">
+            <div class="card-img" data-pn={p.data.productNumber}>
+              <span class="label">{p.data.audience}</span>
+            </div>
+            <div class="card-body">
+              <div class="eyebrow">№{p.data.productNumber.toString().padStart(2, "0")} · Anafylaksiskrin</div>
+              <h3>{p.data.title}</h3>
+              <p>{p.data.summary}</p>
+              <a href={`/produkt/${p.data.slug}`} class="more">Se datakort →</a>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .container { max-width: 1320px; margin: 0 auto; padding: 0 32px; }
+
+  .hero { padding: 80px 0; }
+  .hero-tag {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: var(--color-cyan-soft);
+    color: var(--color-navy-deep);
+    font-size: 13px; font-weight: 500;
+    padding: 6px 14px 6px 8px;
+    border-radius: var(--radius-pill);
+    margin-bottom: 28px;
+  }
+  .hero-tag .pulse {
+    width: 8px; height: 8px;
+    background: var(--color-navy);
+    border-radius: var(--radius-pill);
+  }
+  h1.display {
+    font-family: var(--font-display);
+    font-size: clamp(44px, 6vw, 76px);
+    line-height: 0.98;
+    letter-spacing: -0.035em;
+    font-weight: 500;
+    margin: 0 0 24px;
+    max-width: 14ch;
+  }
+  h1.display span { color: var(--color-ink-3); }
+  .lede {
+    font-size: 19px; line-height: 1.55;
+    color: var(--color-ink-2);
+    max-width: 540px;
+  }
+
+  .products { padding: 80px 0; background: var(--color-cyan-soft); border-top: 1px solid var(--color-rule); border-bottom: 1px solid var(--color-rule); }
+  .products h2 {
+    font-family: var(--font-display);
+    font-size: 40px; font-weight: 500;
+    letter-spacing: -0.025em;
+    margin: 0 0 32px;
+  }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-rule);
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+  }
+  .card-img {
+    aspect-ratio: 16 / 11;
+    background: linear-gradient(180deg, #161e2a 0%, #0a0e15 100%);
+    position: relative;
+  }
+  .card-img .label {
+    position: absolute; top: 18px; left: 18px;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(6px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: rgba(255, 255, 255, 0.85);
+    font-family: var(--font-mono);
+    font-size: 11px; letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 5px 10px; border-radius: var(--radius-sm);
+  }
+  .card-body { padding: 32px; }
+  .card-body .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 12px; color: var(--color-navy);
+    text-transform: uppercase; letter-spacing: 0.1em;
+    margin-bottom: 14px;
+  }
+  .card-body h3 {
+    font-family: var(--font-display);
+    font-size: 28px; font-weight: 500;
+    letter-spacing: -0.025em;
+    margin: 0 0 14px;
+  }
+  .card-body p { font-size: 15px; line-height: 1.6; color: var(--color-ink-2); margin: 0 0 20px; }
+  .card-body .more {
+    color: var(--color-navy);
+    font-size: 14px; font-weight: 500;
+    border-bottom: 1px solid var(--color-navy);
+    padding-bottom: 2px;
+  }
+</style>

@@ -1,0 +1,47 @@
+---
+import { SITE } from "~/lib/site";
+
+interface Props {
+  title: string;
+  description: string;
+  thumbnailUrl: string;
+  uploadDate: string;       // YYYY-MM-DD
+  duration: string;         // ISO 8601, e.g. "PT2M14S"
+  contentUrl: string;
+  transcript: string;
+  inLanguage: string;       // "nb-NO" | "en-US"
+}
+
+const {
+  title,
+  description,
+  thumbnailUrl,
+  uploadDate,
+  duration,
+  contentUrl,
+  transcript,
+  inLanguage,
+} = Astro.props;
+
+const data = {
+  "@context": "https://schema.org",
+  "@type": "VideoObject",
+  name: title,
+  description,
+  thumbnailUrl: new URL(thumbnailUrl, SITE.url).href,
+  uploadDate,
+  duration,
+  contentUrl: new URL(contentUrl, SITE.url).href,
+  transcript,
+  inLanguage,
+  isFamilyFriendly: true,
+  publisher: {
+    "@type": "Organization",
+    name: SITE.legalName,
+  },
+  learningResourceType: "Video",
+  educationalLevel: "Professional",
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(data)} />

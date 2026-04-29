@@ -1,0 +1,38 @@
+---
+import "~/styles/global.css";
+import { SITE, type Locale } from "~/lib/site";
+import SEO from "~/components/SEO.astro";
+import SchemaOrganization from "~/components/SchemaOrganization.astro";
+import Header from "~/components/Header.astro";
+import Footer from "~/components/Footer.astro";
+
+interface Props {
+  title: string;
+  description: string;
+  locale: Locale;
+  altUrl?: string;
+  ogImage?: string;
+}
+
+const { title, description, locale, altUrl, ogImage } = Astro.props;
+const langTag = locale === "no" ? "nb-NO" : "en-US";
+---
+
+<!doctype html>
+<html lang={langTag}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <SEO title={title} description={description} locale={locale} altUrl={altUrl} ogImage={ogImage} />
+    <SchemaOrganization />
+  </head>
+  <body>
+    <Header locale={locale} altUrl={altUrl ?? "/"} />
+    <main>
+      <slot />
+    </main>
+    <Footer locale={locale} altUrl={altUrl ?? "/"} />
+  </body>
+</html>

@@ -1,0 +1,32 @@
+---
+import { SITE } from "~/lib/site";
+
+const data = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: SITE.legalName,
+  alternateName: SITE.name,
+  url: SITE.url,
+  email: SITE.email,
+  founder: SITE.founders.map((f) => ({
+    "@type": "Person",
+    name: f.name,
+    jobTitle: f.role.no,
+  })),
+  address: {
+    "@type": "PostalAddress",
+    addressCountry: "NO",
+  },
+  description:
+    "EmendaKit AS designs, tests and produces medical anaphylaxis kits for healthcare professionals in Norway and beyond. Founded by an anesthesiologist and a midwife.",
+  knowsAbout: [
+    "anafylaksi",
+    "akuttmedisin",
+    "anaphylaxis",
+    "emergency medicine",
+    "medical simulation",
+  ],
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(data)} />

@@ -1,0 +1,68 @@
+{
+  "$ref": "#/definitions/videos",
+  "definitions": {
+    "videos": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "locale": {
+          "type": "string",
+          "enum": [
+            "no",
+            "en"
+          ]
+        },
+        "title": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "duration": {
+          "type": "string"
+        },
+        "uploadDate": {
+          "type": "string"
+        },
+        "sourceMp4": {
+          "type": "string"
+        },
+        "sourceWebm": {
+          "type": "string"
+        },
+        "poster": {
+          "type": "string"
+        },
+        "transcript": {
+          "type": "string"
+        },
+        "learningResourceType": {
+          "type": "string",
+          "default": "Video"
+        },
+        "reviewedByKjersti": {
+          "type": "boolean",
+          "default": false
+        },
+        "$schema": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "locale",
+        "title",
+        "description",
+        "duration",
+        "uploadDate",
+        "sourceMp4",
+        "poster",
+        "transcript"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}

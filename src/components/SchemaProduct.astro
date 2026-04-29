@@ -1,0 +1,58 @@
+---
+import { SITE } from "~/lib/site";
+
+interface Props {
+  name: string;
+  description: string;
+  url: string;
+  image?: string;
+  productNumber: number;
+  audience?: string;
+}
+
+const { name, description, url, image, productNumber, audience } = Astro.props;
+
+const data = {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  name,
+  description,
+  image: image ? new URL(image, SITE.url).href : undefined,
+  url: new URL(url, SITE.url).href,
+  brand: {
+    "@type": "Brand",
+    name: SITE.name,
+  },
+  manufacturer: {
+    "@type": "Organization",
+    name: SITE.legalName,
+    url: SITE.url,
+  },
+  category: "Medical emergency equipment / Anaphylaxis kit",
+  countryOfOrigin: "Norway",
+  audience: audience
+    ? { "@type": "PeopleAudience", audienceType: audience }
+    : undefined,
+  sku: `EMENDAKIT-${productNumber.toString().padStart(2, "0")}`,
+  offers: {
+    "@type": "Offer",
+    url: new URL(url, SITE.url).href,
+    availability: "https://schema.org/InStock",
+    priceCurrency: "NOK",
+    price: undefined,
+    priceSpecification: {
+      "@type": "PriceSpecification",
+      priceCurrency: "NOK",
+      valueAddedTaxIncluded: false,
+    },
+    seller: {
+      "@type": "Organization",
+      name: SITE.legalName,
+      email: SITE.email,
+    },
+    eligibleRegion: { "@type": "Country", name: "Norway" },
+  },
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(data)} />

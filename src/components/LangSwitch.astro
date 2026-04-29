@@ -1,0 +1,83 @@
+---
+import { SITE } from "~/lib/site";
+
+interface Props {
+  current: "no" | "en";
+  altUrl: string;            // e.g. "/en/product/emendakit-hospital"
+  variant?: "header" | "footer";
+}
+
+const { current, altUrl, variant = "header" } = Astro.props;
+const currentUrl = Astro.url.pathname;
+const noUrl = current === "no" ? currentUrl : altUrl;
+const enUrl = current === "en" ? currentUrl : altUrl;
+---
+
+{variant === "header" && (
+  <div class="lang-toggle" role="group" aria-label="Velg språk · Choose language">
+    <a
+      href={noUrl}
+      hreflang="nb-NO"
+      class={current === "no" ? "on" : ""}
+      aria-current={current === "no" ? "true" : undefined}
+    >NO</a>
+    <a
+      href={enUrl}
+      hreflang="en-US"
+      class={current === "en" ? "on" : ""}
+      aria-current={current === "en" ? "true" : undefined}
+    >EN</a>
+  </div>
+)}
+
+{variant === "footer" && (
+  <span class="lang-foot">
+    <span class="mono-eyebrow">Språk · Language</span>
+    <a href={noUrl} class={current === "no" ? "on" : ""} hreflang="nb-NO">Norsk</a>
+    <a href={enUrl} class={current === "en" ? "on" : ""} hreflang="en-US">English</a>
+  </span>
+)}
+
+<style>
+  .lang-toggle {
+    display: inline-flex;
+    background: var(--color-surface);
+    border: 1px solid var(--color-rule);
+    border-radius: var(--radius-pill);
+    padding: 4px;
+    font-size: 13px;
+    font-weight: 500;
+    font-family: var(--font-mono);
+    letter-spacing: 0.04em;
+  }
+  .lang-toggle a {
+    padding: 6px 14px;
+    border-radius: var(--radius-pill);
+    color: var(--color-ink-3);
+    transition: color 120ms var(--ease-soft);
+  }
+  .lang-toggle a:hover { color: var(--color-ink); }
+  .lang-toggle a.on {
+    background: var(--color-navy);
+    color: var(--color-bg);
+  }
+
+  .lang-foot {
+    display: inline-flex;
+    gap: 14px;
+    align-items: center;
+    font-size: 12px;
+  }
+  .lang-foot .mono-eyebrow {
+    font-family: var(--font-mono);
+    color: var(--color-ink-3);
+  }
+  .lang-foot a {
+    color: var(--color-ink-3);
+  }
+  .lang-foot a.on {
+    color: var(--color-navy);
+    border-bottom: 1px solid var(--color-navy);
+    padding-bottom: 1px;
+  }
+</style>

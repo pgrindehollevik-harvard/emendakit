@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "~/layouts/BaseLayout.astro";
+import SchemaVideoObject from "~/components/SchemaVideoObject.astro";
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
 
@@ -17,6 +18,8 @@ type Film = {
   id: string;
   title: string;
   duration: string;
+  isoDuration: string;
+  uploadDate: string;
   description: string;
   poster: string;
   src: string;
@@ -29,6 +32,8 @@ const films: Film[] = [
     id: "opplaeringsfilm",
     title: "Opplæringsfilm — anafylaksi i klinisk situasjon",
     duration: "5:10",
+    isoDuration: "PT5M10S",
+    uploadDate: "2026-04-29",
     description:
       "Trinn-for-trinn-håndtering av en anafylaktisk reaksjon på sengepost. Intensivsykepleier varsler lege, henter anafylaksiskrinet, gir adrenalin etter prosedyre.",
     poster: "/videos/opplaeringsfilm-poster.jpg",
@@ -40,6 +45,8 @@ const films: Film[] = [
     id: "demo",
     title: "Skrinet — innhold, oppbygning og bruk",
     duration: "3:35",
+    isoDuration: "PT3M35S",
+    uploadDate: "2026-04-29",
     description:
       "Gjennomgang av anafylaksiskrinets fysiske oppbygning, innhold (medikamenter og hjelpemidler), flytskjema, QR-kode, samt rengjøringsanvisning.",
     poster: "/videos/demo-poster.jpg",
@@ -56,6 +63,19 @@ const films: Film[] = [
   title="Opplæringsfilmer — EmendaKit"
   description="To opplæringsfilmer om håndtering av anafylaksi og bruk av EmendaKit anafylaksiskrin. Med fullstendige transkripsjoner."
 >
+  {films.map((film) => (
+    <SchemaVideoObject
+      name={film.title}
+      description={film.description}
+      thumbnailUrl={film.poster}
+      uploadDate={film.uploadDate}
+      duration={film.isoDuration}
+      contentUrl={film.src}
+      transcript={film.transcript}
+      inLanguage="nb-NO"
+    />
+  ))}
+
   <section class="intro">
     <div class="container">
       <div class="eyebrow">Opplæring · Anafylaksi</div>

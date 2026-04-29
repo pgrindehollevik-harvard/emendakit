@@ -8,9 +8,10 @@ interface Props {
   image?: string;
   productNumber: number;
   audience?: string;
+  deliveryTime?: string;
 }
 
-const { name, description, url, image, productNumber, audience } = Astro.props;
+const { name, description, url, image, productNumber, audience, deliveryTime } = Astro.props;
 
 const data = {
   "@context": "https://schema.org",
@@ -37,7 +38,7 @@ const data = {
   offers: {
     "@type": "Offer",
     url: new URL(url, SITE.url).href,
-    availability: "https://schema.org/InStock",
+    availability: "https://schema.org/LimitedAvailability",
     priceCurrency: "NOK",
     price: undefined,
     priceSpecification: {
@@ -51,8 +52,22 @@ const data = {
       email: SITE.email,
     },
     eligibleRegion: { "@type": "Country", name: "Norway" },
+    shippingDetails: {
+      "@type": "OfferShippingDetails",
+      shippingDestination: { "@type": "DefinedRegion", addressCountry: "NO" },
+      deliveryTime: {
+        "@type": "ShippingDeliveryTime",
+        name: deliveryTime ?? "Ca. 2 uker",
+        handlingTime: {
+          "@type": "QuantitativeValue",
+          minValue: 14,
+          maxValue: 14,
+          unitCode: "DAY",
+        },
+      },
+    },
   },
 };
 ---
 
-<script type="application/ld+json" set:html={JSON.stringify(data)} />
+<script is:inline type="application/ld+json" set:html={JSON.stringify(data)} />

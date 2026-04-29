@@ -2,7 +2,7 @@
 import { SITE } from "~/lib/site";
 
 interface Props {
-  title: string;
+  name: string;
   description: string;
   thumbnailUrl: string;
   uploadDate: string;       // YYYY-MM-DD
@@ -13,7 +13,7 @@ interface Props {
 }
 
 const {
-  title,
+  name,
   description,
   thumbnailUrl,
   uploadDate,
@@ -26,7 +26,7 @@ const {
 const data = {
   "@context": "https://schema.org",
   "@type": "VideoObject",
-  name: title,
+  name,
   description,
   thumbnailUrl: new URL(thumbnailUrl, SITE.url).href,
   uploadDate,
@@ -44,4 +44,4 @@ const data = {
 };
 ---
 
-<script type="application/ld+json" set:html={JSON.stringify(data)} />
+<script is:inline type="application/ld+json" set:html={JSON.stringify(data)} />

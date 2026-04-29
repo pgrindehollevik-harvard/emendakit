@@ -1,6 +1,6 @@
 ---
 import BaseLayout from "~/layouts/BaseLayout.astro";
-import SchemaVideoObject from "~/components/SchemaVideoObject.astro";
+import Video, { type VideoFilm } from "~/components/Video.astro";
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
 
@@ -14,44 +14,35 @@ function loadTranscript(name: string): string {
     .join("\n");
 }
 
-type Film = {
-  id: string;
-  title: string;
-  duration: string;
-  isoDuration: string;
-  uploadDate: string;
-  description: string;
-  poster: string;
-  src: string;
-  vtt: string | null;
-  transcript: string;
-};
-
-const films: Film[] = [
+const films: VideoFilm[] = [
   {
     id: "opplaeringsfilm",
     title: "Opplæringsfilm — anafylaksi i klinisk situasjon",
-    duration: "5:10",
-    isoDuration: "PT5M10S",
+    duration: "PT5M10S",
+    durationLabel: "5:10",
     uploadDate: "2026-04-29",
+    inLanguage: "nb-NO",
     description:
       "Trinn-for-trinn-håndtering av en anafylaktisk reaksjon på sengepost. Intensivsykepleier varsler lege, henter anafylaksiskrinet, gir adrenalin etter prosedyre.",
     poster: "/videos/opplaeringsfilm-poster.jpg",
-    src: "/videos/opplaeringsfilm.mp4",
-    vtt: "/videos/opplaeringsfilm.vtt",
+    sources: [{ src: "/videos/opplaeringsfilm.mp4", type: "video/mp4" }],
+    subtitles: { src: "/videos/opplaeringsfilm.vtt", srclang: "no", label: "Norsk" },
+    hasBurnedInSubtitles: false,
     transcript: loadTranscript("opplaeringsfilm"),
   },
   {
     id: "demo",
     title: "Skrinet — innhold, oppbygning og bruk",
-    duration: "3:35",
-    isoDuration: "PT3M35S",
+    duration: "PT3M35S",
+    durationLabel: "3:35",
     uploadDate: "2026-04-29",
+    inLanguage: "nb-NO",
     description:
       "Gjennomgang av anafylaksiskrinets fysiske oppbygning, innhold (medikamenter og hjelpemidler), flytskjema, QR-kode, samt rengjøringsanvisning.",
     poster: "/videos/demo-poster.jpg",
-    src: "/videos/demo.mp4",
-    vtt: null,
+    sources: [{ src: "/videos/demo.mp4", type: "video/mp4" }],
+    subtitles: { src: "/videos/demo.vtt", srclang: "no", label: "Norsk" },
+    hasBurnedInSubtitles: true,
     transcript: loadTranscript("demo"),
   },
 ];
@@ -63,20 +54,7 @@ const films: Film[] = [
   title="Opplæringsfilmer — EmendaKit"
   description="To opplæringsfilmer om håndtering av anafylaksi og bruk av EmendaKit anafylaksiskrin. Med fullstendige transkripsjoner."
 >
-  {films.map((film) => (
-    <SchemaVideoObject
-      name={film.title}
-      description={film.description}
-      thumbnailUrl={film.poster}
-      uploadDate={film.uploadDate}
-      duration={film.isoDuration}
-      contentUrl={film.src}
-      transcript={film.transcript}
-      inLanguage="nb-NO"
-    />
-  ))}
-
-  <section class="intro">
+  <section class="intro" data-review-state="draft">
     <div class="container">
       <div class="eyebrow">Opplæring · Anafylaksi</div>
       <h1>Opplæringsfilmer</h1>
@@ -94,43 +72,9 @@ const films: Film[] = [
   </section>
 
   {films.map((film) => (
-    <section class="film">
+    <section class="film-shell">
       <div class="container">
-        <div class="film-grid">
-          <div class="film-meta">
-            <div class="eyebrow">№ {film.id === "opplaeringsfilm" ? "01" : "02"} · {film.duration}</div>
-            <h2>{film.title}</h2>
-            <p>{film.description}</p>
-          </div>
-          <div class="film-player">
-            <video
-              controls
-              preload="metadata"
-              poster={film.poster}
-              crossorigin="anonymous"
-            >
-              <source src={film.src} type="video/mp4" />
-              {film.vtt && (
-                <track
-                  kind="subtitles"
-                  srclang="no"
-                  label="Norsk"
-                  src={film.vtt}
-                />
-              )}
-            </video>
-          </div>
-        </div>
-
-        <details class="transcript">
-          <summary>
-            Vis fullstendig transkripsjon
-            <span class="hint">·  AEO + tilgjengelighet</span>
-          </summary>
-          <div class="transcript-body">
-            {film.transcript.split("\n").map((line) => <p>{line}</p>)}
-          </div>
-        </details>
+        <Video film={film} indexLabel={`№ ${film.id === "opplaeringsfilm" ? "01" : "02"}`} />
       </div>
     </section>
   ))}
@@ -168,82 +112,5 @@ const films: Film[] = [
     margin: 0;
   }
 
-  .film { padding: 40px 0 56px; border-top: 1px solid var(--color-rule); }
-  .film:first-of-type { border-top: 0; }
-  .film-grid {
-    display: grid;
-    grid-template-columns: 280px 1fr;
-    gap: 40px;
-    align-items: start;
-  }
-  @media (max-width: 800px) {
-    .film-grid { grid-template-columns: 1fr; gap: 24px; }
-  }
-  .film-meta .eyebrow {
-    font-family: var(--font-mono);
-    font-size: 12px; color: var(--color-navy);
-    text-transform: uppercase; letter-spacing: 0.1em;
-    margin-bottom: 12px;
-  }
-  .film-meta h2 {
-    font-family: var(--font-display);
-    font-size: 24px; font-weight: 500;
-    letter-spacing: -0.02em;
-    margin: 0 0 14px;
-  }
-  .film-meta p {
-    font-size: 14px; line-height: 1.55;
-    color: var(--color-ink-2);
-    margin: 0;
-  }
-  .film-player {
-    border-radius: var(--radius-xl);
-    overflow: hidden;
-    background: #000;
-    aspect-ratio: 16 / 9;
-  }
-  .film-player video {
-    width: 100%; height: 100%;
-    display: block;
-  }
-
-  .transcript {
-    margin-top: 32px;
-    border-top: 1px solid var(--color-rule);
-    padding-top: 20px;
-  }
-  .transcript summary {
-    cursor: pointer;
-    font-family: var(--font-display);
-    font-size: 15px; font-weight: 500;
-    color: var(--color-navy);
-    list-style: none;
-  }
-  .transcript summary::-webkit-details-marker { display: none; }
-  .transcript summary::before {
-    content: "▸ ";
-    margin-right: 4px;
-    transition: transform 120ms;
-    display: inline-block;
-  }
-  .transcript[open] summary::before { transform: rotate(90deg); }
-  .transcript .hint {
-    color: var(--color-ink-3);
-    font-weight: 400;
-    font-size: 13px;
-    margin-left: 8px;
-  }
-  .transcript-body {
-    margin-top: 18px;
-    background: var(--color-cyan-soft);
-    border-radius: var(--radius-md);
-    padding: 24px 28px;
-    max-height: 480px;
-    overflow: auto;
-  }
-  .transcript-body p {
-    font-size: 14px; line-height: 1.65;
-    color: var(--color-ink);
-    margin: 0 0 10px;
-  }
+  .film-shell { padding: 0; }
 </style>

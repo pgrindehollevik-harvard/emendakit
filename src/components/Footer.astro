@@ -28,11 +28,13 @@ const companyLinks = t
       { href: "/om-oss", label: "Om oss" },
       { href: "/opplaering", label: "Klinisk grunnlag" },
       { href: "/mediaomtale", label: "Mediaomtale" },
+      { href: "/samarbeidspartnere", label: "Samarbeidspartnere" },
     ]
   : [
       { href: "/en/about", label: "About" },
       { href: "/en/training", label: "Clinical reference" },
       { href: "/en/press", label: "Press" },
+      { href: "/en/partners", label: "Partners" },
     ];
 
 const contactLinks = [
@@ -97,9 +99,26 @@ const contactLinks = [
     margin: 0 0 16px;
   }
   .foot ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
-  .foot a { color: var(--color-ink); font-size: 14px; }
-  .foot .lede { color: var(--color-ink-2); font-size: 14px; line-height: 1.55; max-width: 32ch; margin-top: 12px; }
-  .foot .brand img { height: 28px; }
+  .foot a {
+    color: var(--color-ink);
+    font-size: 14px;
+    text-decoration: none;
+    transition: color 120ms var(--ease-soft);
+  }
+  .foot a:hover {
+    color: var(--color-navy);
+  }
+  .foot .lede {
+    color: var(--color-ink-2);
+    font-size: 14px;
+    line-height: 1.55;
+    max-width: 32ch;
+    margin-top: 12px;
+  }
+  .foot .brand img {
+    height: 28px;
+    width: auto;
+  }
   .colophon {
     margin-top: 48px;
     padding-top: 24px;
@@ -109,5 +128,30 @@ const contactLinks = [
     align-items: center;
     font-size: 12px;
     color: var(--color-ink-3);
+  }
+  @media (max-width: 840px) {
+    .foot {
+      grid-template-columns: 1fr 1fr;
+    }
+    .foot > div:first-child {
+      grid-column: 1 / -1;
+    }
+  }
+  @media (max-width: 560px) {
+    footer {
+      padding: 40px 0 28px;
+    }
+    .container {
+      padding: 0 20px;
+    }
+    .foot {
+      grid-template-columns: 1fr;
+      gap: 28px;
+    }
+    .colophon {
+      align-items: flex-start;
+      flex-direction: column;
+      gap: 14px;
+    }
   }
 </style>

@@ -1,0 +1,96 @@
+---
+interface CTAAction {
+  href: string;
+  label: string;
+}
+
+interface Props {
+  title: string;
+  body: string;
+  primary: CTAAction;
+  secondary?: CTAAction;
+}
+
+const { title, body, primary, secondary } = Astro.props;
+---
+
+<section class="cta-strip">
+  <div class="container">
+    <div class="cta-strip-grid">
+      <div>
+        <h2>{title}</h2>
+        <p>{body}</p>
+      </div>
+      <div class="cta-strip-actions">
+        <a href={primary.href} class="btn btn-primary">{primary.label}</a>
+        {secondary && <a href={secondary.href} class="btn btn-secondary">{secondary.label}</a>}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .cta-strip {
+    padding: 96px 0;
+    background: var(--color-navy);
+    color: var(--color-bg);
+  }
+  .container {
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+  .cta-strip-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 56px;
+    align-items: center;
+  }
+  h2 {
+    font-family: var(--font-display);
+    font-size: clamp(32px, 3.8vw, 44px);
+    font-weight: 500;
+    letter-spacing: -0.025em;
+    line-height: 1.05;
+    margin: 0 0 16px;
+    max-width: 18ch;
+  }
+  p {
+    font-size: 17px;
+    line-height: 1.6;
+    color: rgb(255 255 255 / 0.75);
+    margin: 0;
+    max-width: 50ch;
+  }
+  .cta-strip-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 14px 22px;
+    border-radius: var(--radius-pill);
+    font-weight: 500;
+    font-size: 15px;
+    border: 1px solid transparent;
+  }
+  .btn-primary {
+    background: var(--color-cyan);
+    color: var(--color-navy-deep);
+  }
+  .btn-secondary {
+    background: transparent;
+    color: var(--color-bg);
+    border-color: rgb(255 255 255 / 0.25);
+  }
+  @media (max-width: 800px) {
+    .cta-strip-grid {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+  }
+</style>

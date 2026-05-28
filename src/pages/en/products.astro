@@ -1,0 +1,105 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "~/layouts/BaseLayout.astro";
+import ProductCard from "~/components/ProductCard.astro";
+import CTAStrip from "~/components/CTAStrip.astro";
+import productHospitalPhoto from "~/assets/photos/product-hospital-studio.webp";
+import productDentistPhoto from "~/assets/photos/product-dentist-studio.jpg";
+
+const products = (await getCollection("products", ({ data }) => data.locale === "en"))
+  .sort((a, b) => a.data.productNumber - b.data.productNumber);
+---
+
+<BaseLayout
+  locale="en"
+  altUrl="/produkter"
+  title="Anaphylaxis kits — EmendaKit Hospital and Dentist"
+  description="Two anaphylaxis kits on the same clinical framework: EmendaKit Hospital for healthcare professionals and EmendaKit Dentist for dental services. Packed to the Norwegian national anaphylaxis protocol."
+>
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        <p class="eyebrow">Anaphylaxis kits · Two kits · one framework</p>
+        <h1>Anaphylaxis kits for healthcare services.</h1>
+      </div>
+      <p class="lede">
+        The same clinical framework, two different contexts. Both are packed to
+        the national anaphylaxis protocol, waterproof and shock-resistant, and
+        delivered with a QR code to training films.
+      </p>
+    </div>
+  </section>
+
+  <section class="listing">
+    <div class="container">
+      <div class="product-grid">
+        {products.map((p) => (
+          <ProductCard
+            title={p.data.title}
+            summary={p.data.summary}
+            href={`/en/product/${p.data.urlSlug}`}
+            productNumber={p.data.productNumber}
+            audience={p.data.audience}
+            specs={p.data.specs.slice(0, 5)}
+            image={p.data.productNumber === 1 ? productHospitalPhoto : productDentistPhoto}
+            imageAlt={`${p.data.title} — ${p.data.descriptor}`}
+            imageStamp={p.data.productNumber === 1 ? "PHOTO 02 · kit in situ — ambulance interior" : "PHOTO 03 · EmendaKit Dentist · contents"}
+            priceLabel={p.data.priceLabel}
+            linkLabel="See data sheet"
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTAStrip
+    title="Need a kit tailored to your department?"
+    body="We co-design custom medical kits for maternity units, vaccination sites, ambulance services and departments with specific needs."
+    primary={{ href: "/en/services/custom-kit", label: "See custom kits →" }}
+    secondary={{ href: "mailto:kjersti@emendakit.no", label: "kjersti@emendakit.no" }}
+  />
+</BaseLayout>
+
+<style>
+  .container { max-width: 1320px; margin: 0 auto; padding: 0 32px; }
+  .eyebrow {
+    margin: 0 0 14px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    color: var(--color-navy);
+    text-transform: uppercase;
+  }
+  .hero { padding: 88px 0 56px; }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(280px, 0.75fr);
+    gap: 56px;
+    align-items: end;
+  }
+  .hero h1 {
+    font-family: var(--font-display);
+    font-weight: 500;
+    letter-spacing: -0.03em;
+    color: var(--color-ink);
+    max-width: 760px;
+    margin: 0;
+    font-size: clamp(42px, 6vw, 72px);
+    line-height: 0.98;
+  }
+  .lede {
+    margin: 0;
+    color: var(--color-ink-2);
+    font-size: 19px;
+    line-height: 1.55;
+  }
+  .listing { padding: 24px 0 96px; }
+  .product-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  @media (max-width: 860px) {
+    .hero-grid { grid-template-columns: 1fr; }
+    .hero { padding-top: 64px; }
+  }
+  @media (max-width: 800px) {
+    .product-grid { grid-template-columns: 1fr; }
+  }
+</style>

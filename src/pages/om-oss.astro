@@ -1,0 +1,193 @@
+---
+import { getCollection } from "astro:content";
+import type { ImageMetadata } from "astro";
+import BaseLayout from "~/layouts/BaseLayout.astro";
+import FounderCard from "~/components/FounderCard.astro";
+import CTAStrip from "~/components/CTAStrip.astro";
+import kjerstiPhoto from "~/assets/photos/founder-kjersti-portrait.jpg";
+import gregersPhoto from "~/assets/photos/founder-gregers-portrait.jpg";
+
+const team = await getCollection("team", ({ data }) => data.locale === "no");
+const photos: Record<string, ImageMetadata> = {
+  "kjersti-grinde": kjerstiPhoto,
+  "gregers-halvorsen": gregersPhoto,
+};
+const order = ["kjersti-grinde", "gregers-halvorsen"];
+const founders = order
+  .map((slug) => team.find((m) => m.data.urlSlug === slug))
+  .filter((m): m is NonNullable<(typeof team)[number]> => Boolean(m));
+---
+
+<BaseLayout
+  locale="no"
+  altUrl="/en/about"
+  title="Om oss — EmendaKit AS"
+  description="EmendaKit AS ble etablert i 2022 i Florø av helsepersonell med erfaring fra akuttmedisin. Vi designer og bygger anafylaksiskrin for norske helsetjenester."
+>
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        <p class="eyebrow">Om oss · EmendaKit AS</p>
+        <h1>Innovasjon gjennom kunnskap og erfaring.</h1>
+      </div>
+      <p class="lede">
+        EmendaKit AS ble etablert i 2022 i Florø, på vestkysten av Norge.
+        Selskapet er startet av helsepersonell som selv har stått i
+        akuttsituasjoner, og som ønsket mer systematiserte og kvalitetssikrede
+        løsninger for oppbevaring av medisiner og medisinsk utstyr.
+      </p>
+    </div>
+  </section>
+
+  <section class="story" aria-labelledby="story-heading">
+    <div class="container story-grid">
+      <div>
+        <p class="eyebrow">Bakgrunn</p>
+        <h2 id="story-heading">Det startet med en akuttsituasjon.</h2>
+      </div>
+      <div class="story-copy">
+        <p>
+          Utgangspunktet var en hendelse i 2019, der en pasient gikk i
+          anafylaktisk sjokk. Erfaringen gjorde det tydelig at akuttutstyret
+          måtte være enklere å finne og raskere å ta i bruk.
+        </p>
+        <p>
+          Kjersti Grinde, jordmor ved Kvinneklinikken i Helse Førde, lette etter
+          et bedre anafylaksiskrin for sin egen avdeling. Da hun ikke fant en
+          passende løsning på markedet, utviklet hun et eget, i samarbeid med en
+          ressursgruppe av leger, sykepleiere og farmasøyter.
+        </p>
+        <p>
+          Etter grundig utvikling og testing kjøpte Helse Førde 120 skrin våren
+          2023. Samme år ble anestesilege Gregers Halvorsen medeier.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="name" aria-labelledby="name-heading">
+    <div class="container name-grid">
+      <div>
+        <p class="eyebrow">Navnet</p>
+        <h2 id="name-heading">Emenda + Kit</h2>
+      </div>
+      <p class="name-copy">
+        Emenda kommer fra norrønt og betyr å systematisere, vøle og ordne. Kit
+        er engelsk for boks og skrin. Navnet beskriver det vi gjør: å bringe
+        orden og system til akuttberedskapen.
+      </p>
+    </div>
+  </section>
+
+  <section class="founders" aria-labelledby="founders-heading">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Teamet</p>
+        <h2 id="founders-heading">To klinikere bak hvert skrin.</h2>
+      </div>
+      <div class="founders-grid">
+        {founders.map((member, i) => (
+          <FounderCard
+            image={photos[member.data.urlSlug]}
+            imageAlt={`${member.data.name} — ${member.data.role}`}
+            imageStamp={`Portrett · ${member.data.name}`}
+            role={member.data.role}
+            name={member.data.name}
+            bio={member.data.bio}
+            accent={i === 0 ? "warm" : "cool"}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTAStrip
+    title="Vil du vite mer om EmendaKit?"
+    body="Ta kontakt for en uforpliktende samtale om anafylaksiskrin eller behovstilpassede løsninger for din avdeling."
+    primary={{ href: "mailto:kjersti@emendakit.no?subject=Om%20EmendaKit", label: "Send e-post til Kjersti →" }}
+    secondary={{ href: "/produkter", label: "Se anafylaksiskrinene" }}
+  />
+</BaseLayout>
+
+<style>
+  .container { max-width: 1180px; margin: 0 auto; padding: 0 32px; }
+  .eyebrow {
+    margin: 0 0 14px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    color: var(--color-navy);
+    text-transform: uppercase;
+  }
+  h1, h2 {
+    font-family: var(--font-display);
+    font-weight: 500;
+    letter-spacing: -0.03em;
+    color: var(--color-ink);
+  }
+  .hero { padding: 88px 0 72px; }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(280px, 0.75fr);
+    gap: 56px;
+    align-items: end;
+  }
+  .hero h1 {
+    max-width: 760px;
+    margin: 0;
+    font-size: clamp(42px, 6vw, 72px);
+    line-height: 0.98;
+  }
+  .lede {
+    margin: 0;
+    color: var(--color-ink-2);
+    font-size: 19px;
+    line-height: 1.55;
+  }
+  .story, .name {
+    padding: 78px 0;
+    border-top: 1px solid var(--color-rule);
+  }
+  .story-grid, .name-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(300px, 1.1fr);
+    gap: 56px;
+    align-items: start;
+  }
+  .story h2, .name h2 {
+    margin: 0;
+    font-size: clamp(31px, 4vw, 46px);
+    line-height: 1.04;
+  }
+  .story-copy p {
+    margin: 0 0 18px;
+    color: var(--color-ink-2);
+    font-size: 17px;
+    line-height: 1.65;
+  }
+  .story-copy p:last-child { margin-bottom: 0; }
+  .name { background: var(--color-cyan-soft); }
+  .name-copy {
+    margin: 0;
+    color: var(--color-ink-2);
+    font-size: 17px;
+    line-height: 1.65;
+  }
+  .founders {
+    padding: 88px 0;
+    border-top: 1px solid var(--color-rule);
+  }
+  .section-head { max-width: 720px; margin-bottom: 40px; }
+  .section-head h2 {
+    margin: 0;
+    font-size: clamp(32px, 4vw, 48px);
+    line-height: 1.04;
+  }
+  .founders-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  @media (max-width: 860px) {
+    .hero-grid, .story-grid, .name-grid, .founders-grid {
+      grid-template-columns: 1fr;
+    }
+    .hero { padding-top: 64px; }
+  }
+</style>

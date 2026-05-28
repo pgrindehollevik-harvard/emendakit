@@ -33,6 +33,7 @@ interface Props {
   film: VideoFilm | CollectionEntry<"videos">;
   indexLabel?: string;
   showMeta?: boolean;
+  showTranscript?: boolean;
   transcriptLabel?: string;
   transcriptHint?: string;
   subtitles?: VideoTrack | null;
@@ -43,6 +44,7 @@ const {
   film,
   indexLabel,
   showMeta = true,
+  showTranscript = true,
   transcriptLabel = "Vis fullstendig transkripsjon",
   transcriptHint = "AEO + tilgjengelighet",
   subtitles,
@@ -122,15 +124,17 @@ const schemaLanguage = data.inLanguage ?? "nb-NO";
     </div>
   </div>
 
-  <details class="transcript">
-    <summary>
-      {transcriptLabel}
-      <span>{transcriptHint}</span>
-    </summary>
-    <div class="transcript-body">
-      {data.transcript.split("\n").filter(Boolean).map((line) => <p>{line}</p>)}
-    </div>
-  </details>
+  {showTranscript && (
+    <details class="transcript">
+      <summary>
+        {transcriptLabel}
+        <span>{transcriptHint}</span>
+      </summary>
+      <div class="transcript-body">
+        {data.transcript.split("\n").filter(Boolean).map((line) => <p>{line}</p>)}
+      </div>
+    </details>
+  )}
 </article>
 
 <style>

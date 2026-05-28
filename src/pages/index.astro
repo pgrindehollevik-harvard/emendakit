@@ -9,6 +9,7 @@ import CTAStrip from "~/components/CTAStrip.astro";
 
 import heroPhoto from "~/assets/photos/hero-helicopter-hangar.jpg";
 import productHospitalPhoto from "~/assets/photos/product-hospital-studio.webp";
+import productDentistPhoto from "~/assets/photos/product-dentist-studio.jpg";
 import fieldAmbulancePhoto from "~/assets/photos/field-ambulance-interior.jpg";
 import kjerstiPhoto from "~/assets/photos/founder-kjersti-portrait.jpg";
 import gregersPhoto from "~/assets/photos/founder-gregers-portrait.jpg";
@@ -20,7 +21,7 @@ const products = (await getCollection("products", ({ data }) => data.locale === 
 <BaseLayout
   locale="no"
   altUrl="/en/"
-  title="EmendaKit — Anafylaksiskrin designet, testet og produsert i Norge"
+  title="EmendaKit — Anafylaksiskrin designet og bygget i Norge av helsepersonell"
   description="EmendaKit utvikler anafylaksiskrin for sykehus, ambulanse, fødestue og tannlegeklinikk. Designet av en anestesilege og en jordmor. Pakket etter nasjonalt flytskjema."
 >
   <section class="hero">
@@ -28,13 +29,13 @@ const products = (await getCollection("products", ({ data }) => data.locale === 
       <div class="hero-copy">
         <span class="hero-tag">
           <span class="pulse"></span>
-          Designet, testet og produsert i Norge
+          Designet og bygget i Norge av helsepersonell
         </span>
         <h1 class="display">
-          Et akuttskrin tegnet <span>for hvert sekund.</span>
+          Et akuttskrin designet <span>for hvert sekund.</span>
         </h1>
         <p class="lede">
-          Anafylaksiskrin utviklet av en anestesilege og en jordmor — for klinikere som
+          Anafylaksiskrin utviklet av en anestesilege og en jordmor, for klinikere som
           ikke har tid til å lete. Vanntett. Støtsikkert. Pakket etter norsk anafylaksiprotokoll.
         </p>
       </div>
@@ -59,7 +60,7 @@ const products = (await getCollection("products", ({ data }) => data.locale === 
       <div class="products-head">
         <div>
           <div class="eyebrow">To skrin · ett rammeverk</div>
-          <h2>Pakket for prosedyren — ikke omvendt.</h2>
+          <h2>Pakket for prosedyren, ikke omvendt.</h2>
         </div>
         <p>
           Samme kliniske rammeverk, to ulike kontekster. Begge er pakket etter nasjonal
@@ -71,13 +72,13 @@ const products = (await getCollection("products", ({ data }) => data.locale === 
           <ProductCard
             title={p.data.title}
             summary={p.data.summary}
-            href={`/produkt/${p.slug}`}
+            href={`/produkt/${p.data.urlSlug}`}
             productNumber={p.data.productNumber}
             audience={p.data.audience}
             specs={p.data.specs.slice(0, 4)}
-            image={p.data.productNumber === 1 ? productHospitalPhoto : undefined}
+            image={p.data.productNumber === 1 ? productHospitalPhoto : productDentistPhoto}
             imageAlt={`${p.data.title} — ${p.data.descriptor}`}
-            imageStamp={p.data.productNumber === 1 ? "FOTO 02 · skrin in situ — ambulanse interiør" : "FOTO 03 · skrin in situ — tannlegekontor"}
+            imageStamp={p.data.productNumber === 1 ? "FOTO 02 · skrin in situ — ambulanse interiør" : "FOTO 03 · EmendaKit Dentist · innhold"}
             priceLabel={p.data.priceLabel}
           />
         ))}
@@ -92,10 +93,10 @@ const products = (await getCollection("products", ({ data }) => data.locale === 
         imageAlt="Inne i luftambulansen — pasientbehandling med anafylaksiskrinet tilgjengelig"
         imageStamp="FOTO 04 · ambulanse interiør · pasientbehandling"
         eyebrow="Felt-erfaring · Helse Førde"
-        title="Designet ved en pasient — ikke ved et skrivebord."
-        body="EmendaKit ble til på en avdeling, ikke i et møterom. Hver detalj — adrenalindekselet, flytskjemaet bak på lokket, QR-feltet på siden — er et resultat av at noen sto med en pasient og ønsket at noe var litt annerledes."
+        title="Designet ved en pasients side, ikke ved et skrivebord."
+        body="EmendaKit ble til på en avdeling, ikke i et møterom. Hver detalj, fra adrenalindekselet til QR-feltet på siden, kommer av at noen sto med en pasient og ønsket at noe var litt annerledes."
         quote="«Innovasjon gjennom kunnskap og erfaring.»"
-        attribution="EmendaKits utgangspunkt — fra dag én."
+        attribution="EmendaKits utgangspunkt, fra dag én."
       />
     </div>
   </section>
@@ -104,7 +105,7 @@ const products = (await getCollection("products", ({ data }) => data.locale === 
     <div class="container">
       <div class="founders-head">
         <div class="eyebrow">Bygd av klinikere</div>
-        <h2>To stemmer fra praksis — ett akuttskrin med én logikk.</h2>
+        <h2>To stemmer fra praksis, ett akuttskrin med én logikk.</h2>
       </div>
       <div class="founders-grid">
         <FounderCard
@@ -121,7 +122,7 @@ const products = (await getCollection("products", ({ data }) => data.locale === 
           imageStamp="FOTO 06 · portrett · Gregers Halvorsen"
           role="Medstifter · Anestesilege"
           name="Gregers Halvorsen"
-          bio="Anestesilege ved Helse Førde, med erfaring fra luftambulanse og medisinsk simulering. Pakker skrinet slik han selv ville hatt det åpent foran seg."
+          bio="Anestesilege ved Helse Førde, med erfaring fra luftambulanse og medisinsk simulering."
           accent="cool"
         />
       </div>
@@ -131,8 +132,8 @@ const products = (await getCollection("products", ({ data }) => data.locale === 
   <CTAStrip
     title="Trenger dere et skrin tilpasset deres avdeling?"
     body="Vi co-designer behovstilpassede medisinske skrin for fødeavdelinger, vaksinestasjoner, ambulansetjenester og avdelinger med spesielle behov."
-    primary={{ href: "mailto:kjersti@emendakit.com?subject=Be%20om%20designsamtale", label: "Be om designsamtale →" }}
-    secondary={{ href: "mailto:kjersti@emendakit.com", label: "kjersti@emendakit.com" }}
+    primary={{ href: "mailto:kjersti@emendakit.no?subject=Be%20om%20designsamtale", label: "Be om designsamtale →" }}
+    secondary={{ href: "mailto:kjersti@emendakit.no", label: "kjersti@emendakit.no" }}
   />
 </BaseLayout>
 

@@ -1,7 +1,7 @@
 ---
 import { SITE, type Locale } from "~/lib/site";
 import LangSwitch from "./LangSwitch.astro";
-import logo from "~/assets/logo/emendakit-logo-blue-on-grey.png";
+import logo from "~/assets/logo/emendakit-logo.png";
 
 interface Props {
   locale: Locale;
@@ -26,15 +26,11 @@ const productLinks = t
 const companyLinks = t
   ? [
       { href: "/om-oss", label: "Om oss" },
-      { href: "/opplaering", label: "Klinisk grunnlag" },
-      { href: "/mediaomtale", label: "Mediaomtale" },
-      { href: "/samarbeidspartnere", label: "Samarbeidspartnere" },
+      { href: "/opplaering", label: "Opplæringsfilmer" },
     ]
   : [
       { href: "/en/about", label: "About" },
-      { href: "/en/training", label: "Clinical reference" },
-      { href: "/en/press", label: "Press" },
-      { href: "/en/partners", label: "Partners" },
+      { href: "/en/training", label: "Training videos" },
     ];
 
 const contactLinks = [
@@ -43,7 +39,6 @@ const contactLinks = [
     href: `mailto:${SITE.email}?subject=${encodeURIComponent(t ? "Be om tilbud" : "Request a quote")}`,
     label: t ? "Be om tilbud" : "Request a quote",
   },
-  { href: t ? "/opplaering" : "/en/training", label: t ? "Opplæringsfilmer" : "Training videos" },
 ];
 ---
 
@@ -54,8 +49,8 @@ const contactLinks = [
         <a href={t ? "/" : "/en/"} class="brand"><img src={logo.src} alt="EmendaKit" width="160" height="28" /></a>
         <p class="lede">
           {t
-            ? "EmendaKit AS · Innovasjon gjennom kunnskap og erfaring. Designet, testet og produsert i Norge."
-            : "EmendaKit AS · Innovation through knowledge and experience. Designed, tested and produced in Norway."}
+            ? "EmendaKit AS · Innovasjon gjennom kunnskap og erfaring. Designet og bygget i Norge av helsepersonell."
+            : "EmendaKit AS · Innovation through knowledge and experience. Designed and built in Norway by healthcare professionals."}
         </p>
       </div>
       <div>
@@ -72,7 +67,7 @@ const contactLinks = [
       </div>
     </div>
     <div class="colophon">
-      <span>© {new Date().getFullYear()} EmendaKit AS · {t ? "Designet i Norge" : "Designed in Norway"}</span>
+      <span>© {new Date().getFullYear()} EmendaKit AS · {t ? "Designet og bygget i Norge" : "Designed and built in Norway"}</span>
       <LangSwitch current={locale} altUrl={altUrl} variant="footer" />
     </div>
   </div>

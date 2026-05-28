@@ -4,42 +4,42 @@ import BaseLayout from "~/layouts/BaseLayout.astro";
 
 const services = await getCollection(
   "services",
-  ({ data }) => data.locale === "no",
+  ({ data }) => data.locale === "en",
 );
-const service = services.find((entry) => entry.slug === "behovstilpasset");
+const service = services.find((entry) => entry.slug === "custom-kit");
 
 if (!service) {
-  throw new Error("Missing Norwegian service entry: behovstilpasset");
+  throw new Error("Missing English service entry: custom-kit");
 }
 
 const { Content } = await service.render();
 const process = [
   {
     number: "01",
-    title: "Designsamtale",
-    text: "Vi går gjennom scenarioene, prosedyrene, rommene og avvikene som gjør behovet deres konkret.",
+    title: "Design conversation",
+    text: "We go through the scenarios, procedures, rooms and deviations that make your need concrete.",
   },
   {
     number: "02",
-    title: "Forslag til pakking",
-    text: "Vi skisserer innhold, layout, merking og hvordan skrinet skal støtte arbeidsflyten under akutt hendelse.",
+    title: "Packing proposal",
+    text: "We sketch contents, layout, labelling and how the kit should support the workflow during an acute event.",
   },
   {
     number: "03",
-    title: "Pilot i klinikken",
-    text: "Én eller noen få enheter testes av teamet som faktisk skal bruke skrinet.",
+    title: "Pilot in the clinic",
+    text: "One or a few units are tested by the team that will actually use the kit.",
   },
   {
     number: "04",
-    title: "Justering og levering",
-    text: "Erfaringene fra pilot brukes til endelig pakking, merking og levering av ferdige skrin.",
+    title: "Adjustment and delivery",
+    text: "Experience from the pilot informs the final packing, labelling and delivery of finished kits.",
   },
 ];
 ---
 
 <BaseLayout
-  locale="no"
-  altUrl={`/en/services/${service.data.altSlug}`}
+  locale="en"
+  altUrl={`/tjenester/${service.data.altSlug}`}
   title={`${service.data.title} — EmendaKit`}
   description={service.data.summary}
 >
@@ -47,15 +47,15 @@ const process = [
     <section class="hero">
       <div class="container hero-grid">
         <div>
-          <p class="eyebrow">Behovstilpasset · {service.data.audience}</p>
+          <p class="eyebrow">Custom kits · {service.data.audience}</p>
           <h1>{service.data.title}</h1>
         </div>
         <div class="hero-card">
           <p>{service.data.summary}</p>
           <a
-            href={`mailto:kjersti@emendakit.no?subject=${encodeURIComponent("Designsamtale om behovstilpasset skrin")}`}
+            href={`mailto:kjersti@emendakit.no?subject=${encodeURIComponent("Design conversation about a custom kit")}`}
           >
-            Be om designsamtale →
+            Request a design conversation →
           </a>
         </div>
       </div>
@@ -64,21 +64,21 @@ const process = [
     <section class="audience" aria-labelledby="audience-heading">
       <div class="container audience-grid">
         <div>
-          <p class="eyebrow">For hvem</p>
-          <h2 id="audience-heading">Når standardpakken ikke er presis nok.</h2>
+          <p class="eyebrow">Who it's for</p>
+          <h2 id="audience-heading">When the standard pack isn't precise enough.</h2>
         </div>
         <div class="audience-copy">
           <p>
-            Behovstilpassede medisinske skrin er for avdelinger der
-            akuttberedskapen må speile en bestemt pasientgruppe, prosedyre eller
-            fysisk arbeidsflyt. Det kan være fødeavdelinger, vaksinestasjoner,
-            akuttmottak, ambulansetjenester eller enheter med spesielle krav til
-            innhold og merking.
+            Custom medical kits are for departments where emergency readiness
+            must mirror a particular patient group, procedure or physical
+            workflow. That can be maternity units, vaccination sites, emergency
+            departments, ambulance services or units with specific requirements
+            for contents and labelling.
           </p>
           <ul>
-            <li>Fast plass for hvert legemiddel og hver komponent.</li>
-            <li>Merking som støtter deres prosedyre under tidspress.</li>
-            <li>Mulighet for pilot før endelig levering.</li>
+            <li>A fixed place for every medication and component.</li>
+            <li>Labelling that supports your procedure under time pressure.</li>
+            <li>The option of a pilot before final delivery.</li>
           </ul>
         </div>
       </div>
@@ -87,9 +87,9 @@ const process = [
     <section class="process" aria-labelledby="process-heading">
       <div class="container">
         <div class="section-head">
-          <p class="eyebrow">Slik jobber vi</p>
+          <p class="eyebrow">How we work</p>
           <h2 id="process-heading">
-            Fra klinisk behov til ferdig pakket skrin.
+            From clinical need to a finished, packed kit.
           </h2>
         </div>
 
@@ -112,9 +112,9 @@ const process = [
     <section class="content-note" aria-labelledby="source-heading">
       <div class="container source-grid">
         <div>
-          <p class="eyebrow">Fra tjenestebeskrivelsen</p>
+          <p class="eyebrow">From the service description</p>
           <h2 id="source-heading">
-            Rammeverket er EmendaKit. Innholdet er deres.
+            The framework is EmendaKit. The contents are yours.
           </h2>
         </div>
         <div class="mdx-content">
@@ -126,17 +126,17 @@ const process = [
     <section class="cta">
       <div class="container cta-grid">
         <div>
-          <p class="eyebrow">Neste steg</p>
-          <h2>Send Kjersti en kort beskrivelse av behovet.</h2>
+          <p class="eyebrow">Next step</p>
+          <h2>Send Kjersti a short description of the need.</h2>
         </div>
         <div>
           <p>
-            Designsamtalen er gratis og uforpliktende. Skriv hvilken avdeling
-            det gjelder, hvilke scenarioer skrinet skal støtte, og om dere
-            ønsker én pilot eller flere enheter.
+            The design conversation is free and without obligation. Write which
+            department it concerns, which scenarios the kit should support, and
+            whether you want one pilot or several units.
           </p>
           <a
-            href={`mailto:kjersti@emendakit.no?subject=${encodeURIComponent("Behovstilpasset medisinsk skrin")}`}
+            href={`mailto:kjersti@emendakit.no?subject=${encodeURIComponent("Custom medical kit")}`}
             class="button"
           >
             kjersti@emendakit.no →

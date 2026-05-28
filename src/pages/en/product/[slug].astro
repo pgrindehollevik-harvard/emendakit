@@ -6,7 +6,7 @@ import SchemaFAQPage from "~/components/SchemaFAQPage.astro";
 import CTAStrip from "~/components/CTAStrip.astro";
 
 export async function getStaticPaths() {
-  const products = await getCollection("products", ({ data }) => data.locale === "no");
+  const products = await getCollection("products", ({ data }) => data.locale === "en");
   return products.map((product) => ({
     params: { slug: product.data.urlSlug },
     props: { product },
@@ -15,12 +15,12 @@ export async function getStaticPaths() {
 
 const { product } = Astro.props;
 const { Content } = await product.render();
-const url = `/produkt/${product.data.urlSlug}`;
-const altUrl = `/en/product/${product.data.altSlug}`;
+const url = `/en/product/${product.data.urlSlug}`;
+const altUrl = `/produkt/${product.data.altSlug}`;
 ---
 
 <BaseLayout
-  locale="no"
+  locale="en"
   altUrl={altUrl}
   title={`${product.data.title} — ${product.data.descriptor}`}
   description={product.data.summary}
@@ -37,7 +37,7 @@ const altUrl = `/en/product/${product.data.altSlug}`;
 
   <article style="padding: 80px 32px; max-width: 880px; margin: 0 auto;">
     <p style="font-family: var(--font-mono); font-size: 12px; color: var(--color-navy); text-transform: uppercase; letter-spacing: 0.12em; margin: 0 0 14px;">
-      №{product.data.productNumber.toString().padStart(2, "0")} · Anafylaksiskrin · {product.data.audience}
+      №{product.data.productNumber.toString().padStart(2, "0")} · Anaphylaxis kit · {product.data.audience}
     </p>
     <h1 style="font-family: var(--font-display); font-size: clamp(36px, 4.4vw, 56px); font-weight: 500; letter-spacing: -0.03em; line-height: 1; margin: 0 0 18px;">
       {product.data.title}
@@ -46,7 +46,7 @@ const altUrl = `/en/product/${product.data.altSlug}`;
       {product.data.summary}
     </p>
 
-    <h2 style="font-family: var(--font-display); font-size: 24px; font-weight: 500; margin: 32px 0 16px;">Spesifikasjoner</h2>
+    <h2 style="font-family: var(--font-display); font-size: 24px; font-weight: 500; margin: 32px 0 16px;">Specifications</h2>
     <dl style="display: grid; grid-template-columns: 200px 1fr; gap: 12px 24px; font-size: 14px;">
       {product.data.specs.map((s) => (
         <>
@@ -58,7 +58,7 @@ const altUrl = `/en/product/${product.data.altSlug}`;
 
     <Content />
 
-    <h2 style="font-family: var(--font-display); font-size: 24px; font-weight: 500; margin: 48px 0 16px;">Spørsmål og svar</h2>
+    <h2 style="font-family: var(--font-display); font-size: 24px; font-weight: 500; margin: 48px 0 16px;">Questions and answers</h2>
     <div style="display: grid; gap: 16px;">
       {product.data.faq.map((q) => (
         <details style="padding: 16px 0; border-top: 1px solid var(--color-rule);">
@@ -70,15 +70,15 @@ const altUrl = `/en/product/${product.data.altSlug}`;
   </article>
 
   <CTAStrip
-    title={`Be om tilbud på ${product.data.title}`}
-    body={`${product.data.priceLabel} · Leveringstid ${product.data.deliveryTime.toLowerCase()}. Send en kort beskrivelse av avdeling, antall skrin og ønsket leveringssted.`}
+    title={`Request a quote for ${product.data.title}`}
+    body={`${product.data.priceLabel} · Delivery time ${product.data.deliveryTime.toLowerCase()}. Send a short description of the department, number of kits and preferred delivery location.`}
     primary={{
       href: `mailto:kjersti@emendakit.no?subject=${encodeURIComponent("Inquiry - " + product.data.title)}`,
-      label: "Send e-post til Kjersti →",
+      label: "Email Kjersti →",
     }}
     secondary={{
-      href: "/opplaering",
-      label: "Se opplæringsfilmer",
+      href: "/en/training",
+      label: "See training videos",
     }}
   />
 </BaseLayout>

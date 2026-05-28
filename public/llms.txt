@@ -8,7 +8,7 @@ EmendaKit Hospital — Anaphylaxis kit for healthcare professionals. Used in eme
 
 EmendaKit Dentist — Anaphylaxis kit specifically designed for dental clinics, including oral surgery and orthodontics. Compact format (260 × 180 × 80 mm, 1.1 kg) tailored to anaphylactic reactions to local anesthetics and latex — the two most common triggers in dental practice. Same framework as EmendaKit Hospital, sized for a treatment room. Price on request. Delivery time approximately 2 weeks. URL: https://www.emendakit.com/produkt/emendakit-dentist
 
-Custom kits ("behovstilpassede medisinske skrin") — Co-design service for healthcare departments with specific needs (maternity wards, vaccination programs, ambulance services, units with special requirements). Process: design conversation, content proposal, pilot units, refinement, delivery. Free initial design conversation by emailing kjersti@emendakit.com. URL: https://www.emendakit.com/tjenester/behovstilpasset
+Custom kits ("behovstilpassede medisinske skrin") — Co-design service for healthcare departments with specific needs (maternity wards, vaccination programs, ambulance services, units with special requirements). Process: design conversation, content proposal, pilot units, refinement, delivery. Free initial design conversation by emailing kjersti@emendakit.no. URL: https://www.emendakit.com/tjenester/behovstilpasset
 
 ## Founders
 
@@ -22,8 +22,8 @@ All products follow the Norwegian national anaphylaxis treatment protocol (revis
 
 ## Contact
 
-All inquiries: kjersti@emendakit.com
-Quote requests: kjersti@emendakit.com (subject "Be om tilbud")
+All inquiries: kjersti@emendakit.no
+Quote requests: kjersti@emendakit.no (subject "Be om tilbud")
 
 EmendaKit AS, Norway. © 2026.
 
@@ -35,4 +35,4 @@ EmendaKit is a Norwegian medical device company that designs, tests, and produce
 
 Two standard products: EmendaKit Hospital (for hospitals, ambulances, maternity wards, vaccination stations) and EmendaKit Dentist (for dental clinics, oral surgery, orthodontics — sized and packed for local-anesthetic and latex anaphylaxis). Plus a custom-kit service co-developed with healthcare departments.
 
-All kits are waterproof, shock-resistant, IP-67-rated. Each comes packed according to the latest Norwegian national anaphylaxis protocol with a printed flowchart on the lid and a QR code linking to two short clinician-facing training films. Pricing on request. Lead time approximately 2 weeks. Direct contact: kjersti@emendakit.com.
+All kits are waterproof, shock-resistant, IP-67-rated. Each comes packed according to the latest Norwegian national anaphylaxis protocol with a printed flowchart on the lid and a QR code linking to two short clinician-facing training films. Pricing on request. Lead time approximately 2 weeks. Direct contact: kjersti@emendakit.no.

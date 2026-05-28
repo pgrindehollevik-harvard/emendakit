@@ -4,7 +4,7 @@ import Video, { type VideoFilm } from "~/components/Video.astro";
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
 
-const root = resolve(import.meta.dirname, "../../public/videos");
+const root = resolve(import.meta.dirname, "../../../public/videos");
 
 function loadTranscript(name: string): string {
   return readFileSync(resolve(root, `${name}.txt`), "utf8")
@@ -17,13 +17,13 @@ function loadTranscript(name: string): string {
 const films: VideoFilm[] = [
   {
     id: "opplaeringsfilm",
-    title: "Opplæringsfilm — anafylaksi i klinisk situasjon",
+    title: "Training film — anaphylaxis in a clinical situation",
     duration: "PT5M10S",
     durationLabel: "5:10",
     uploadDate: "2026-04-29",
     inLanguage: "nb-NO",
     description:
-      "Trinn-for-trinn-håndtering av en anafylaktisk reaksjon på sengepost. Intensivsykepleier varsler lege, henter anafylaksiskrinet, gir adrenalin etter prosedyre.",
+      "Step-by-step management of an anaphylactic reaction on a ward: an intensive-care nurse alerts the doctor, fetches the anaphylaxis kit and administers adrenaline by protocol. The film is in Norwegian.",
     poster: "/videos/opplaeringsfilm-poster.jpg",
     sources: [{ src: "/videos/opplaeringsfilm.mp4", type: "video/mp4" }],
     subtitles: { src: "/videos/opplaeringsfilm.vtt", srclang: "no", label: "Norsk" },
@@ -32,13 +32,13 @@ const films: VideoFilm[] = [
   },
   {
     id: "demo",
-    title: "Skrinet — innhold, oppbygning og bruk",
+    title: "The kit — contents, layout and use",
     duration: "PT3M35S",
     durationLabel: "3:35",
     uploadDate: "2026-04-29",
     inLanguage: "nb-NO",
     description:
-      "Gjennomgang av anafylaksiskrinets fysiske oppbygning, innhold (medikamenter og hjelpemidler), flytskjema, QR-kode, samt rengjøringsanvisning.",
+      "A walkthrough of the anaphylaxis kit's physical layout, contents (medication and equipment), flowchart, QR code and cleaning instructions. The film is in Norwegian.",
     poster: "/videos/demo-poster.jpg",
     sources: [{ src: "/videos/demo.mp4", type: "video/mp4" }],
     subtitles: { src: "/videos/demo.vtt", srclang: "no", label: "Norsk" },
@@ -49,19 +49,19 @@ const films: VideoFilm[] = [
 ---
 
 <BaseLayout
-  locale="no"
-  altUrl="/en/training/"
-  title="Opplæringsfilmer — EmendaKit"
-  description="To opplæringsfilmer om håndtering av anafylaksi og bruk av EmendaKit anafylaksiskrin. Med fullstendige transkripsjoner."
+  locale="en"
+  altUrl="/opplaering"
+  title="Training videos — EmendaKit"
+  description="Two training films on managing anaphylaxis and using the EmendaKit anaphylaxis kit."
 >
   <section class="intro">
     <div class="container">
-      <div class="eyebrow">Opplæring · Anafylaksi</div>
-      <h1>Opplæringsfilmer</h1>
+      <div class="eyebrow">Training · Anaphylaxis</div>
+      <h1>Training videos</h1>
       <p class="lede">
-        To korte filmer for klinikere: håndtering av en anafylaktisk reaksjon,
-        og en gjennomgang av skrinets innhold og bruk. QR-koden på skrinet peker
-        hit.
+        Two short films for clinicians: managing an anaphylactic reaction, and a
+        walkthrough of the kit's contents and use. The QR code on the kit points
+        here. The films are in Norwegian.
       </p>
     </div>
   </section>

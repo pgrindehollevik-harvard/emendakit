@@ -7,6 +7,7 @@ const products = defineCollection({
   schema: z.object({
     title: z.string(),
     locale: localeSchema,
+    urlSlug: z.string(),                     // clean URL slug, shared across locales
     altSlug: z.string(),                    // counterpart in the other locale
     productNumber: z.number().int(),         // 1 = Hospital, 2 = Dentist
     audience: z.string(),                    // "for helsepersonell" / "for tannlegeklinikker"
@@ -53,6 +54,7 @@ const team = defineCollection({
   schema: z.object({
     name: z.string(),
     locale: localeSchema,
+    urlSlug: z.string(),
     role: z.string(),
     portraitPhoto: z.string().optional(),
     bio: z.string(),

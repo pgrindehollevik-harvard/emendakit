@@ -4,35 +4,33 @@ import BaseLayout from "~/layouts/BaseLayout.astro";
 
 const services = await getCollection(
   "services",
-  ({ data }) => data.locale === "no",
+  ({ data }) => data.locale === "en",
 );
-const customService = services.find(
-  (service) => service.slug === "behovstilpasset",
-);
+const customService = services.find((service) => service.slug === "custom-kit");
 
 if (!customService) {
-  throw new Error("Missing Norwegian service entry: behovstilpasset");
+  throw new Error("Missing English service entry: custom-kit");
 }
 
 const serviceCards = [customService];
 ---
 
 <BaseLayout
-  locale="no"
-  altUrl="/en/services"
-  title="Tjenester — behovstilpassede medisinske skrin fra EmendaKit"
-  description="EmendaKit co-designer behovstilpassede medisinske akuttskrin for helseforetak, fødeavdelinger, vaksinestasjoner og avdelinger med spesielle behov."
+  locale="en"
+  altUrl="/tjenester"
+  title="Services — custom medical kits from EmendaKit"
+  description="EmendaKit co-designs custom emergency medical kits for health trusts, maternity units, vaccination sites and departments with specific needs."
 >
   <section class="hero">
     <div class="container hero-grid">
       <div>
-        <p class="eyebrow">Tjenester · Medisinske akuttskrin</p>
-        <h1>Behovstilpassede skrin for avdelinger med andre krav.</h1>
+        <p class="eyebrow">Services · Emergency medical kits</p>
+        <h1>Custom kits for departments with different requirements.</h1>
       </div>
       <p class="lede">
-        Når standardskrinet ikke dekker behovet deres, bruker vi
-        EmendaKit-rammeverket til å designe et skrin rundt deres prosedyrer, rom
-        og kliniske scenarioer.
+        When the standard kit doesn't fit your needs, we use the EmendaKit
+        framework to design one around your procedures, rooms and clinical
+        scenarios.
       </p>
     </div>
   </section>
@@ -40,8 +38,8 @@ const serviceCards = [customService];
   <section class="service-list" aria-labelledby="service-heading">
     <div class="container">
       <div class="section-head">
-        <p class="eyebrow">Ett rammeverk · flere kliniske kontekster</p>
-        <h2 id="service-heading">Tjenester</h2>
+        <p class="eyebrow">One framework · several clinical contexts</p>
+        <h2 id="service-heading">Services</h2>
       </div>
 
       <div class="cards">
@@ -49,18 +47,18 @@ const serviceCards = [customService];
           serviceCards.map((service) => (
             <article class="service-card">
               <div class="card-media" aria-hidden="true">
-                <span class="media-label">Designsamtale</span>
+                <span class="media-label">Design conversation</span>
                 <span class="media-line" />
                 <span class="media-label">Pilot</span>
                 <span class="media-line" />
-                <span class="media-label">Levering</span>
+                <span class="media-label">Delivery</span>
               </div>
               <div class="card-body">
                 <p class="card-kicker">{service.data.audience}</p>
                 <h3>{service.data.title}</h3>
                 <p>{service.data.summary}</p>
-                <a href="/tjenester/behovstilpasset" class="card-link">
-                  Se hvordan vi jobber →
+                <a href="/en/services/custom-kit" class="card-link">
+                  See how we work →
                 </a>
               </div>
             </article>
@@ -73,19 +71,20 @@ const serviceCards = [customService];
   <section class="quote-band">
     <div class="container quote-grid">
       <div>
-        <p class="eyebrow">Praktisk startpunkt</p>
-        <h2>Start med en gratis designsamtale.</h2>
+        <p class="eyebrow">A practical starting point</p>
+        <h2>Start with a free design conversation.</h2>
       </div>
       <div>
         <p>
-          Ta med scenarioene, avvikene og kravene som gjør avdelingen deres litt
-          annerledes. Vi skisserer et forslag før dere bestemmer dere for pilot.
+          Bring the scenarios, deviations and requirements that make your
+          department a little different. We sketch a proposal before you decide
+          on a pilot.
         </p>
         <a
-          href={`mailto:kjersti@emendakit.no?subject=${encodeURIComponent("Designsamtale om behovstilpasset skrin")}`}
+          href={`mailto:kjersti@emendakit.no?subject=${encodeURIComponent("Design conversation about a custom kit")}`}
           class="button"
         >
-          Send e-post til Kjersti →
+          Email Kjersti →
         </a>
       </div>
     </div>

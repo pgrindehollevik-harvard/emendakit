@@ -1,7 +1,7 @@
 ---
 import { SITE, type Locale } from "~/lib/site";
 import LangSwitch from "./LangSwitch.astro";
-import logo from "~/assets/logo/emendakit-logo-blue-on-grey.png";
+import logo from "~/assets/logo/emendakit-logo.png";
 
 interface Props {
   locale: Locale;
@@ -15,13 +15,13 @@ const nav = locale === "no"
   ? [
       { href: "/produkter", label: "Anafylaksiskrin", active: currentPath.startsWith("/produkt") || currentPath === "/produkter" },
       { href: "/tjenester", label: "Tjenester", active: currentPath.startsWith("/tjenester") },
-      { href: "/opplaering", label: "Klinisk grunnlag", active: currentPath.startsWith("/opplaering") },
+      { href: "/opplaering", label: "Opplæringsfilmer", active: currentPath.startsWith("/opplaering") },
       { href: "/om-oss", label: "Om oss", active: currentPath.startsWith("/om-oss") },
     ]
   : [
       { href: "/en/products", label: "Anaphylaxis kits", active: currentPath.startsWith("/en/product") || currentPath === "/en/products" },
       { href: "/en/services", label: "Services", active: currentPath.startsWith("/en/services") },
-      { href: "/en/training", label: "Clinical reference", active: currentPath.startsWith("/en/training") },
+      { href: "/en/training", label: "Training videos", active: currentPath.startsWith("/en/training") },
       { href: "/en/about", label: "About", active: currentPath.startsWith("/en/about") },
     ];
 

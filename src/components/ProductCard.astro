@@ -16,9 +16,10 @@ interface Props {
   specs?: readonly ProductSpec[];
   image?: ImageMetadata;
   imageAlt?: string;
-  imageStamp?: string;
   priceLabel?: string;
   linkLabel?: string;
+  orderHref?: string;
+  orderLabel?: string;
   variant?: "clinic" | "dental";
 }
 
@@ -31,9 +32,10 @@ const {
   specs = [],
   image,
   imageAlt = title,
-  imageStamp,
   priceLabel = "Pris på forespørsel",
-  linkLabel = "Se datakort",
+  linkLabel = "Produktdetaljer",
+  orderHref,
+  orderLabel = "Bestill nå",
   variant = productNumber === 1 ? "clinic" : "dental",
 } = Astro.props;
 
@@ -42,7 +44,6 @@ const numberLabel = productNumber.toString().padStart(2, "0");
 
 <article class="product-card">
   <div class:list={["product-img", `kit-${variant}`, { "has-photo": image }]}>
-    <span class="label">{audience}</span>
     {image ? (
       <Image src={image} alt={imageAlt} widths={[480, 720, 1080]} sizes="(min-width: 1024px) 40vw, 100vw" />
     ) : (
@@ -54,7 +55,6 @@ const numberLabel = productNumber.toString().padStart(2, "0");
         <span class="kit-signal"></span>
       </div>
     )}
-    {imageStamp && <span class="stamp">{imageStamp}</span>}
   </div>
 
   <div class="product-body">
@@ -74,8 +74,11 @@ const numberLabel = productNumber.toString().padStart(2, "0");
         ))}
       </ul>
     )}
-    <div class="product-cta">
-      <a href={href}>{linkLabel} →</a>
+    <div class="product-foot">
+      <div class="product-actions">
+        {orderHref && <a href={orderHref} class="order-btn">{orderLabel}</a>}
+        <a href={href} class="detail-link">{linkLabel} →</a>
+      </div>
       <span class="price">{priceLabel}</span>
     </div>
   </div>
@@ -113,38 +116,6 @@ const numberLabel = productNumber.toString().padStart(2, "0");
     height: 100%;
     object-fit: contain;
     padding: 16px;
-  }
-  .label {
-    position: absolute;
-    top: 18px;
-    left: 18px;
-    z-index: 2;
-    background: rgb(255 255 255 / 0.08);
-    backdrop-filter: blur(6px);
-    border: 1px solid rgb(255 255 255 / 0.12);
-    color: rgb(255 255 255 / 0.85);
-    font-family: var(--font-mono);
-    font-size: 11px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    padding: 5px 10px;
-    border-radius: var(--radius-sm);
-  }
-  .has-photo .label {
-    background: color-mix(in srgb, var(--color-navy) 86%, transparent);
-    border-color: transparent;
-    color: var(--color-bg);
-  }
-  .stamp {
-    position: absolute;
-    bottom: 18px;
-    left: 18px;
-    z-index: 2;
-    font-family: var(--font-mono);
-    font-size: 10px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: rgb(255 255 255 / 0.55);
   }
   .kit-visual {
     position: absolute;
@@ -263,16 +234,29 @@ const numberLabel = productNumber.toString().padStart(2, "0");
   .product-spec .v {
     color: var(--color-ink);
   }
-  .product-cta {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 20px;
-    padding-top: 16px;
-    border-top: 1px solid var(--color-rule);
+  .product-foot {
     margin-top: auto;
+    padding-top: 18px;
+    border-top: 1px solid var(--color-rule);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
   }
-  .product-cta a {
+  .product-actions {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    flex-wrap: wrap;
+  }
+  .order-btn {
+    background: var(--color-navy);
+    color: var(--color-bg);
+    border-radius: var(--radius-pill);
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 500;
+  }
+  .detail-link {
     font-size: 14px;
     font-weight: 500;
     color: var(--color-navy);
@@ -285,19 +269,14 @@ const numberLabel = productNumber.toString().padStart(2, "0");
     color: var(--color-ink-3);
     text-transform: uppercase;
     letter-spacing: 0.06em;
-    text-align: right;
   }
   @media (max-width: 520px) {
     .product-body {
       padding: 24px;
     }
-    .product-spec li,
-    .product-cta {
+    .product-spec li {
       display: grid;
       gap: 6px;
-    }
-    .price {
-      text-align: left;
     }
   }
 </style>

@@ -32,7 +32,7 @@ const products = (await getCollection("products", ({ data }) => data.locale === 
           Designed and built in Norway by healthcare professionals
         </span>
         <h1 class="display">
-          An emergency kit designed <span>for every second.</span>
+          An emergency kit designed <span>for when every second counts.</span>
         </h1>
         <p class="lede">
           Anaphylaxis kits developed by an anaesthetist and a midwife, for
@@ -61,10 +61,10 @@ const products = (await getCollection("products", ({ data }) => data.locale === 
       <div class="products-head">
         <div>
           <div class="eyebrow">Two kits · one framework</div>
-          <h2>Packed for the procedure, not the other way around.</h2>
+          <h2>Packed for the emergency.</h2>
         </div>
         <p>
-          The same clinical framework, two different contexts. Both are packed to
+          The same clinical framework, for two different uses. Both are packed to
           the national anaphylaxis protocol and delivered with a QR code to
           training films.
         </p>
@@ -80,9 +80,10 @@ const products = (await getCollection("products", ({ data }) => data.locale === 
             specs={p.data.specs.slice(0, 4)}
             image={p.data.productNumber === 1 ? productHospitalPhoto : productDentistPhoto}
             imageAlt={`${p.data.title} — ${p.data.descriptor}`}
-            imageStamp={p.data.productNumber === 1 ? "PHOTO 02 · kit in situ — ambulance interior" : "PHOTO 03 · EmendaKit Dentist · contents"}
             priceLabel={p.data.priceLabel}
-            linkLabel="See data sheet"
+            linkLabel="Product details"
+            orderHref={`mailto:kjersti@emendakit.no?subject=${encodeURIComponent("Inquiry - " + p.data.title)}`}
+            orderLabel="Order now"
           />
         ))}
       </div>
@@ -147,7 +148,7 @@ const products = (await getCollection("products", ({ data }) => data.locale === 
   .hero { padding: 80px 0 64px; }
   .hero-grid {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.25fr);
     gap: 56px;
     align-items: center;
   }

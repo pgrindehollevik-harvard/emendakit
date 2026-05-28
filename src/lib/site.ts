@@ -7,6 +7,7 @@ export const SITE = {
   legalName: "EmendaKit AS",
   url: "https://www.emendakit.com",
   email: "kjersti@emendakit.no",
+  phone: "+47 954 45 726",
   defaultLocale: "no" as const,
   locales: ["no", "en"] as const,
   taglines: {

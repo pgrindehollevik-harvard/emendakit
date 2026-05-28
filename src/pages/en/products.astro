@@ -23,7 +23,7 @@ const products = (await getCollection("products", ({ data }) => data.locale === 
         <h1>Anaphylaxis kits for healthcare services.</h1>
       </div>
       <p class="lede">
-        The same clinical framework, two different contexts. Both are packed to
+        The same clinical framework, for two different uses. Both are packed to
         the national anaphylaxis protocol, waterproof and shock-resistant, and
         delivered with a QR code to training films.
       </p>
@@ -43,9 +43,10 @@ const products = (await getCollection("products", ({ data }) => data.locale === 
             specs={p.data.specs.slice(0, 5)}
             image={p.data.productNumber === 1 ? productHospitalPhoto : productDentistPhoto}
             imageAlt={`${p.data.title} — ${p.data.descriptor}`}
-            imageStamp={p.data.productNumber === 1 ? "PHOTO 02 · kit in situ — ambulance interior" : "PHOTO 03 · EmendaKit Dentist · contents"}
             priceLabel={p.data.priceLabel}
-            linkLabel="See data sheet"
+            linkLabel="Product details"
+            orderHref={`mailto:kjersti@emendakit.no?subject=${encodeURIComponent("Inquiry - " + p.data.title)}`}
+            orderLabel="Order now"
           />
         ))}
       </div>

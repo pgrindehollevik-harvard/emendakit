@@ -23,7 +23,7 @@ const products = (await getCollection("products", ({ data }) => data.locale === 
         <h1>Anafylaksiskrin for norske helsetjenester.</h1>
       </div>
       <p class="lede">
-        Samme kliniske rammeverk, to ulike kontekster. Begge er pakket etter
+        Samme kliniske rammeverk, til to ulike bruk. Begge er pakket etter
         nasjonal anafylaksiprotokoll, vanntette og støtsikre, og levert med
         QR-kode til opplæringsfilmer.
       </p>
@@ -43,8 +43,8 @@ const products = (await getCollection("products", ({ data }) => data.locale === 
             specs={p.data.specs.slice(0, 5)}
             image={p.data.productNumber === 1 ? productHospitalPhoto : productDentistPhoto}
             imageAlt={`${p.data.title} — ${p.data.descriptor}`}
-            imageStamp={p.data.productNumber === 1 ? "FOTO 02 · skrin in situ — ambulanse interiør" : "FOTO 03 · EmendaKit Dentist · innhold"}
             priceLabel={p.data.priceLabel}
+            orderHref={`mailto:kjersti@emendakit.no?subject=${encodeURIComponent("Inquiry - " + p.data.title)}`}
           />
         ))}
       </div>

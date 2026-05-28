@@ -35,6 +35,7 @@ const companyLinks = t
 
 const contactLinks = [
   { href: `mailto:${SITE.email}`, label: SITE.email },
+  { href: `tel:${SITE.phone.replace(/\s/g, "")}`, label: SITE.phone },
   {
     href: `mailto:${SITE.email}?subject=${encodeURIComponent(t ? "Be om tilbud" : "Request a quote")}`,
     label: t ? "Be om tilbud" : "Request a quote",

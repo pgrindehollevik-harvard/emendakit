@@ -29,6 +29,7 @@ const ctaLabel = locale === "no" ? "Be om tilbud" : "Request a quote";
 const ctaHref = `mailto:${SITE.email}?subject=${encodeURIComponent(
   locale === "no" ? "Be om tilbud" : "Request a quote",
 )}`;
+const menuLabel = locale === "no" ? "Meny" : "Menu";
 ---
 
 <header>
@@ -48,7 +49,19 @@ const ctaHref = `mailto:${SITE.email}?subject=${encodeURIComponent(
     <a href={ctaHref} class="cta-button">
       <span class="dot"></span> {ctaLabel}
     </a>
+    <button class="menu-toggle" type="button" aria-label={menuLabel} aria-expanded="false" aria-controls="mobile-menu">
+      <span></span><span></span><span></span>
+    </button>
   </div>
+
+  <nav class="mobile-menu" id="mobile-menu" aria-label={menuLabel}>
+    {nav.map((item) => (
+      <a href={item.href} class={item.active ? "current" : ""} aria-current={item.active ? "page" : undefined}>
+        {item.label}
+      </a>
+    ))}
+    <a href={ctaHref} class="mobile-cta"><span class="dot"></span> {ctaLabel}</a>
+  </nav>
 </header>
 
 <style>
@@ -112,12 +125,82 @@ const ctaHref = `mailto:${SITE.email}?subject=${encodeURIComponent(
     background: var(--color-cyan);
     border-radius: var(--radius-pill);
   }
+
+  /* mobile menu — hidden on desktop, no effect on desktop layout */
+  .menu-toggle { display: none; }
+  .mobile-menu { display: none; }
+
   @media (max-width: 980px) {
     .nav {
       gap: 20px;
     }
     .nav-links {
       display: none;
+    }
+    .menu-toggle {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      flex: 0 0 auto;
+      width: 40px;
+      height: 40px;
+      padding: 9px;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+    .menu-toggle span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      border-radius: 2px;
+      background: var(--color-navy);
+      transition: transform 220ms var(--ease-soft), opacity 160ms var(--ease-soft);
+    }
+    .menu-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .menu-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+    .menu-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .mobile-menu {
+      display: flex;
+      flex-direction: column;
+      max-height: 0;
+      overflow: hidden;
+      padding: 0 32px;
+      transition: max-height 300ms var(--ease-soft);
+    }
+    .mobile-menu.open {
+      max-height: 80vh;
+    }
+    .mobile-menu a {
+      font-size: 17px;
+      font-weight: 500;
+      color: var(--color-ink);
+      text-decoration: none;
+      padding: 17px 2px;
+      border-bottom: 1px solid var(--color-rule);
+    }
+    .mobile-menu a.current {
+      color: var(--color-navy);
+    }
+    .mobile-menu .mobile-cta {
+      border-bottom: none;
+      width: fit-content;
+      margin: 20px 0 24px;
+      background: var(--color-navy);
+      color: var(--color-bg);
+      border-radius: var(--radius-pill);
+      padding: 14px 24px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .mobile-menu .mobile-cta .dot {
+      width: 6px;
+      height: 6px;
+      background: var(--color-cyan);
+      border-radius: var(--radius-pill);
     }
   }
   @media (max-width: 640px) {
@@ -131,5 +214,26 @@ const ctaHref = `mailto:${SITE.email}?subject=${encodeURIComponent(
     .cta-button {
       display: none;
     }
+    .mobile-menu {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
   }
 </style>
+
+<script>
+  const toggle = document.querySelector<HTMLButtonElement>(".menu-toggle");
+  const menu = document.getElementById("mobile-menu");
+  if (toggle && menu) {
+    toggle.addEventListener("click", () => {
+      const open = menu.classList.toggle("open");
+      toggle.setAttribute("aria-expanded", String(open));
+    });
+    window.addEventListener("resize", () => {
+      if (window.innerWidth > 980 && menu.classList.contains("open")) {
+        menu.classList.remove("open");
+        toggle.setAttribute("aria-expanded", "false");
+      }
+    });
+  }
+</script>

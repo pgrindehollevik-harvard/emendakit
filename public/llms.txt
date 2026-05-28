@@ -8,7 +8,7 @@ EmendaKit Hospital — Anaphylaxis kit for healthcare professionals. Used in eme
 
 EmendaKit Dentist — Anaphylaxis kit for dental clinics, including oral surgery and orthodontics. The same kit and framework as EmendaKit Hospital (320 × 230 × 95 mm, 1.4 kg), with a flowchart geared to the dental setting, where reactions to local anesthetics and latex are the most common triggers. Delivered without medications; a wall holder is included. Price on request. Delivery time approximately 2 weeks. URL: https://www.emendakit.com/produkt/emendakit-dentist
 
-Custom kits ("behovstilpassede medisinske skrin") — Co-design service for healthcare departments with specific needs (maternity wards, vaccination programs, ambulance services, units with special requirements). Process: design conversation, packing proposal, pilot units, adjustment, delivery. Free initial design conversation by emailing kjersti@emendakit.no. URL: https://www.emendakit.com/tjenester/behovstilpasset
+Custom kits ("behovstilpassede medisinske skrin") — Co-design service for healthcare departments with specific needs (maternity wards, vaccination programs, ambulance services, units with special requirements). Process: design conversation, packing proposal, pilot units, adjustment, delivery. Free initial design conversation by emailing kjersti@emendakit.com. URL: https://www.emendakit.com/tjenester/behovstilpasset
 
 ## Founders
 
@@ -22,8 +22,8 @@ All products follow the Norwegian national anaphylaxis treatment protocol (revis
 
 ## Contact
 
-All inquiries: kjersti@emendakit.no
-Quote requests: kjersti@emendakit.no (subject "Inquiry - EmendaKit Hospital" or "Inquiry - EmendaKit Dentist")
+All inquiries: kjersti@emendakit.com
+Quote requests: kjersti@emendakit.com (subject "Inquiry - EmendaKit Hospital" or "Inquiry - EmendaKit Dentist")
 
 EmendaKit AS, Norway. © 2026.
 
@@ -35,4 +35,4 @@ EmendaKit is a Norwegian medical device company that designs and builds anaphyla
 
 Two standard products: EmendaKit Hospital (for hospitals, ambulances, maternity wards, vaccination stations) and EmendaKit Dentist (for dental clinics, oral surgery and orthodontics; the same kit with a dental-specific flowchart). Plus a custom-kit service co-developed with healthcare departments.
 
-All kits are waterproof, dustproof, shock-resistant and IP-67-rated, with a fitted insert, a printed national-protocol flowchart on the lid, a QR code linking to two short training films, and a wall holder. Kits are delivered without medications; the drugs are ordered through the hospital or clinic pharmacy. Pricing on request. Lead time approximately 2 weeks. Direct contact: kjersti@emendakit.no.
+All kits are waterproof, dustproof, shock-resistant and IP-67-rated, with a fitted insert, a printed national-protocol flowchart on the lid, a QR code linking to two short training films, and a wall holder. Kits are delivered without medications; the drugs are ordered through the hospital or clinic pharmacy. Pricing on request. Lead time approximately 2 weeks. Direct contact: kjersti@emendakit.com.

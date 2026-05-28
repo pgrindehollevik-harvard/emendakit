@@ -79,7 +79,7 @@ const products = (await getCollection("products", ({ data }) => data.locale === 
             image={p.data.productNumber === 1 ? productHospitalPhoto : productDentistPhoto}
             imageAlt={`${p.data.title} — ${p.data.descriptor}`}
             priceLabel={p.data.priceLabel}
-            orderHref={`mailto:kjersti@emendakit.no?subject=${encodeURIComponent("Inquiry - " + p.data.title)}`}
+            orderHref={`mailto:kjersti@emendakit.com?subject=${encodeURIComponent("Inquiry - " + p.data.title)}`}
           />
         ))}
       </div>
@@ -132,8 +132,8 @@ const products = (await getCollection("products", ({ data }) => data.locale === 
   <CTAStrip
     title="Trenger dere et skrin tilpasset deres avdeling?"
     body="Vi co-designer behovstilpassede medisinske skrin for fødeavdelinger, vaksinestasjoner, ambulansetjenester og avdelinger med spesielle behov."
-    primary={{ href: "mailto:kjersti@emendakit.no?subject=Be%20om%20designsamtale", label: "Be om designsamtale →" }}
-    secondary={{ href: "mailto:kjersti@emendakit.no", label: "kjersti@emendakit.no" }}
+    primary={{ href: "mailto:kjersti@emendakit.com?subject=Be%20om%20designsamtale", label: "Be om designsamtale →" }}
+    secondary={{ href: "mailto:kjersti@emendakit.com", label: "kjersti@emendakit.com" }}
   />
 </BaseLayout>
 

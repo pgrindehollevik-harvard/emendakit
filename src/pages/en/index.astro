@@ -82,7 +82,7 @@ const products = (await getCollection("products", ({ data }) => data.locale === 
             imageAlt={`${p.data.title} — ${p.data.descriptor}`}
             priceLabel={p.data.priceLabel}
             linkLabel="Product details"
-            orderHref={`mailto:kjersti@emendakit.no?subject=${encodeURIComponent("Inquiry - " + p.data.title)}`}
+            orderHref={`mailto:kjersti@emendakit.com?subject=${encodeURIComponent("Inquiry - " + p.data.title)}`}
             orderLabel="Order now"
           />
         ))}
@@ -136,8 +136,8 @@ const products = (await getCollection("products", ({ data }) => data.locale === 
   <CTAStrip
     title="Need a kit tailored to your department?"
     body="We co-design custom medical kits for maternity units, vaccination sites, ambulance services and departments with specific needs."
-    primary={{ href: "mailto:kjersti@emendakit.no?subject=Request%20a%20design%20conversation", label: "Request a design conversation →" }}
-    secondary={{ href: "mailto:kjersti@emendakit.no", label: "kjersti@emendakit.no" }}
+    primary={{ href: "mailto:kjersti@emendakit.com?subject=Request%20a%20design%20conversation", label: "Request a design conversation →" }}
+    secondary={{ href: "mailto:kjersti@emendakit.com", label: "kjersti@emendakit.com" }}
   />
 </BaseLayout>
 

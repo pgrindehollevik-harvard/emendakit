@@ -45,7 +45,7 @@ const products = (await getCollection("products", ({ data }) => data.locale === 
             imageAlt={`${p.data.title} — ${p.data.descriptor}`}
             priceLabel={p.data.priceLabel}
             linkLabel="Product details"
-            orderHref={`mailto:kjersti@emendakit.com?subject=${encodeURIComponent("Inquiry - " + p.data.title)}`}
+            orderHref={`/en/contact?topic=${encodeURIComponent(p.data.title)}`}
             orderLabel="Order now"
           />
         ))}

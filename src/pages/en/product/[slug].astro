@@ -73,8 +73,8 @@ const altUrl = `/produkt/${product.data.altSlug}`;
     title={`Request a quote for ${product.data.title}`}
     body={`${product.data.priceLabel} · Delivery time ${product.data.deliveryTime.toLowerCase()}. Send a short description of the department, number of kits and preferred delivery location.`}
     primary={{
-      href: `mailto:kjersti@emendakit.com?subject=${encodeURIComponent("Inquiry - " + product.data.title)}`,
-      label: "Email Kjersti →",
+      href: `/en/contact?topic=${encodeURIComponent(product.data.title)}`,
+      label: "Request a quote →",
     }}
     secondary={{
       href: "/en/training",

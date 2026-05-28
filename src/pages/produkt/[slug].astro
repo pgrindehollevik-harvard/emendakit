@@ -73,8 +73,8 @@ const altUrl = `/en/product/${product.data.altSlug}`;
     title={`Be om tilbud på ${product.data.title}`}
     body={`${product.data.priceLabel} · Leveringstid ${product.data.deliveryTime.toLowerCase()}. Send en kort beskrivelse av avdeling, antall skrin og ønsket leveringssted.`}
     primary={{
-      href: `mailto:kjersti@emendakit.com?subject=${encodeURIComponent("Inquiry - " + product.data.title)}`,
-      label: "Send e-post til Kjersti →",
+      href: `/kontakt?emne=${encodeURIComponent(product.data.title)}`,
+      label: "Be om tilbud →",
     }}
     secondary={{
       href: "/opplaering",

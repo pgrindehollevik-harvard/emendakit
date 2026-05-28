@@ -1,0 +1,324 @@
+---
+import { SITE, type Locale } from "~/lib/site";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = locale === "no";
+
+const topics = t
+  ? [
+      "EmendaKit Hospital",
+      "EmendaKit Dentist",
+      "Behovstilpasset skrin",
+      "Opplæring",
+      "Annet",
+    ]
+  : [
+      "EmendaKit Hospital",
+      "EmendaKit Dentist",
+      "Custom kit",
+      "Training",
+      "Other",
+    ];
+
+const labels = t
+  ? {
+      name: "Navn",
+      email: "E-post",
+      phone: "Telefon",
+      phoneHint: "valgfritt",
+      org: "Sykehus, klinikk eller avdeling",
+      orgHint: "valgfritt",
+      topic: "Hva gjelder det?",
+      message: "Melding",
+      messagePlaceholder: "Fortell kort hva dere trenger, og hvor mange skrin det gjelder.",
+      submit: "Send henvendelse",
+      sending: "Sender …",
+      consent: "Vi bruker opplysningene kun til å svare på henvendelsen din.",
+      success: "Takk. Henvendelsen er sendt, og Kjersti svarer vanligvis innen én virkedag.",
+      error: "Noe gikk galt under sendingen. Send oss en e-post direkte:",
+    }
+  : {
+      name: "Name",
+      email: "Email",
+      phone: "Phone",
+      phoneHint: "optional",
+      org: "Hospital, clinic or department",
+      orgHint: "optional",
+      topic: "What is it about?",
+      message: "Message",
+      messagePlaceholder: "Tell us briefly what you need, and how many kits it concerns.",
+      submit: "Send message",
+      sending: "Sending …",
+      consent: "We use these details only to answer your enquiry.",
+      success: "Thank you. Your message has been sent — Kjersti usually replies within one business day.",
+      error: "Something went wrong while sending. Please email us directly:",
+    };
+
+const subjectPrefix = t ? "Henvendelse fra nettsiden" : "Website enquiry";
+---
+
+<form
+  id="contact-form"
+  class="contact-form"
+  data-endpoint={SITE.contactFormEndpoint}
+  data-locale={locale}
+  data-subject-prefix={subjectPrefix}
+  data-sending={labels.sending}
+  data-submit={labels.submit}
+>
+  <div class="row">
+    <div class="field">
+      <label for="cf-name">{labels.name}</label>
+      <input id="cf-name" name="name" type="text" autocomplete="name" required />
+    </div>
+    <div class="field">
+      <label for="cf-email">{labels.email}</label>
+      <input id="cf-email" name="email" type="email" autocomplete="email" required />
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="field">
+      <label for="cf-phone">{labels.phone} <span class="hint">{labels.phoneHint}</span></label>
+      <input id="cf-phone" name="phone" type="tel" autocomplete="tel" />
+    </div>
+    <div class="field">
+      <label for="cf-topic">{labels.topic}</label>
+      <select id="cf-topic" name="topic">
+        {topics.map((topic) => <option value={topic}>{topic}</option>)}
+      </select>
+    </div>
+  </div>
+
+  <div class="field">
+    <label for="cf-org">{labels.org} <span class="hint">{labels.orgHint}</span></label>
+    <input id="cf-org" name="organisation" type="text" autocomplete="organization" />
+  </div>
+
+  <div class="field">
+    <label for="cf-message">{labels.message}</label>
+    <textarea id="cf-message" name="message" rows="5" required placeholder={labels.messagePlaceholder}></textarea>
+  </div>
+
+  <!-- honeypot — hidden from humans, catches bots -->
+  <input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" class="honey" />
+
+  <button type="submit" class="submit-btn"><span class="dot"></span> {labels.submit}</button>
+  <p class="consent">{labels.consent}</p>
+
+  <div class="form-status" role="status" aria-live="polite" hidden>
+    <p class="status-success" hidden>{labels.success}</p>
+    <p class="status-error" hidden>
+      {labels.error} <a href={`mailto:${SITE.email}`}>{SITE.email}</a>
+    </p>
+  </div>
+</form>
+
+<script>
+  const form = document.getElementById("contact-form") as HTMLFormElement | null;
+  if (form) {
+    const endpoint = form.dataset.endpoint!;
+    const subjectPrefix = form.dataset.subjectPrefix!;
+    const sendingLabel = form.dataset.sending!;
+    const submitLabel = form.dataset.submit!;
+    const button = form.querySelector<HTMLButtonElement>(".submit-btn")!;
+    const statusBox = form.querySelector<HTMLDivElement>(".form-status")!;
+    const successMsg = form.querySelector<HTMLParagraphElement>(".status-success")!;
+    const errorMsg = form.querySelector<HTMLParagraphElement>(".status-error")!;
+
+    // Preselect topic from ?emne= (NO) or ?topic= (EN)
+    const params = new URLSearchParams(window.location.search);
+    const requested = params.get("emne") ?? params.get("topic");
+    if (requested) {
+      const select = form.querySelector<HTMLSelectElement>("#cf-topic")!;
+      const match = Array.from(select.options).find(
+        (o) => o.value.toLowerCase() === requested.toLowerCase(),
+      );
+      if (match) select.value = match.value;
+    }
+
+    const showError = () => {
+      statusBox.hidden = false;
+      errorMsg.hidden = false;
+      successMsg.hidden = true;
+    };
+
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      if ((form.elements.namedItem("_honey") as HTMLInputElement)?.value) return;
+
+      const data = Object.fromEntries(new FormData(form).entries());
+      const topic = String(data.topic ?? "");
+      const payload = {
+        ...data,
+        _subject: topic ? `${subjectPrefix}: ${topic}` : subjectPrefix,
+        _template: "table",
+        _captcha: "false",
+      };
+
+      button.disabled = true;
+      button.textContent = sendingLabel;
+      statusBox.hidden = true;
+      errorMsg.hidden = true;
+      successMsg.hidden = true;
+
+      try {
+        const res = await fetch(endpoint, {
+          method: "POST",
+          headers: { "Content-Type": "application/json", Accept: "application/json" },
+          body: JSON.stringify(payload),
+        });
+        const json = await res.json().catch(() => null);
+        const ok = res.ok && json && (json.success === true || json.success === "true");
+        if (ok) {
+          form.reset();
+          statusBox.hidden = false;
+          successMsg.hidden = false;
+          button.remove();
+        } else {
+          showError();
+        }
+      } catch {
+        showError();
+      } finally {
+        if (document.body.contains(button)) {
+          button.disabled = false;
+          button.textContent = "";
+          const dot = document.createElement("span");
+          dot.className = "dot";
+          button.append(dot, document.createTextNode(" " + submitLabel));
+        }
+      }
+    });
+  }
+</script>
+
+<style>
+  .contact-form {
+    background: var(--color-surface);
+    border: 1px solid var(--color-rule);
+    border-radius: var(--radius-xl);
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+  .row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+  }
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+  }
+  label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-ink-2);
+  }
+  label .hint {
+    text-transform: none;
+    letter-spacing: 0;
+    color: var(--color-ink-3);
+  }
+  input,
+  select,
+  textarea {
+    font-family: var(--font-sans);
+    font-size: 15px;
+    color: var(--color-ink);
+    background: var(--color-bg);
+    border: 1px solid var(--color-rule);
+    border-radius: var(--radius-md);
+    padding: 12px 14px;
+    width: 100%;
+    box-sizing: border-box;
+    transition: border-color 120ms var(--ease-soft), box-shadow 120ms var(--ease-soft);
+  }
+  textarea {
+    resize: vertical;
+    min-height: 120px;
+    line-height: 1.5;
+  }
+  input:focus,
+  select:focus,
+  textarea:focus {
+    outline: none;
+    border-color: var(--color-navy);
+    box-shadow: 0 0 0 3px var(--color-cyan-soft);
+  }
+  .honey {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+  }
+  .submit-btn {
+    align-self: flex-start;
+    margin-top: 4px;
+    background: var(--color-navy);
+    color: var(--color-bg);
+    border: none;
+    border-radius: var(--radius-pill);
+    padding: 14px 26px;
+    font-family: var(--font-sans);
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+  }
+  .submit-btn:disabled {
+    opacity: 0.6;
+    cursor: progress;
+  }
+  .submit-btn .dot {
+    width: 6px;
+    height: 6px;
+    background: var(--color-cyan);
+    border-radius: var(--radius-pill);
+  }
+  .consent {
+    margin: 0;
+    font-size: 13px;
+    color: var(--color-ink-3);
+    line-height: 1.5;
+  }
+  .form-status p {
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.55;
+    padding: 14px 16px;
+    border-radius: var(--radius-md);
+  }
+  .status-success {
+    background: var(--color-cyan-soft);
+    color: var(--color-navy-deep);
+  }
+  .status-error {
+    background: color-mix(in srgb, var(--color-signal) 10%, transparent);
+    color: var(--color-signal);
+  }
+  .status-error a {
+    color: inherit;
+    text-decoration: underline;
+  }
+  @media (max-width: 560px) {
+    .contact-form {
+      padding: 24px;
+    }
+    .row {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

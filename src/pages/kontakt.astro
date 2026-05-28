@@ -1,0 +1,134 @@
+---
+import BaseLayout from "~/layouts/BaseLayout.astro";
+import ContactForm from "~/components/ContactForm.astro";
+import { SITE } from "~/lib/site";
+
+const telHref = `tel:${SITE.phone.replace(/\s/g, "")}`;
+---
+
+<BaseLayout
+  locale="no"
+  altUrl="/en/contact"
+  title="Kontakt — EmendaKit"
+  description="Be om tilbud på anafylaksiskrin, eller ta kontakt for en samtale om behovstilpassede løsninger. EmendaKit svarer vanligvis innen én virkedag."
+>
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        <p class="eyebrow">Kontakt</p>
+        <h1>Be om tilbud, eller still oss et spørsmål.</h1>
+      </div>
+      <p class="lede">
+        Vi tar bestillinger og forespørsler på e-post. Fyll ut skjemaet, så svarer
+        Kjersti vanligvis innen én virkedag. Levering er normalt ca. to uker.
+      </p>
+    </div>
+  </section>
+
+  <section class="contact">
+    <div class="container contact-grid">
+      <ContactForm locale="no" />
+
+      <aside class="contact-aside">
+        <div class="block">
+          <p class="k">E-post</p>
+          <a href={`mailto:${SITE.email}`}>{SITE.email}</a>
+        </div>
+        <div class="block">
+          <p class="k">Telefon</p>
+          <a href={telHref}>{SITE.phone}</a>
+        </div>
+        <div class="block">
+          <p class="k">Svartid</p>
+          <p class="v">Vanligvis innen én virkedag.</p>
+        </div>
+        <div class="block">
+          <p class="k">Levering</p>
+          <p class="v">Ca. to uker fra bestilling.</p>
+        </div>
+        <div class="block">
+          <p class="k">Selskap</p>
+          <p class="v">EmendaKit AS · Florø, Norge</p>
+        </div>
+      </aside>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .container { max-width: 1180px; margin: 0 auto; padding: 0 32px; }
+  .eyebrow {
+    margin: 0 0 14px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    color: var(--color-navy);
+    text-transform: uppercase;
+  }
+  .hero { padding: 88px 0 56px; }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(280px, 0.8fr);
+    gap: 56px;
+    align-items: end;
+  }
+  .hero h1 {
+    max-width: 16ch;
+    margin: 0;
+    font-family: var(--font-display);
+    font-weight: 500;
+    letter-spacing: -0.03em;
+    font-size: clamp(38px, 5.2vw, 60px);
+    line-height: 1.0;
+  }
+  .lede {
+    margin: 0;
+    color: var(--color-ink-2);
+    font-size: 18px;
+    line-height: 1.6;
+  }
+  .contact { padding: 16px 0 96px; }
+  .contact-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.5fr) minmax(240px, 0.7fr);
+    gap: 48px;
+    align-items: start;
+  }
+  .contact-aside {
+    display: grid;
+    gap: 24px;
+    align-content: start;
+  }
+  .contact-aside .block .k {
+    margin: 0 0 6px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-ink-3);
+  }
+  .contact-aside .block a,
+  .contact-aside .block .v {
+    margin: 0;
+    font-size: 16px;
+    color: var(--color-ink);
+    line-height: 1.5;
+  }
+  .contact-aside .block a {
+    color: var(--color-navy);
+    border-bottom: 1px solid color-mix(in srgb, var(--color-navy) 35%, transparent);
+    padding-bottom: 1px;
+  }
+  @media (max-width: 860px) {
+    .hero-grid, .contact-grid { grid-template-columns: 1fr; }
+    .hero { padding-top: 64px; }
+    .contact-grid { gap: 32px; }
+    .contact-aside {
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+    }
+  }
+  @media (max-width: 640px) {
+    .container { padding: 0 20px; }
+  }
+</style>

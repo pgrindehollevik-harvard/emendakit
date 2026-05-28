@@ -1,5 +1,5 @@
 ---
-import { SITE, type Locale } from "~/lib/site";
+import type { Locale } from "~/lib/site";
 import LangSwitch from "./LangSwitch.astro";
 import logo from "~/assets/logo/emendakit-logo.png";
 
@@ -26,9 +26,7 @@ const nav = locale === "no"
     ];
 
 const ctaLabel = locale === "no" ? "Be om tilbud" : "Request a quote";
-const ctaHref = `mailto:${SITE.email}?subject=${encodeURIComponent(
-  locale === "no" ? "Be om tilbud" : "Request a quote",
-)}`;
+const ctaHref = locale === "no" ? "/kontakt" : "/en/contact";
 const menuLabel = locale === "no" ? "Meny" : "Menu";
 ---
 

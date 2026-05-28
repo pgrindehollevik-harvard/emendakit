@@ -8,6 +8,13 @@ export const SITE = {
   url: "https://www.emendakit.com",
   email: "kjersti@emendakit.com",
   phone: "+47 954 45 726",
+  /**
+   * Contact-form backend. Formsubmit AJAX endpoint — no account or API key.
+   * First submission triggers a one-time activation email to the address above;
+   * Kjersti must click it once, then messages deliver to the inbox.
+   * After activation you can swap the email for Formsubmit's hashed alias to hide it.
+   */
+  contactFormEndpoint: "https://formsubmit.co/ajax/kjersti@emendakit.com",
   defaultLocale: "no" as const,
   locales: ["no", "en"] as const,
   taglines: {

@@ -4,7 +4,7 @@ import BaseLayout from "~/layouts/BaseLayout.astro";
 import ProductCard from "~/components/ProductCard.astro";
 import CTAStrip from "~/components/CTAStrip.astro";
 import productHospitalPhoto from "~/assets/photos/product-hospital-studio.webp";
-import productDentistPhoto from "~/assets/photos/product-dentist-studio.jpg";
+import productDentistPhoto from "~/assets/photos/product-dentist-contents.jpg";
 
 const products = (await getCollection("products", ({ data }) => data.locale === "no"))
   .sort((a, b) => a.data.productNumber - b.data.productNumber);

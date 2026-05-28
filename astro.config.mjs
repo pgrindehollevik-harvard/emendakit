@@ -11,12 +11,13 @@ export default defineConfig({
   integrations: [
     mdx(),
     sitemap({
-      i18n: {
-        defaultLocale: "no",
-        locales: {
-          no: "nb-NO",
-          en: "en-US",
-        },
+      // Norwegian lives on emendakit.no, English on emendakit.com — list each
+      // page under its real domain so the sitemap matches the canonical tags.
+      serialize(item) {
+        const u = new URL(item.url);
+        u.hostname = u.pathname.startsWith("/en") ? "emendakit.com" : "emendakit.no";
+        item.url = u.href;
+        return item;
       },
     }),
   ],

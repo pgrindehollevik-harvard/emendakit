@@ -11,11 +11,16 @@ interface Props {
 }
 
 const { title, description, locale, altUrl, ogImage, canonical } = Astro.props;
-const url = canonical ?? new URL(Astro.url.pathname, SITE.url).href;
-const altLocale = locale === "no" ? "en" : "no";
+// Norwegian lives on emendakit.no, English on emendakit.com — keep SEO signals on the right domain.
+const NO_ORIGIN = "https://emendakit.no";
+const EN_ORIGIN = "https://emendakit.com";
+const path = Astro.url.pathname;
+const noHref = NO_ORIGIN + (locale === "no" ? path : (altUrl ?? "/"));
+const enHref = EN_ORIGIN + (locale === "en" ? path : (altUrl ?? "/en"));
 const langTag = locale === "no" ? "nb-NO" : "en-US";
-const altLangTag = altLocale === "no" ? "nb-NO" : "en-US";
-const fullOgImage = new URL(ogImage ?? "/og-default.jpg", SITE.url).href;
+const url = canonical ?? (locale === "no" ? noHref : enHref);
+const origin = locale === "no" ? NO_ORIGIN : EN_ORIGIN;
+const fullOgImage = ogImage?.startsWith("http") ? ogImage : origin + (ogImage ?? "/og-default.jpg");
 ---
 
 <title>{title}</title>
@@ -23,12 +28,10 @@ const fullOgImage = new URL(ogImage ?? "/og-default.jpg", SITE.url).href;
 <link rel="canonical" href={url} />
 <meta name="theme-color" content="#1e3a5f" />
 
-{/* hreflang — required for AEO bilingual discoverability */}
-<link rel="alternate" hreflang={langTag} href={url} />
-{altUrl && (
-  <link rel="alternate" hreflang={altLangTag} href={new URL(altUrl, SITE.url).href} />
-)}
-<link rel="alternate" hreflang="x-default" href={SITE.url + "/"} />
+{/* hreflang — domain-per-language (no = .no, en = .com) for AEO/SEO discoverability */}
+<link rel="alternate" hreflang="nb-NO" href={noHref} />
+<link rel="alternate" hreflang="en-US" href={enHref} />
+<link rel="alternate" hreflang="x-default" href={enHref} />
 
 {/* OpenGraph */}
 <meta property="og:type" content="website" />
@@ -36,6 +39,7 @@ const fullOgImage = new URL(ogImage ?? "/og-default.jpg", SITE.url).href;
 <meta property="og:description" content={description} />
 <meta property="og:url" content={url} />
 <meta property="og:locale" content={langTag.replace("-", "_")} />
+<meta property="og:locale:alternate" content={locale === "no" ? "en_US" : "nb_NO"} />
 <meta property="og:site_name" content={SITE.name} />
 <meta property="og:image" content={fullOgImage} />
 <meta property="og:image:width" content="1200" />

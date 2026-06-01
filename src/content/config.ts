@@ -31,7 +31,7 @@ const products = defineCollection({
     faq: z
       .array(z.object({ question: z.string(), answer: z.string() }))
       .default([]),
-    deliveryTime: z.string().default("Ca. 2 uker"),
+    deliveryTime: z.string().default("Ca. 2–3 uker"),
     priceLabel: z.string().default("Pris på forespørsel"),
     reviewedByKjersti: z.boolean().default(false),
   }),

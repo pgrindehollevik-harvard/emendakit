@@ -1,100 +1,104 @@
 ---
-import { getCollection } from "astro:content";
 import BaseLayout from "~/layouts/BaseLayout.astro";
+import CTAStrip from "~/components/CTAStrip.astro";
 
-const services = await getCollection(
-  "services",
-  ({ data }) => data.locale === "en",
-);
-const customService = services.find((service) => service.slug === "custom-kit");
+const process = [
+  { number: "01", title: "Design conversation", text: "Mapping needs, scenarios and requirements." },
+  { number: "02", title: "Pilot", text: "Testing and adjusting in practice." },
+  { number: "03", title: "Delivery", text: "The adapted solution is put into use." },
+];
 
-if (!customService) {
-  throw new Error("Missing English service entry: custom-kit");
-}
-
-const serviceCards = [customService];
+const features = [
+  "A fixed place for every medication and every component",
+  "Clear labelling that supports action under time pressure",
+  "The option of a pilot before the final solution is rolled out",
+];
 ---
 
 <BaseLayout
   locale="en"
   altUrl="/tjenester"
-  title="Services — custom medical kits from EmendaKit"
-  description="EmendaKit co-designs custom emergency medical kits for health trusts, maternity units, vaccination sites and departments with specific needs."
+  title="Services · Medical emergency kits and readiness solutions — EmendaKit"
+  description="EmendaKit develops and adapts medical emergency kits — for healthcare, dental clinics, fitness centres, kindergartens, aviation and maritime, in public and private sector."
 >
   <section class="hero">
     <div class="container hero-grid">
       <div>
-        <p class="eyebrow">Services · Emergency medical kits</p>
-        <h1>Custom kits for departments with different requirements.</h1>
+        <p class="eyebrow">Services · Medical emergency kits and readiness solutions</p>
+        <h1>When existing solutions don't meet the need.</h1>
       </div>
       <p class="lede">
-        When the standard kit doesn't fit your needs, we use the EmendaKit
-        framework to design one around your procedures, rooms and clinical
-        scenarios.
+        We develop and adapt medical emergency kits in collaboration with you —
+        based on your procedures, surroundings and the situations that can
+        arise. The solutions are designed for structure, overview and rapid
+        access, so they support correct and effective handling when it matters.
       </p>
     </div>
   </section>
 
-  <section class="service-list" aria-labelledby="service-heading">
+  <section class="for-whom" aria-labelledby="for-whom-heading">
+    <div class="container audience-grid">
+      <div>
+        <p class="eyebrow">Who it's for</p>
+        <h2 id="for-whom-heading">Readiness that mirrors the use.</h2>
+      </div>
+      <div class="audience-copy">
+        <p>
+          Custom solutions are developed for settings where readiness has to
+          mirror specific use, workflow and requirements. That includes both
+          clinical environments and other arenas with emergency-readiness
+          needs — from hospitals and ambulance services to dental clinics,
+          kindergartens, fitness centres, as well as aviation and maritime, in
+          public and private sectors.
+        </p>
+        <ul>
+          {features.map((f) => <li>{f}</li>)}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="one-system" aria-labelledby="one-system-heading">
+    <div class="container one-system-grid">
+      <div>
+        <p class="eyebrow">One system · several applications</p>
+        <h2 id="one-system-heading">Same framework — adapted to the setting.</h2>
+      </div>
+      <p>
+        EmendaKit is built on a systematic design that can be adapted to
+        different settings without compromising overview or usability.
+      </p>
+    </div>
+  </section>
+
+  <section class="process" aria-labelledby="process-heading">
     <div class="container">
       <div class="section-head">
-        <p class="eyebrow">One framework · several clinical contexts</p>
-        <h2 id="service-heading">Services</h2>
+        <p class="eyebrow">How we work</p>
+        <h2 id="process-heading">From need to delivery, in three steps.</h2>
       </div>
-
-      <div class="cards">
-        {
-          serviceCards.map((service) => (
-            <article class="service-card">
-              <div class="card-media" aria-hidden="true">
-                <span class="media-label">Design conversation</span>
-                <span class="media-line" />
-                <span class="media-label">Pilot</span>
-                <span class="media-line" />
-                <span class="media-label">Delivery</span>
-              </div>
-              <div class="card-body">
-                <p class="card-kicker">{service.data.audience}</p>
-                <h3>{service.data.title}</h3>
-                <p>{service.data.summary}</p>
-                <a href="/en/services/custom-kit" class="card-link">
-                  See how we work →
-                </a>
-              </div>
-            </article>
-          ))
-        }
-      </div>
+      <ol class="process-list">
+        {process.map((step) => (
+          <li>
+            <span>{step.number}</span>
+            <h3>{step.title}</h3>
+            <p>{step.text}</p>
+          </li>
+        ))}
+      </ol>
     </div>
   </section>
 
-  <section class="quote-band">
-    <div class="container quote-grid">
-      <div>
-        <p class="eyebrow">A practical starting point</p>
-        <h2>Start with a free design conversation.</h2>
-      </div>
-      <div>
-        <p>
-          Bring the scenarios, deviations and requirements that make your
-          department a little different. We sketch a proposal before you decide
-          on a pilot.
-        </p>
-        <a href="/en/contact?topic=Custom%20kit" class="button">
-          Request a design conversation →
-        </a>
-      </div>
-    </div>
-  </section>
+  <CTAStrip
+    title="Practical starting point — an informal design conversation."
+    body="Bring the scenarios and needs you're working with — we'll sketch a solution before you decide on a pilot."
+    primary={{ href: "/en/contact?topic=Custom%20kit", label: "Request a design conversation →" }}
+    secondary={{ href: "/en/products", label: "See the anaphylaxis kits" }}
+  />
 </BaseLayout>
 
 <style>
-  .container {
-    max-width: 1180px;
-    margin: 0 auto;
-    padding: 0 32px;
-  }
-
+  .container { max-width: 1180px; margin: 0 auto; padding: 0 32px; }
   .eyebrow {
     margin: 0 0 14px;
     font-family: var(--font-mono);
@@ -103,177 +107,103 @@ const serviceCards = [customService];
     color: var(--color-navy);
     text-transform: uppercase;
   }
-
-  .hero {
-    padding: 88px 0 72px;
-  }
-
-  .hero-grid {
-    display: grid;
-    grid-template-columns: minmax(0, 1.05fr) minmax(280px, 0.75fr);
-    gap: 56px;
-    align-items: end;
-  }
-
-  .hero h1,
-  .section-head h2,
-  .quote-band h2 {
+  h1, h2, h3 {
     font-family: var(--font-display);
     font-weight: 500;
     letter-spacing: -0.03em;
     color: var(--color-ink);
   }
-
-  .hero h1 {
-    max-width: 760px;
-    margin: 0;
-    font-size: clamp(42px, 6vw, 72px);
-    line-height: 0.98;
+  .hero { padding: 88px 0 72px; }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(280px, 0.8fr);
+    gap: 56px;
+    align-items: end;
   }
-
+  .hero h1 {
+    max-width: 14ch;
+    margin: 0;
+    font-size: clamp(42px, 5.4vw, 66px);
+    line-height: 1.0;
+  }
   .lede {
     margin: 0;
     color: var(--color-ink-2);
-    font-size: 19px;
-    line-height: 1.55;
+    font-size: 18px;
+    line-height: 1.6;
   }
-
-  .service-list {
-    padding: 76px 0 88px;
+  .for-whom, .one-system, .process {
+    padding: 78px 0;
     border-top: 1px solid var(--color-rule);
-    background: var(--color-cyan-soft);
   }
-
-  .section-head {
-    max-width: 720px;
-    margin-bottom: 32px;
+  .for-whom { background: var(--color-cyan-soft); }
+  .audience-grid, .one-system-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(300px, 1.1fr);
+    gap: 56px;
+    align-items: start;
   }
-
-  .section-head h2 {
+  .for-whom h2, .one-system h2, .process h2 {
     margin: 0;
-    font-size: clamp(32px, 4vw, 48px);
-    line-height: 1.04;
+    font-size: clamp(28px, 3.6vw, 42px);
+    line-height: 1.05;
   }
-
-  .cards {
-    display: grid;
-    gap: 24px;
+  .audience-copy p, .one-system p {
+    margin: 0 0 18px;
+    color: var(--color-ink-2);
+    font-size: 17px;
+    line-height: 1.65;
   }
-
-  .service-card {
+  .audience-copy ul {
     display: grid;
-    grid-template-columns: minmax(260px, 0.85fr) minmax(0, 1.15fr);
-    overflow: hidden;
+    gap: 12px;
+    margin: 18px 0 0;
+    padding: 0;
+    list-style: none;
+  }
+  .audience-copy li {
+    border-top: 1px solid var(--color-rule);
+    padding-top: 12px;
+    color: var(--color-ink);
+    font-size: 15px;
+  }
+  .section-head { max-width: 720px; margin-bottom: 32px; }
+  .process-list {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .process-list li {
     border: 1px solid var(--color-rule);
     border-radius: var(--radius-xl);
     background: var(--color-surface);
+    padding: 28px;
   }
-
-  .card-media {
-    display: grid;
-    align-content: center;
-    gap: 18px;
-    min-height: 320px;
-    padding: 40px;
-    background: linear-gradient(180deg, #17243a 0%, #09111e 100%);
-    color: var(--color-bg);
-  }
-
-  .media-label {
-    width: fit-content;
-    border: 1px solid rgba(141, 196, 205, 0.45);
-    border-radius: var(--radius-pill);
-    padding: 9px 14px;
-    font-size: 13px;
-    font-weight: 500;
-  }
-
-  .media-line {
-    width: 1px;
-    height: 42px;
-    margin-left: 18px;
-    background: rgba(141, 196, 205, 0.55);
-  }
-
-  .card-body {
-    padding: 42px;
-  }
-
-  .card-kicker {
-    margin: 0 0 12px;
-    color: var(--color-ink-3);
-    font-size: 13px;
-  }
-
-  .card-body h3 {
-    margin: 0 0 16px;
-    font-family: var(--font-display);
-    font-size: clamp(28px, 3.2vw, 40px);
-    font-weight: 500;
-    letter-spacing: -0.025em;
-  }
-
-  .card-body p {
-    max-width: 680px;
-    margin: 0 0 26px;
-    color: var(--color-ink-2);
-    font-size: 16px;
-    line-height: 1.65;
-  }
-
-  .card-link {
+  .process-list span {
+    display: block;
+    margin-bottom: 32px;
+    font-family: var(--font-mono);
     color: var(--color-navy);
-    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.12em;
   }
-
-  .quote-band {
-    padding: 72px 0;
-    border-top: 1px solid var(--color-rule);
+  .process-list h3 {
+    margin: 0 0 10px;
+    font-size: 22px;
+    letter-spacing: -0.02em;
   }
-
-  .quote-grid {
-    display: grid;
-    grid-template-columns: minmax(0, 0.9fr) minmax(280px, 0.8fr);
-    gap: 48px;
-    align-items: start;
-  }
-
-  .quote-band h2 {
+  .process-list p {
     margin: 0;
-    font-size: clamp(32px, 4vw, 48px);
-    line-height: 1.04;
-  }
-
-  .quote-band p:not(.eyebrow) {
-    margin: 0 0 24px;
     color: var(--color-ink-2);
-    font-size: 16px;
-    line-height: 1.65;
+    font-size: 15px;
+    line-height: 1.6;
   }
-
-  .button {
-    display: inline-flex;
-    align-items: center;
-    border-radius: var(--radius-pill);
-    background: var(--color-navy);
-    color: var(--color-bg);
-    padding: 14px 22px;
-    font-weight: 500;
-  }
-
   @media (max-width: 860px) {
-    .hero-grid,
-    .service-card,
-    .quote-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .hero {
-      padding-top: 64px;
-    }
-
-    .card-media {
-      min-height: 240px;
-    }
+    .hero-grid, .audience-grid, .one-system-grid { grid-template-columns: 1fr; }
+    .process-list { grid-template-columns: 1fr; }
+    .hero { padding-top: 64px; }
   }
 </style>

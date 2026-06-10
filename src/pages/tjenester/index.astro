@@ -1,101 +1,105 @@
 ---
-import { getCollection } from "astro:content";
 import BaseLayout from "~/layouts/BaseLayout.astro";
+import CTAStrip from "~/components/CTAStrip.astro";
 
-const services = await getCollection(
-  "services",
-  ({ data }) => data.locale === "no",
-);
-const customService = services.find(
-  (service) => service.slug === "behovstilpasset",
-);
+const process = [
+  { number: "01", title: "Designsamtale", text: "Kartlegging av behov, scenarioer og krav." },
+  { number: "02", title: "Pilot", text: "Testing og justering i praksis." },
+  { number: "03", title: "Levering", text: "Ferdig tilpasset løsning tas i bruk." },
+];
 
-if (!customService) {
-  throw new Error("Missing Norwegian service entry: behovstilpasset");
-}
-
-const serviceCards = [customService];
+const features = [
+  "Fast plass for hvert legemiddel og hver komponent",
+  "Tydelig merking som støtter handling under tidspress",
+  "Mulighet for pilot før endelig løsning tas i bruk",
+];
 ---
 
 <BaseLayout
   locale="no"
   altUrl="/en/services"
-  title="Tjenester — behovstilpassede medisinske skrin fra EmendaKit"
-  description="EmendaKit co-designer behovstilpassede medisinske akuttskrin for helseforetak, fødeavdelinger, vaksinestasjoner og avdelinger med spesielle behov."
+  title="Tjenester · Medisinske akuttskrin og beredskapsløsninger — EmendaKit"
+  description="EmendaKit utvikler og tilpasser medisinske akuttskrin – for helsetjenesten, tannklinikker, treningssentre, barnehager, luftfart og sjøfart, i offentlig og privat sektor."
 >
   <section class="hero">
     <div class="container hero-grid">
       <div>
-        <p class="eyebrow">Tjenester · Medisinske akuttskrin</p>
-        <h1>Behovstilpassede skrin for avdelinger med andre krav.</h1>
+        <p class="eyebrow">Tjenester · Medisinske akuttskrin og beredskapsløsninger</p>
+        <h1>Når eksisterende løsninger ikke dekker behovet.</h1>
       </div>
       <p class="lede">
-        Når standardskrinet ikke dekker behovet deres, bruker vi
-        EmendaKit-rammeverket til å designe et skrin rundt deres prosedyrer, rom
-        og kliniske scenarioer.
+        Vi utvikler og tilpasser medisinske akuttskrin i samarbeid med dere –
+        basert på deres prosedyrer, omgivelser og situasjoner som kan oppstå.
+        Løsningene utformes med fokus på struktur, oversikt og rask
+        tilgjengelighet, slik at de støtter riktig og effektiv håndtering når
+        det haster.
       </p>
     </div>
   </section>
 
-  <section class="service-list" aria-labelledby="service-heading">
+  <section class="for-whom" aria-labelledby="for-whom-heading">
+    <div class="container audience-grid">
+      <div>
+        <p class="eyebrow">For hvem</p>
+        <h2 id="for-whom-heading">Beredskap som speiler bruken.</h2>
+      </div>
+      <div class="audience-copy">
+        <p>
+          Behovstilpassede løsninger er utviklet for miljøer der beredskapen
+          må speile konkrete brukssituasjoner, arbeidsflyt og krav. Dette
+          gjelder både kliniske miljøer og andre arenaer med behov for
+          akuttberedskap – fra sykehus og ambulansetjenester til
+          tannklinikker, barnehager, treningssentre samt innen luftfart og
+          sjøfart, i både offentlig og privat sektor.
+        </p>
+        <ul>
+          {features.map((f) => <li>{f}</li>)}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="one-system" aria-labelledby="one-system-heading">
+    <div class="container one-system-grid">
+      <div>
+        <p class="eyebrow">Ett system · flere anvendelser</p>
+        <h2 id="one-system-heading">Samme rammeverk – tilpasset miljøet.</h2>
+      </div>
+      <p>
+        EmendaKit bygger på en systematisk oppbygning som kan tilpasses ulike
+        miljøer uten å gå på kompromiss med oversikt og brukervennlighet.
+      </p>
+    </div>
+  </section>
+
+  <section class="process" aria-labelledby="process-heading">
     <div class="container">
       <div class="section-head">
-        <p class="eyebrow">Ett rammeverk · flere kliniske kontekster</p>
-        <h2 id="service-heading">Tjenester</h2>
+        <p class="eyebrow">Hvordan vi jobber</p>
+        <h2 id="process-heading">Fra behov til levering, i tre steg.</h2>
       </div>
-
-      <div class="cards">
-        {
-          serviceCards.map((service) => (
-            <article class="service-card">
-              <div class="card-media" aria-hidden="true">
-                <span class="media-label">Designsamtale</span>
-                <span class="media-line" />
-                <span class="media-label">Pilot</span>
-                <span class="media-line" />
-                <span class="media-label">Levering</span>
-              </div>
-              <div class="card-body">
-                <p class="card-kicker">{service.data.audience}</p>
-                <h3>{service.data.title}</h3>
-                <p>{service.data.summary}</p>
-                <a href="/tjenester/behovstilpasset" class="card-link">
-                  Se hvordan vi jobber →
-                </a>
-              </div>
-            </article>
-          ))
-        }
-      </div>
+      <ol class="process-list">
+        {process.map((step) => (
+          <li>
+            <span>{step.number}</span>
+            <h3>{step.title}</h3>
+            <p>{step.text}</p>
+          </li>
+        ))}
+      </ol>
     </div>
   </section>
 
-  <section class="quote-band">
-    <div class="container quote-grid">
-      <div>
-        <p class="eyebrow">Praktisk startpunkt</p>
-        <h2>Start med en gratis designsamtale.</h2>
-      </div>
-      <div>
-        <p>
-          Ta med scenarioene, avvikene og kravene som gjør avdelingen deres litt
-          annerledes. Vi skisserer et forslag før dere bestemmer dere for pilot.
-        </p>
-        <a href="/kontakt?emne=Behovstilpasset%20skrin" class="button">
-          Be om designsamtale →
-        </a>
-      </div>
-    </div>
-  </section>
+  <CTAStrip
+    title="Praktisk startpunkt — uforpliktende designsamtale."
+    body="Ta med scenarioene og behovene dere står i – vi skisserer en løsning før dere tar stilling til videre pilot."
+    primary={{ href: "/kontakt?emne=Behovstilpasset%20skrin", label: "Be om designsamtale →" }}
+    secondary={{ href: "/produkter", label: "Se anafylaksiskrinene" }}
+  />
 </BaseLayout>
 
 <style>
-  .container {
-    max-width: 1180px;
-    margin: 0 auto;
-    padding: 0 32px;
-  }
-
+  .container { max-width: 1180px; margin: 0 auto; padding: 0 32px; }
   .eyebrow {
     margin: 0 0 14px;
     font-family: var(--font-mono);
@@ -104,177 +108,103 @@ const serviceCards = [customService];
     color: var(--color-navy);
     text-transform: uppercase;
   }
-
-  .hero {
-    padding: 88px 0 72px;
-  }
-
-  .hero-grid {
-    display: grid;
-    grid-template-columns: minmax(0, 1.05fr) minmax(280px, 0.75fr);
-    gap: 56px;
-    align-items: end;
-  }
-
-  .hero h1,
-  .section-head h2,
-  .quote-band h2 {
+  h1, h2, h3 {
     font-family: var(--font-display);
     font-weight: 500;
     letter-spacing: -0.03em;
     color: var(--color-ink);
   }
-
-  .hero h1 {
-    max-width: 760px;
-    margin: 0;
-    font-size: clamp(42px, 6vw, 72px);
-    line-height: 0.98;
+  .hero { padding: 88px 0 72px; }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(280px, 0.8fr);
+    gap: 56px;
+    align-items: end;
   }
-
+  .hero h1 {
+    max-width: 14ch;
+    margin: 0;
+    font-size: clamp(42px, 5.4vw, 66px);
+    line-height: 1.0;
+  }
   .lede {
     margin: 0;
     color: var(--color-ink-2);
-    font-size: 19px;
-    line-height: 1.55;
+    font-size: 18px;
+    line-height: 1.6;
   }
-
-  .service-list {
-    padding: 76px 0 88px;
+  .for-whom, .one-system, .process {
+    padding: 78px 0;
     border-top: 1px solid var(--color-rule);
-    background: var(--color-cyan-soft);
   }
-
-  .section-head {
-    max-width: 720px;
-    margin-bottom: 32px;
+  .for-whom { background: var(--color-cyan-soft); }
+  .audience-grid, .one-system-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(300px, 1.1fr);
+    gap: 56px;
+    align-items: start;
   }
-
-  .section-head h2 {
+  .for-whom h2, .one-system h2, .process h2 {
     margin: 0;
-    font-size: clamp(32px, 4vw, 48px);
-    line-height: 1.04;
+    font-size: clamp(28px, 3.6vw, 42px);
+    line-height: 1.05;
   }
-
-  .cards {
-    display: grid;
-    gap: 24px;
+  .audience-copy p, .one-system p {
+    margin: 0 0 18px;
+    color: var(--color-ink-2);
+    font-size: 17px;
+    line-height: 1.65;
   }
-
-  .service-card {
+  .audience-copy ul {
     display: grid;
-    grid-template-columns: minmax(260px, 0.85fr) minmax(0, 1.15fr);
-    overflow: hidden;
+    gap: 12px;
+    margin: 18px 0 0;
+    padding: 0;
+    list-style: none;
+  }
+  .audience-copy li {
+    border-top: 1px solid var(--color-rule);
+    padding-top: 12px;
+    color: var(--color-ink);
+    font-size: 15px;
+  }
+  .section-head { max-width: 720px; margin-bottom: 32px; }
+  .process-list {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .process-list li {
     border: 1px solid var(--color-rule);
     border-radius: var(--radius-xl);
     background: var(--color-surface);
+    padding: 28px;
   }
-
-  .card-media {
-    display: grid;
-    align-content: center;
-    gap: 18px;
-    min-height: 320px;
-    padding: 40px;
-    background: linear-gradient(180deg, #17243a 0%, #09111e 100%);
-    color: var(--color-bg);
-  }
-
-  .media-label {
-    width: fit-content;
-    border: 1px solid rgba(141, 196, 205, 0.45);
-    border-radius: var(--radius-pill);
-    padding: 9px 14px;
-    font-size: 13px;
-    font-weight: 500;
-  }
-
-  .media-line {
-    width: 1px;
-    height: 42px;
-    margin-left: 18px;
-    background: rgba(141, 196, 205, 0.55);
-  }
-
-  .card-body {
-    padding: 42px;
-  }
-
-  .card-kicker {
-    margin: 0 0 12px;
-    color: var(--color-ink-3);
-    font-size: 13px;
-  }
-
-  .card-body h3 {
-    margin: 0 0 16px;
-    font-family: var(--font-display);
-    font-size: clamp(28px, 3.2vw, 40px);
-    font-weight: 500;
-    letter-spacing: -0.025em;
-  }
-
-  .card-body p {
-    max-width: 680px;
-    margin: 0 0 26px;
-    color: var(--color-ink-2);
-    font-size: 16px;
-    line-height: 1.65;
-  }
-
-  .card-link {
+  .process-list span {
+    display: block;
+    margin-bottom: 32px;
+    font-family: var(--font-mono);
     color: var(--color-navy);
-    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.12em;
   }
-
-  .quote-band {
-    padding: 72px 0;
-    border-top: 1px solid var(--color-rule);
+  .process-list h3 {
+    margin: 0 0 10px;
+    font-size: 22px;
+    letter-spacing: -0.02em;
   }
-
-  .quote-grid {
-    display: grid;
-    grid-template-columns: minmax(0, 0.9fr) minmax(280px, 0.8fr);
-    gap: 48px;
-    align-items: start;
-  }
-
-  .quote-band h2 {
+  .process-list p {
     margin: 0;
-    font-size: clamp(32px, 4vw, 48px);
-    line-height: 1.04;
-  }
-
-  .quote-band p:not(.eyebrow) {
-    margin: 0 0 24px;
     color: var(--color-ink-2);
-    font-size: 16px;
-    line-height: 1.65;
+    font-size: 15px;
+    line-height: 1.6;
   }
-
-  .button {
-    display: inline-flex;
-    align-items: center;
-    border-radius: var(--radius-pill);
-    background: var(--color-navy);
-    color: var(--color-bg);
-    padding: 14px 22px;
-    font-weight: 500;
-  }
-
   @media (max-width: 860px) {
-    .hero-grid,
-    .service-card,
-    .quote-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .hero {
-      padding-top: 64px;
-    }
-
-    .card-media {
-      min-height: 240px;
-    }
+    .hero-grid, .audience-grid, .one-system-grid { grid-template-columns: 1fr; }
+    .process-list { grid-template-columns: 1fr; }
+    .hero { padding-top: 64px; }
   }
 </style>

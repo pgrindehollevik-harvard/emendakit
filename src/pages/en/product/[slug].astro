@@ -69,19 +69,50 @@ const gallery = product.data.productNumber === 1
       <MediaCarousel slides={gallery} prevLabel="Previous image" nextLabel="Next image" />
     </div>
 
-    <h2 style="font-family: var(--font-display); font-size: 24px; font-weight: 500; margin: 32px 0 16px;">Specifications</h2>
-    <dl style="display: grid; grid-template-columns: 200px 1fr; gap: 12px 24px; font-size: 14px;">
-      {product.data.specs.map((s) => (
-        <>
-          <dt style="font-family: var(--font-mono); color: var(--color-ink-3); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase;">{s.key}</dt>
-          <dd style="margin: 0; color: var(--color-ink); font-weight: 500;">{s.value}</dd>
-        </>
-      ))}
-    </dl>
-
     <Content />
 
-    <h2 style="font-family: var(--font-display); font-size: 24px; font-weight: 500; margin: 48px 0 16px;">Questions and answers</h2>
+    <section class="details">
+      <h2>Product details</h2>
+
+      <h3 class="group">Specifications</h3>
+      <dl class="spec-grid">
+        <dt>Dimensions (L×W×H, external)</dt><dd>251 × 142 × 67 mm</dd>
+        <dt>Dimensions (L×W×H, internal)</dt><dd>209 × 108 × 57 mm</dd>
+        <dt>Weight</dt><dd>1.4 kg (ready to use)</dd>
+        <dt>Material</dt><dd>Durable, waterproof and shock-resistant polymer</dd>
+        <dt>Ingress protection</dt><dd>IP67 — withstands dust and submersion in water up to 1 metre for up to 30 minutes</dd>
+        <dt>Delivery time</dt><dd>{product.data.deliveryTime}</dd>
+      </dl>
+
+      <h3 class="group">Design and function</h3>
+      <ul class="bulleted">
+        <li>Transparent lid for rapid visual overview of contents</li>
+        <li>Robust construction with internal rubber lining for extra protection</li>
+        <li>Latch that's easy to open in an acute situation</li>
+        <li>Automatic pressure-equalisation valve for easy opening during transport (e.g. air travel)</li>
+        <li>Smooth surface that's easy to clean</li>
+      </ul>
+
+      <h3 class="group">Internal system</h3>
+      <ul class="bulleted">
+        <li>Fitted insert with a fixed place for every component</li>
+        <li>High colour contrast and engraving for rapid identification</li>
+        <li>Light-protected storage of adrenaline</li>
+        <li>Non-absorbent material prevents liquid penetration</li>
+        <li>Durable top plate for permanent labelling</li>
+      </ul>
+
+      <h3 class="group">Practical information</h3>
+      <ul class="bulleted">
+        <li>Flowchart per national guidelines, clearly visible on the back of the kit</li>
+        <li>Field for marking next check / expiry date</li>
+        <li>Wall holder included</li>
+        <li>Delivered without medications</li>
+        <li>Lifetime warranty under normal use</li>
+      </ul>
+    </section>
+
+    <h2 class="qa-heading">Questions and answers</h2>
     <div style="display: grid; gap: 16px;">
       {product.data.faq.map((q) => (
         <details style="padding: 16px 0; border-top: 1px solid var(--color-rule);">
@@ -106,3 +137,84 @@ const gallery = product.data.productNumber === 1
   />
 </BaseLayout>
 
+<style>
+  .details {
+    margin: 48px 0 24px;
+    padding: 32px;
+    background: var(--color-surface);
+    border: 1px solid var(--color-rule);
+    border-radius: var(--radius-xl);
+  }
+  .details h2 {
+    margin: 0 0 24px;
+    font-family: var(--font-display);
+    font-size: 24px;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+  }
+  .details .group {
+    margin: 32px 0 14px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-navy);
+  }
+  .details .group:first-of-type { margin-top: 0; }
+  .details .spec-grid {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 12px 24px;
+    margin: 0;
+    font-size: 14px;
+  }
+  .details .spec-grid dt {
+    font-family: var(--font-mono);
+    color: var(--color-ink-3);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .details .spec-grid dd {
+    margin: 0;
+    color: var(--color-ink);
+    font-weight: 500;
+  }
+  .details .bulleted {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: grid;
+    gap: 10px;
+  }
+  .details .bulleted li {
+    padding: 10px 0 10px 18px;
+    border-top: 1px solid var(--color-rule);
+    color: var(--color-ink);
+    font-size: 15px;
+    line-height: 1.5;
+    position: relative;
+  }
+  .details .bulleted li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 19px;
+    width: 6px;
+    height: 6px;
+    background: var(--color-cyan);
+    border-radius: 50%;
+  }
+  .qa-heading {
+    font-family: var(--font-display);
+    font-size: 24px;
+    font-weight: 500;
+    margin: 48px 0 16px;
+  }
+  @media (max-width: 560px) {
+    .details { padding: 24px; }
+    .details .spec-grid { grid-template-columns: 1fr; gap: 4px 0; }
+    .details .spec-grid dt { margin-top: 8px; }
+  }
+</style>

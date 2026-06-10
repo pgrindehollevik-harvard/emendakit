@@ -13,8 +13,8 @@ const products = (await getCollection("products", ({ data }) => data.locale === 
 <BaseLayout
   locale="en"
   altUrl="/produkter"
-  title="Anaphylaxis kits — EmendaKit Hospital and Dentist"
-  description="Two anaphylaxis kits on the same clinical framework: EmendaKit Hospital for healthcare professionals and EmendaKit Dentist for dental services. Packed to the Norwegian national anaphylaxis protocol."
+  title="Anaphylaxis kits — EmendaKit Anaphylaxis Healthcare and Dental"
+  description="Two anaphylaxis kits on the same clinical framework: EmendaKit Anaphylaxis – Healthcare for healthcare services and EmendaKit Anaphylaxis – Dental for dental clinics. Prepared in line with the Norwegian national anaphylaxis guidelines."
 >
   <section class="hero">
     <div class="container hero-grid">
@@ -54,9 +54,9 @@ const products = (await getCollection("products", ({ data }) => data.locale === 
   </section>
 
   <CTAStrip
-    title="Need a kit tailored to your department?"
-    body="We co-design custom medical kits for maternity units, vaccination sites, ambulance services and departments with specific needs."
-    primary={{ href: "/en/services/custom-kit", label: "See custom kits →" }}
+    title="Need a kit tailored to your needs?"
+    body="We develop and adapt medical emergency kits — for maternity wards, vaccination sites, ambulance services, dental clinics and other settings with specific needs, also outside healthcare."
+    primary={{ href: "/en/services", label: "See services →" }}
     secondary={{ href: "mailto:kjersti@emendakit.com", label: "kjersti@emendakit.com" }}
   />
 </BaseLayout>

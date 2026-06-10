@@ -69,19 +69,50 @@ const gallery = product.data.productNumber === 1
       <MediaCarousel slides={gallery} prevLabel="Forrige bilde" nextLabel="Neste bilde" />
     </div>
 
-    <h2 style="font-family: var(--font-display); font-size: 24px; font-weight: 500; margin: 32px 0 16px;">Spesifikasjoner</h2>
-    <dl style="display: grid; grid-template-columns: 200px 1fr; gap: 12px 24px; font-size: 14px;">
-      {product.data.specs.map((s) => (
-        <>
-          <dt style="font-family: var(--font-mono); color: var(--color-ink-3); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase;">{s.key}</dt>
-          <dd style="margin: 0; color: var(--color-ink); font-weight: 500;">{s.value}</dd>
-        </>
-      ))}
-    </dl>
-
     <Content />
 
-    <h2 style="font-family: var(--font-display); font-size: 24px; font-weight: 500; margin: 48px 0 16px;">Spørsmål og svar</h2>
+    <section class="details">
+      <h2>Produktdetaljer</h2>
+
+      <h3 class="group">Spesifikasjoner</h3>
+      <dl class="spec-grid">
+        <dt>Mål (utvendig, L×B×H)</dt><dd>251 × 142 × 67 mm</dd>
+        <dt>Mål (innvendig, L×B×H)</dt><dd>209 × 108 × 57 mm</dd>
+        <dt>Vekt</dt><dd>1,4 kg (ferdig klargjort)</dd>
+        <dt>Materiale</dt><dd>Slitesterk, vanntett og støtsikker polymer</dd>
+        <dt>Tetthetsgrad</dt><dd>IP67 – tåler støv og nedsenkning i vann opptil 1 meter i inntil 30 minutter</dd>
+        <dt>Leveringstid</dt><dd>{product.data.deliveryTime}</dd>
+      </dl>
+
+      <h3 class="group">Design og funksjon</h3>
+      <ul class="bulleted">
+        <li>Transparent lokk gir rask visuell oversikt over innhold</li>
+        <li>Robust konstruksjon med innvendig gummiforing for ekstra beskyttelse</li>
+        <li>Låseklakk som er enkel å åpne i en akutt situasjon</li>
+        <li>Automatisk trykkutligningsventil for enkel åpning ved transport (f.eks. i fly)</li>
+        <li>Glatt overflate som er enkel å rengjøre</li>
+      </ul>
+
+      <h3 class="group">Innvendig system</h3>
+      <ul class="bulleted">
+        <li>Formtilpasset innlegg med faste plasser for hver komponent</li>
+        <li>Høy fargekontrast og inngravering gir rask identifisering</li>
+        <li>Lyssikret oppbevaring av adrenalin</li>
+        <li>Ikke-absorberende materiale som hindrer at væske trekker inn</li>
+        <li>Slitesterk topplate med mulighet for permanent merking</li>
+      </ul>
+
+      <h3 class="group">Praktisk informasjon</h3>
+      <ul class="bulleted">
+        <li>Flytskjema etter nasjonale retningslinjer godt synlig på baksiden av skrinet</li>
+        <li>Felt for merking av neste kontroll / utløpsdato</li>
+        <li>Veggfeste medfølger</li>
+        <li>Leveres uten medikamenter</li>
+        <li>Livstidsgaranti ved normalt bruk</li>
+      </ul>
+    </section>
+
+    <h2 class="qa-heading">Spørsmål og svar</h2>
     <div style="display: grid; gap: 16px;">
       {product.data.faq.map((q) => (
         <details style="padding: 16px 0; border-top: 1px solid var(--color-rule);">
@@ -106,3 +137,84 @@ const gallery = product.data.productNumber === 1
   />
 </BaseLayout>
 
+<style>
+  .details {
+    margin: 48px 0 24px;
+    padding: 32px;
+    background: var(--color-surface);
+    border: 1px solid var(--color-rule);
+    border-radius: var(--radius-xl);
+  }
+  .details h2 {
+    margin: 0 0 24px;
+    font-family: var(--font-display);
+    font-size: 24px;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+  }
+  .details .group {
+    margin: 32px 0 14px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-navy);
+  }
+  .details .group:first-of-type { margin-top: 0; }
+  .details .spec-grid {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 12px 24px;
+    margin: 0;
+    font-size: 14px;
+  }
+  .details .spec-grid dt {
+    font-family: var(--font-mono);
+    color: var(--color-ink-3);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .details .spec-grid dd {
+    margin: 0;
+    color: var(--color-ink);
+    font-weight: 500;
+  }
+  .details .bulleted {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: grid;
+    gap: 10px;
+  }
+  .details .bulleted li {
+    padding: 10px 0 10px 18px;
+    border-top: 1px solid var(--color-rule);
+    color: var(--color-ink);
+    font-size: 15px;
+    line-height: 1.5;
+    position: relative;
+  }
+  .details .bulleted li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 19px;
+    width: 6px;
+    height: 6px;
+    background: var(--color-cyan);
+    border-radius: 50%;
+  }
+  .qa-heading {
+    font-family: var(--font-display);
+    font-size: 24px;
+    font-weight: 500;
+    margin: 48px 0 16px;
+  }
+  @media (max-width: 560px) {
+    .details { padding: 24px; }
+    .details .spec-grid { grid-template-columns: 1fr; gap: 4px 0; }
+    .details .spec-grid dt { margin-top: 8px; }
+  }
+</style>

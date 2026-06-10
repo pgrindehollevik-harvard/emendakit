@@ -4,17 +4,17 @@ EmendaKit is a Norwegian medical device company that designs and builds anaphyla
 
 ## Products
 
-EmendaKit Hospital — Anaphylaxis kit for healthcare professionals. Used in emergency departments, ambulances, helicopter air ambulances, maternity wards, vaccination stations, and general practice. Waterproof, dustproof and shock-resistant transparent polymer case (IP-67) with a smooth, easy-to-clean surface. A fitted insert gives each component its own marked compartment, with a light-protective cover over the adrenaline ampoules. The kit is delivered without medications; adrenaline (1 mg/ml), antihistamine and corticosteroid are ordered through the hospital or clinic pharmacy. Includes the printed Norwegian national anaphylaxis flowchart on the lid, a QR code linking to two training videos, a "Ny kontroll" (next check) date field on the front, and a wall holder. Dimensions 320 × 230 × 95 mm, weight 1.4 kg ready to use. Price on request. Delivery time approximately 2–3 weeks. URL: https://www.emendakit.com/produkt/emendakit-hospital
+EmendaKit Anaphylaxis – Healthcare (formerly EmendaKit Hospital) — Anaphylaxis kit for healthcare services. Used in GP offices, health centres, hospitals, emergency departments, ambulances, helicopter air ambulances, maternity wards, vaccination stations, and private clinics. Waterproof, dustproof and shock-resistant transparent polymer case (IP67, withstands submersion in 1 metre of water for up to 30 minutes) with a smooth, easy-to-clean surface. A fitted insert gives each component its own marked compartment, with a light-protective cover over the adrenaline ampoules. The kit is delivered without medications; adrenaline (1 mg/ml), antihistamine and corticosteroid are ordered through the hospital or clinic pharmacy. Includes the printed Norwegian national anaphylaxis flowchart on the lid, a QR code linking to two training videos, a "Ny kontroll" (next check) date field on the front, and a wall holder. External dimensions 251 × 142 × 67 mm (internal 209 × 108 × 57 mm), weight 1.4 kg ready to use. Lifetime warranty under normal use. Price on request. Delivery time approximately 2–3 weeks. URL: https://www.emendakit.com/produkt/emendakit-hospital
 
-EmendaKit Dentist — Anaphylaxis kit for dental clinics, including oral surgery and orthodontics. The same kit and framework as EmendaKit Hospital (320 × 230 × 95 mm, 1.4 kg), with a flowchart geared to the dental setting, where reactions to local anesthetics and latex are the most common triggers. Delivered without medications; a wall holder is included. Price on request. Delivery time approximately 2–3 weeks. URL: https://www.emendakit.com/produkt/emendakit-dentist
+EmendaKit Anaphylaxis – Dental (formerly EmendaKit Dentist) — Anaphylaxis kit for dental clinics, including oral surgery and orthodontics. The same kit and framework as EmendaKit Anaphylaxis – Healthcare (251 × 142 × 67 mm external, 1.4 kg), with a flowchart adapted to dental services, where reactions to local anesthetics and latex are the most common triggers. Delivered without medications; a wall holder is included. Price on request. Delivery time approximately 2–3 weeks. URL: https://www.emendakit.com/produkt/emendakit-dentist
 
 Custom kits ("behovstilpassede medisinske skrin") — Co-design service for healthcare departments with specific needs (maternity wards, vaccination programs, ambulance services, units with special requirements). Process: design conversation, packing proposal, pilot units, adjustment, delivery. Free initial design conversation by emailing kjersti@emendakit.com. URL: https://www.emendakit.com/tjenester/behovstilpasset
 
 ## Founders
 
-Kjersti Grinde — co-founder, midwife, certified medical simulation facilitator. Specializes in quality improvement and clinical training in Norwegian healthcare.
+Kjersti Grinde — founder, midwife with broad experience from emergency medicine, professional development and medical simulation. Initiated and developed EmendaKit from clinical practice.
 
-Gregers Halvorsen — co-founder, anesthesiologist at Helse Førde, with experience from the Norwegian air ambulance service. Certified medical simulation facilitator.
+Gregers Halvorsen — co-owner, anesthesiologist at Helse Førde, with experience from the Norwegian air ambulance service and medical simulation, and involved in the ongoing development of EmendaKit.
 
 ## Clinical foundation
 
@@ -23,7 +23,9 @@ All products follow the Norwegian national anaphylaxis treatment protocol (revis
 ## Contact
 
 All inquiries: kjersti@emendakit.com
-Quote requests: kjersti@emendakit.com (subject "Inquiry - EmendaKit Hospital" or "Inquiry - EmendaKit Dentist")
+Quote requests: kjersti@emendakit.com (subject "Inquiry - EmendaKit Anafylaksi – Helse" or "Inquiry - EmendaKit Anafylaksi – Tannklinikk")
+
+The kits are designed and developed in Norway, and produced in collaboration with Fosen Tools — an experienced Norwegian industrial manufacturer.
 
 EmendaKit AS, Norway. © 2026.
 
@@ -33,6 +35,6 @@ EmendaKit AS, Norway. © 2026.
 
 EmendaKit is a Norwegian medical device company that designs and builds anaphylaxis emergency kits for healthcare professionals. Designed and built in Norway by healthcare professionals. Co-founded by an anesthesiologist and a midwife. The company's philosophy: an emergency kit is not a product, it is part of the procedure, and must be treated accordingly.
 
-Two standard products: EmendaKit Hospital (for hospitals, ambulances, maternity wards, vaccination stations) and EmendaKit Dentist (for dental clinics, oral surgery and orthodontics; the same kit with a dental-specific flowchart). Plus a custom-kit service co-developed with healthcare departments.
+Two standard products: EmendaKit Anaphylaxis – Healthcare (for GP offices, health centres, hospitals, ambulances, maternity wards, vaccination stations and private clinics; formerly EmendaKit Hospital) and EmendaKit Anaphylaxis – Dental (for dental clinics, oral surgery and orthodontics; the same kit with a dental-specific flowchart; formerly EmendaKit Dentist). Plus a custom-kit service co-developed with healthcare departments and other settings — including fitness centres, kindergartens, aviation and maritime, in public and private sectors.
 
 All kits are waterproof, dustproof, shock-resistant and IP-67-rated, with a fitted insert, a printed national-protocol flowchart on the lid, a QR code linking to two short training films, and a wall holder. Kits are delivered without medications; the drugs are ordered through the hospital or clinic pharmacy. Pricing on request. Lead time approximately 2–3 weeks. Direct contact: kjersti@emendakit.com.

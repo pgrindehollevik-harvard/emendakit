@@ -19,7 +19,7 @@ const founders = order
 <BaseLayout
   locale="no"
   altUrl="/en/about"
-  title="Om oss — EmendaKit AS"
+  title="Om oss · EmendaKit AS"
   description="EmendaKit AS ble etablert i 2022 i Florø av helsepersonell med erfaring fra akuttmedisin. Vi designer og bygger anafylaksiskrin for norske helsetjenester."
 >
   <section class="hero">
@@ -53,7 +53,7 @@ const founders = order
           Som jordmor ved Kvinneklinikken i Helse Førde søkte Kjersti Grinde
           etter et bedre anafylaksiskrin for sin egen avdeling. Da hun ikke
           fant en løsning som dekket behovet, tok hun initiativ til å utvikle
-          et eget – i samarbeid med en tverrfaglig ressursgruppe bestående av
+          et eget, i samarbeid med en tverrfaglig ressursgruppe bestående av
           leger, sykepleiere og farmasøyter.
         </p>
         <p>
@@ -88,7 +88,7 @@ const founders = order
         {founders.map((member, i) => (
           <FounderCard
             image={photos[member.data.urlSlug]}
-            imageAlt={`${member.data.name} — ${member.data.role}`}
+            imageAlt={`${member.data.name}, ${member.data.role}`}
             role={member.data.role}
             name={member.data.name}
             bio={member.data.bio}

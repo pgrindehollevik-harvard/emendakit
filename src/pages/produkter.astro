@@ -13,7 +13,7 @@ const products = (await getCollection("products", ({ data }) => data.locale === 
 <BaseLayout
   locale="no"
   altUrl="/en/products"
-  title="Anafylaksiskrin — EmendaKit Anafylaksi Helse og Tannklinikk"
+  title="Anafylaksiskrin · EmendaKit Anafylaksi Helse og Tannklinikk"
   description="To anafylaksiskrin på samme kliniske rammeverk: EmendaKit Anafylaksi – Helse for helsetjenesten og EmendaKit Anafylaksi – Tannklinikk for tannklinikker. Klargjort i tråd med nasjonale retningslinjer for anafylaksi."
 >
   <section class="hero">
@@ -42,7 +42,7 @@ const products = (await getCollection("products", ({ data }) => data.locale === 
             audience={p.data.audience}
             specs={p.data.specs.slice(0, 5)}
             image={p.data.productNumber === 1 ? productHospitalPhoto : productDentistPhoto}
-            imageAlt={`${p.data.title} — ${p.data.descriptor}`}
+            imageAlt={`${p.data.title}, ${p.data.descriptor}`}
             priceLabel={p.data.priceLabel}
             orderHref={`/kontakt?emne=${encodeURIComponent(p.data.title)}`}
           />
@@ -53,7 +53,7 @@ const products = (await getCollection("products", ({ data }) => data.locale === 
 
   <CTAStrip
     title="Trenger dere et skrin tilpasset deres behov?"
-    body="Vi utvikler og tilpasser medisinske akuttskrin – for fødeavdelinger, vaksinestasjoner, ambulansetjenester, tannklinikker og andre miljøer med særskilte behov, også utenfor helsetjenesten."
+    body="Vi utvikler og tilpasser medisinske akuttskrin for fødeavdelinger, vaksinestasjoner, ambulansetjenester, tannklinikker og andre miljøer med særskilte behov, også utenfor helsetjenesten."
     primary={{ href: "/tjenester", label: "Se tjenester →" }}
     secondary={{ href: "mailto:kjersti@emendakit.com", label: "kjersti@emendakit.com" }}
   />

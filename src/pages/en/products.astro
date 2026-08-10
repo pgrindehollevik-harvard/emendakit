@@ -13,7 +13,7 @@ const products = (await getCollection("products", ({ data }) => data.locale === 
 <BaseLayout
   locale="en"
   altUrl="/produkter"
-  title="Anaphylaxis kits — EmendaKit Anaphylaxis Healthcare and Dental"
+  title="Anaphylaxis kits · EmendaKit Anaphylaxis Healthcare and Dental"
   description="Two anaphylaxis kits on the same clinical framework: EmendaKit Anaphylaxis – Healthcare for healthcare services and EmendaKit Anaphylaxis – Dental for dental clinics. Prepared in line with the Norwegian national anaphylaxis guidelines."
 >
   <section class="hero">
@@ -42,7 +42,7 @@ const products = (await getCollection("products", ({ data }) => data.locale === 
             audience={p.data.audience}
             specs={p.data.specs.slice(0, 5)}
             image={p.data.productNumber === 1 ? productHospitalPhoto : productDentistPhoto}
-            imageAlt={`${p.data.title} — ${p.data.descriptor}`}
+            imageAlt={`${p.data.title}, ${p.data.descriptor}`}
             priceLabel={p.data.priceLabel}
             linkLabel="Product details"
             orderHref={`/en/contact?topic=${encodeURIComponent(p.data.title)}`}
@@ -55,7 +55,7 @@ const products = (await getCollection("products", ({ data }) => data.locale === 
 
   <CTAStrip
     title="Need a kit tailored to your needs?"
-    body="We develop and adapt medical emergency kits — for maternity wards, vaccination sites, ambulance services, dental clinics and other settings with specific needs, also outside healthcare."
+    body="We develop and adapt medical emergency kits for maternity wards, vaccination sites, ambulance services, dental clinics and other settings with specific needs, also outside healthcare."
     primary={{ href: "/en/services", label: "See services →" }}
     secondary={{ href: "mailto:kjersti@emendakit.com", label: "kjersti@emendakit.com" }}
   />

@@ -19,7 +19,7 @@ const founders = order
 <BaseLayout
   locale="en"
   altUrl="/om-oss"
-  title="About — EmendaKit AS"
+  title="About · EmendaKit AS"
   description="EmendaKit AS was founded in 2022 in Florø, Norway, by healthcare professionals with experience in emergency medicine. We design and build anaphylaxis emergency kits."
 >
   <section class="hero">
@@ -53,7 +53,7 @@ const founders = order
           As a midwife at the Women's Clinic at Helse Førde, Kjersti Grinde
           searched for a better anaphylaxis kit for her own ward. When she
           could not find a solution that met the need, she initiated the
-          development of her own — in collaboration with a multidisciplinary
+          development of her own, in collaboration with a multidisciplinary
           resource group of doctors, nurses and pharmacists.
         </p>
         <p>
@@ -88,7 +88,7 @@ const founders = order
         {founders.map((member, i) => (
           <FounderCard
             image={photos[member.data.urlSlug]}
-            imageAlt={`${member.data.name} — ${member.data.role}`}
+            imageAlt={`${member.data.name}, ${member.data.role}`}
             role={member.data.role}
             name={member.data.name}
             bio={member.data.bio}

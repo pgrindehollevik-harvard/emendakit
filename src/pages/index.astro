@@ -36,7 +36,7 @@ const products = (await getCollection("products", ({ data }) => data.locale === 
           Et akuttskrin designet <span>for når hvert sekund teller.</span>
         </h1>
         <p class="lede">
-          Anafylaksiskrin utviklet av jordmor Kjersti Grinde – for klinikere som må
+          Anafylaksiskrin utviklet av jordmor Kjersti Grinde, for klinikere som må
           handle raskt. Vanntett. Støtsikkert. Strukturert i tråd med norsk
           anafylaksiveileder.
         </p>
@@ -63,7 +63,7 @@ const products = (await getCollection("products", ({ data }) => data.locale === 
           <h2>Klargjort for akutte situasjoner.</h2>
         </div>
         <p>
-          Samme kliniske rammeverk – tilpasset to ulike behov. Begge er utviklet i
+          Samme kliniske rammeverk, tilpasset to ulike behov. Begge er utviklet i
           tråd med nasjonale retningslinjer for anafylaksi, og leveres med QR-kode
           til opplæringsfilmer.
         </p>
@@ -78,7 +78,7 @@ const products = (await getCollection("products", ({ data }) => data.locale === 
             audience={p.data.audience}
             specs={p.data.specs.slice(0, 4)}
             image={p.data.productNumber === 1 ? productHospitalPhoto : productDentistPhoto}
-            imageAlt={`${p.data.title} — ${p.data.descriptor}`}
+            imageAlt={`${p.data.title}, ${p.data.descriptor}`}
             imageLabel="Innhold"
             image2={p.data.productNumber === 1 ? productHospitalBacksidePhoto : productDentistBacksidePhoto}
             image2Alt={`Baksiden av ${p.data.title} med anafylaksiflytskjema`}
@@ -97,12 +97,12 @@ const products = (await getCollection("products", ({ data }) => data.locale === 
     <div class="container">
       <SectionField
         image={fieldAmbulancePhoto}
-        imageAlt="Inne i luftambulansen — pasientbehandling med anafylaksiskrinet tilgjengelig"
+        imageAlt="Inne i luftambulansen: pasientbehandling med anafylaksiskrinet tilgjengelig"
         eyebrow="Felt-erfaring · Helse Førde"
-        title="Designet ved pasientens side – ikke ved et skrivebord."
-        body="EmendaKit ble ikke til i et møterom, men i møte med pasienter. Hver detalj – fra adrenalindekselet til QR-feltet med opplæringsfilmer – springer ut av konkrete situasjoner der noe måtte fungere bedre."
+        title="Designet ved pasientens side, ikke ved et skrivebord."
+        body="EmendaKit ble ikke til i et møterom, men i møte med pasienter. Hver detalj, fra adrenalindekselet til QR-feltet med opplæringsfilmer, springer ut av konkrete situasjoner der noe måtte fungere bedre."
         quote="«Innovasjon gjennom kunnskap og erfaring.»"
-        attribution="Grunnlaget for EmendaKit – fra første dag."
+        attribution="Grunnlaget for EmendaKit, fra første dag."
       />
     </div>
   </section>
@@ -111,12 +111,12 @@ const products = (await getCollection("products", ({ data }) => data.locale === 
     <div class="container">
       <div class="founders-head">
         <div class="eyebrow">Bygd av klinikere</div>
-        <h2>En stemme fra praksis – ett system for akutte situasjoner.</h2>
+        <h2>Én stemme fra praksis. Ett system for akutte situasjoner.</h2>
       </div>
       <div class="founders-grid">
         <FounderCard
           image={kjerstiPhoto}
-          imageAlt="Kjersti Grinde — jordmor og gründer av EmendaKit"
+          imageAlt="Kjersti Grinde, jordmor og gründer av EmendaKit"
           role="Gründer · Jordmor"
           name="Kjersti Grinde"
           bio="Jordmor med bred erfaring fra akuttmedisin, fagutvikling og medisinsk simulering. Tok initiativ til og utviklet EmendaKit med utgangspunkt i klinisk praksis."
@@ -127,7 +127,7 @@ const products = (await getCollection("products", ({ data }) => data.locale === 
 
   <CTAStrip
     title="Trenger dere et skrin tilpasset deres behov?"
-    body="Vi utvikler og tilpasser medisinske akuttskrin i samarbeid med dere – tilpasset alt fra fødeavdelinger og vaksinestasjoner til ambulansetjenester, tannklinikker og andre miljøer med særskilte behov. Løsningene kan også utvikles for bruk utenfor helsetjenesten, som i treningssentre, barnehager, samt innen luftfart og sjøfart – der tilgang til riktig utstyr og strukturert håndtering er avgjørende."
+    body="Vi utvikler og tilpasser medisinske akuttskrin i samarbeid med dere, tilpasset alt fra fødeavdelinger og vaksinestasjoner til ambulansetjenester, tannklinikker og andre miljøer med særskilte behov. Løsningene kan også utvikles for bruk utenfor helsetjenesten, som i treningssentre, barnehager, samt innen luftfart og sjøfart, der tilgang til riktig utstyr og strukturert håndtering er avgjørende."
     primary={{ href: "/kontakt?emne=Behovstilpasset%20skrin", label: "Be om designsamtale →" }}
     secondary={{ href: "mailto:kjersti@emendakit.com", label: "kjersti@emendakit.com" }}
   />

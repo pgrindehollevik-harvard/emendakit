@@ -27,12 +27,12 @@ const altUrl = `/en/product/${product.data.altSlug}`;
 
 const gallery = product.data.productNumber === 1
   ? [
-      { src: productHospitalStudio, alt: `${product.data.title} — innholdet i skrinet`, caption: "Innhold · åpent skrin" },
+      { src: productHospitalStudio, alt: `${product.data.title}, innholdet i skrinet`, caption: "Innhold · åpent skrin" },
       { src: productHospitalBackside, alt: `Baksiden av ${product.data.title} med nasjonalt anafylaksiflytskjema`, caption: "Anafylaksiflytskjema (bakside)" },
       { src: productHolder, alt: "Veggfestet som følger med skrinet", caption: "Veggfeste inkludert" },
     ]
   : [
-      { src: productDentistContents, alt: `${product.data.title} — innholdet i skrinet`, caption: "Innhold · åpent skrin" },
+      { src: productDentistContents, alt: `${product.data.title}, innholdet i skrinet`, caption: "Innhold · åpent skrin" },
       { src: productDentistBackside, alt: `Baksiden av ${product.data.title} med flytskjema tilpasset tannhelsetjenesten`, caption: "Anafylaksiflytskjema (bakside)" },
       { src: productHolder, alt: "Veggfestet som følger med skrinet", caption: "Veggfeste inkludert" },
     ];
@@ -41,7 +41,7 @@ const gallery = product.data.productNumber === 1
 <BaseLayout
   locale="no"
   altUrl={altUrl}
-  title={`${product.data.title} — ${product.data.descriptor}`}
+  title={`${product.data.title} · ${product.data.descriptor}`}
   description={product.data.summary}
 >
   <SchemaProduct
@@ -80,7 +80,7 @@ const gallery = product.data.productNumber === 1
         <dt>Mål (innvendig, L×B×H)</dt><dd>209 × 108 × 57 mm</dd>
         <dt>Vekt</dt><dd>1,4 kg (ferdig klargjort)</dd>
         <dt>Materiale</dt><dd>Slitesterk, vanntett og støtsikker polymer</dd>
-        <dt>Tetthetsgrad</dt><dd>IP67 – tåler støv og nedsenkning i vann opptil 1 meter i inntil 30 minutter</dd>
+        <dt>Tetthetsgrad</dt><dd>IP67: tåler støv og nedsenkning i vann opptil 1 meter i inntil 30 minutter</dd>
         <dt>Leveringstid</dt><dd>{product.data.deliveryTime}</dd>
       </dl>
 

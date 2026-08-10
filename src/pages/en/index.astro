@@ -36,7 +36,7 @@ const products = (await getCollection("products", ({ data }) => data.locale === 
           An emergency kit designed <span>for when every second counts.</span>
         </h1>
         <p class="lede">
-          Anaphylaxis kits developed by midwife Kjersti Grinde — for clinicians
+          Anaphylaxis kits developed by midwife Kjersti Grinde, for clinicians
           who have to act fast. Waterproof. Shock-resistant. Structured in line with
           the Norwegian anaphylaxis guidelines.
         </p>
@@ -63,7 +63,7 @@ const products = (await getCollection("products", ({ data }) => data.locale === 
           <h2>Prepared for acute situations.</h2>
         </div>
         <p>
-          The same clinical framework — adapted to two different needs. Both are
+          The same clinical framework, adapted to two different needs. Both are
           developed in line with the national anaphylaxis guidelines and ship
           with a QR code to training films.
         </p>
@@ -78,7 +78,7 @@ const products = (await getCollection("products", ({ data }) => data.locale === 
             audience={p.data.audience}
             specs={p.data.specs.slice(0, 4)}
             image={p.data.productNumber === 1 ? productHospitalPhoto : productDentistPhoto}
-            imageAlt={`${p.data.title} — ${p.data.descriptor}`}
+            imageAlt={`${p.data.title}, ${p.data.descriptor}`}
             imageLabel="Contents"
             image2={p.data.productNumber === 1 ? productHospitalBacksidePhoto : productDentistBacksidePhoto}
             image2Alt={`Back of ${p.data.title} with anaphylaxis flowchart`}
@@ -99,12 +99,12 @@ const products = (await getCollection("products", ({ data }) => data.locale === 
     <div class="container">
       <SectionField
         image={fieldAmbulancePhoto}
-        imageAlt="Inside the air ambulance — patient care with the anaphylaxis kit within reach"
+        imageAlt="Inside the air ambulance: patient care with the anaphylaxis kit within reach"
         eyebrow="Field experience · Helse Førde"
-        title="Designed by the patient's side — not at a desk."
-        body="EmendaKit was not born in a meeting room, but in moments with patients. Every detail — from the adrenaline cover to the QR field linking to training films — comes from concrete situations where something had to work better."
+        title="Designed by the patient's side, not at a desk."
+        body="EmendaKit was not born in a meeting room, but in moments with patients. Every detail, from the adrenaline cover to the QR field linking to training films, comes from concrete situations where something had to work better."
         quote="“Innovation through knowledge and experience.”"
-        attribution="The foundation of EmendaKit — from day one."
+        attribution="The foundation of EmendaKit, from day one."
       />
     </div>
   </section>
@@ -113,12 +113,12 @@ const products = (await getCollection("products", ({ data }) => data.locale === 
     <div class="container">
       <div class="founders-head">
         <div class="eyebrow">Built by clinicians</div>
-        <h2>A voice from practice — one system for acute situations.</h2>
+        <h2>A voice from practice. One system for acute situations.</h2>
       </div>
       <div class="founders-grid">
         <FounderCard
           image={kjerstiPhoto}
-          imageAlt="Kjersti Grinde — midwife and founder of EmendaKit"
+          imageAlt="Kjersti Grinde, midwife and founder of EmendaKit"
           role="Founder · Midwife"
           name="Kjersti Grinde"
           bio="Midwife with broad experience from emergency medicine, professional development and medical simulation. Initiated and developed EmendaKit from clinical practice."
@@ -129,7 +129,7 @@ const products = (await getCollection("products", ({ data }) => data.locale === 
 
   <CTAStrip
     title="Need a kit tailored to your needs?"
-    body="We develop and adapt medical emergency kits in collaboration with you — for maternity wards, vaccination sites, ambulance services, dental clinics and other settings with specific needs. The solutions can also be developed for use outside healthcare — in fitness centres, kindergartens, as well as aviation and maritime — where access to the right equipment and structured handling is critical."
+    body="We develop and adapt medical emergency kits in collaboration with you, for maternity wards, vaccination sites, ambulance services, dental clinics and other settings with specific needs. The solutions can also be developed for use outside healthcare, in fitness centres, kindergartens, as well as aviation and maritime, where access to the right equipment and structured handling is critical."
     primary={{ href: "/en/contact?topic=Custom%20kit", label: "Request a design conversation →" }}
     secondary={{ href: "mailto:kjersti@emendakit.com", label: "kjersti@emendakit.com" }}
   />

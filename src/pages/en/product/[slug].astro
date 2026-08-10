@@ -27,12 +27,12 @@ const altUrl = `/produkt/${product.data.altSlug}`;
 
 const gallery = product.data.productNumber === 1
   ? [
-      { src: productHospitalStudio, alt: `${product.data.title} — contents of the kit`, caption: "Contents · open kit" },
+      { src: productHospitalStudio, alt: `${product.data.title}, contents of the kit`, caption: "Contents · open kit" },
       { src: productHospitalBackside, alt: `Back of ${product.data.title} with the Norwegian national anaphylaxis flowchart`, caption: "Anaphylaxis flowchart (back)" },
       { src: productHolder, alt: "Wall holder included with the kit", caption: "Wall holder included" },
     ]
   : [
-      { src: productDentistContents, alt: `${product.data.title} — contents of the kit`, caption: "Contents · open kit" },
+      { src: productDentistContents, alt: `${product.data.title}, contents of the kit`, caption: "Contents · open kit" },
       { src: productDentistBackside, alt: `Back of ${product.data.title} with the flowchart adapted to dental services`, caption: "Anaphylaxis flowchart (back)" },
       { src: productHolder, alt: "Wall holder included with the kit", caption: "Wall holder included" },
     ];
@@ -41,7 +41,7 @@ const gallery = product.data.productNumber === 1
 <BaseLayout
   locale="en"
   altUrl={altUrl}
-  title={`${product.data.title} — ${product.data.descriptor}`}
+  title={`${product.data.title} · ${product.data.descriptor}`}
   description={product.data.summary}
 >
   <SchemaProduct
@@ -80,7 +80,7 @@ const gallery = product.data.productNumber === 1
         <dt>Dimensions (L×W×H, internal)</dt><dd>209 × 108 × 57 mm</dd>
         <dt>Weight</dt><dd>1.4 kg (ready to use)</dd>
         <dt>Material</dt><dd>Durable, waterproof and shock-resistant polymer</dd>
-        <dt>Ingress protection</dt><dd>IP67 — withstands dust and submersion in water up to 1 metre for up to 30 minutes</dd>
+        <dt>Ingress protection</dt><dd>IP67: withstands dust and submersion in water up to 1 metre for up to 30 minutes</dd>
         <dt>Delivery time</dt><dd>{product.data.deliveryTime}</dd>
       </dl>
 

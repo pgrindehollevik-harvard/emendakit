@@ -5,14 +5,12 @@ import BaseLayout from "~/layouts/BaseLayout.astro";
 import FounderCard from "~/components/FounderCard.astro";
 import CTAStrip from "~/components/CTAStrip.astro";
 import kjerstiPhoto from "~/assets/photos/founder-kjersti-portrait.jpg";
-import gregersPhoto from "~/assets/photos/founder-gregers-portrait.jpg";
 
 const team = await getCollection("team", ({ data }) => data.locale === "no");
 const photos: Record<string, ImageMetadata> = {
   "kjersti-grinde": kjerstiPhoto,
-  "gregers-halvorsen": gregersPhoto,
 };
-const order = ["kjersti-grinde", "gregers-halvorsen"];
+const order = ["kjersti-grinde"];
 const founders = order
   .map((slug) => team.find((m) => m.data.urlSlug === slug))
   .filter((m): m is NonNullable<(typeof team)[number]> => Boolean(m));
@@ -60,8 +58,7 @@ const founders = order
         </p>
         <p>
           Etter en periode med utvikling og testing besluttet Helse Førde å ta
-          løsningen i bruk, og i 2023 ble 120 skrin anskaffet. Samme år gikk
-          anestesilege Gregers Halvorsen inn som medeier.
+          løsningen i bruk, og i 2023 ble 120 skrin anskaffet.
         </p>
       </div>
     </div>
@@ -85,7 +82,7 @@ const founders = order
     <div class="container">
       <div class="section-head">
         <p class="eyebrow">Teamet</p>
-        <h2 id="founders-heading">To klinikere bak hvert skrin.</h2>
+        <h2 id="founders-heading">Klinikeren bak hvert skrin.</h2>
       </div>
       <div class="founders-grid">
         {founders.map((member, i) => (
@@ -184,9 +181,14 @@ const founders = order
     font-size: clamp(32px, 4vw, 48px);
     line-height: 1.04;
   }
-  .founders-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .founders-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    max-width: 560px;
+    margin: 0 auto;
+  }
   @media (max-width: 860px) {
-    .hero-grid, .story-grid, .name-grid, .founders-grid {
+    .hero-grid, .story-grid, .name-grid {
       grid-template-columns: 1fr;
     }
     .hero { padding-top: 64px; }

@@ -1,6 +1,6 @@
 # EmendaKit AS
 
-EmendaKit is a Norwegian medical device company that designs and builds anaphylaxis kits ("anafylaksiskrin") for healthcare professionals. Founded by an anesthesiologist and a midwife with extensive experience in clinical practice and medical simulation. Designed and built in Norway by healthcare professionals. Tagline: "Innovasjon gjennom kunnskap og erfaring" (Innovation through knowledge and experience).
+EmendaKit is a Norwegian medical device company that designs and builds anaphylaxis kits ("anafylaksiskrin") for healthcare professionals. Founded by a midwife with extensive experience in clinical practice and medical simulation. Designed and built in Norway by healthcare professionals. Tagline: "Innovasjon gjennom kunnskap og erfaring" (Innovation through knowledge and experience).
 
 ## Products
 
@@ -10,11 +10,9 @@ EmendaKit Anaphylaxis – Dental (formerly EmendaKit Dentist) — Anaphylaxis ki
 
 Custom kits ("behovstilpassede medisinske skrin") — Co-design service for healthcare departments with specific needs (maternity wards, vaccination programs, ambulance services, units with special requirements). Process: design conversation, packing proposal, pilot units, adjustment, delivery. Free initial design conversation by emailing kjersti@emendakit.com. URL: https://www.emendakit.com/tjenester/behovstilpasset
 
-## Founders
+## Founder
 
 Kjersti Grinde — founder, midwife with broad experience from emergency medicine, professional development and medical simulation. Initiated and developed EmendaKit from clinical practice.
-
-Gregers Halvorsen — co-owner, anesthesiologist at Helse Førde, with experience from the Norwegian air ambulance service and medical simulation, and involved in the ongoing development of EmendaKit.
 
 ## Clinical foundation
 
@@ -33,7 +31,7 @@ EmendaKit AS, Norway. © 2026.
 
 # EmendaKit AS — English summary
 
-EmendaKit is a Norwegian medical device company that designs and builds anaphylaxis emergency kits for healthcare professionals. Designed and built in Norway by healthcare professionals. Co-founded by an anesthesiologist and a midwife. The company's philosophy: an emergency kit is not a product, it is part of the procedure, and must be treated accordingly.
+EmendaKit is a Norwegian medical device company that designs and builds anaphylaxis emergency kits for healthcare professionals. Designed and built in Norway by healthcare professionals. Founded by a midwife with broad experience from emergency medicine. The company's philosophy: an emergency kit is not a product, it is part of the procedure, and must be treated accordingly.
 
 Two standard products: EmendaKit Anaphylaxis – Healthcare (for GP offices, health centres, hospitals, ambulances, maternity wards, vaccination stations and private clinics; formerly EmendaKit Hospital) and EmendaKit Anaphylaxis – Dental (for dental clinics, oral surgery and orthodontics; the same kit with a dental-specific flowchart; formerly EmendaKit Dentist). Plus a custom-kit service co-developed with healthcare departments and other settings — including fitness centres, kindergartens, aviation and maritime, in public and private sectors.
 

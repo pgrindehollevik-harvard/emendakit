@@ -25,12 +25,7 @@ export const SITE = {
     {
       slug: "kjersti-grinde",
       name: "Kjersti Grinde",
-      role: { no: "Medstifter · Jordmor", en: "Co-founder · Midwife" },
-    },
-    {
-      slug: "gregers-halvorsen",
-      name: "Gregers Halvorsen",
-      role: { no: "Medstifter · Anestesilege", en: "Co-founder · Anesthesiologist" },
+      role: { no: "Gründer · Jordmor", en: "Founder · Midwife" },
     },
   ],
   products: [

@@ -10,8 +10,6 @@ import CTAStrip from "~/components/CTAStrip.astro";
 import heroPhoto from "~/assets/photos/hero-kjersti-garden.jpg";
 import productHospitalPhoto from "~/assets/photos/product-hospital-studio.webp";
 import productDentistPhoto from "~/assets/photos/product-dentist-contents.jpg";
-import productHospitalBacksidePhoto from "~/assets/photos/product-hospital-backside.jpg";
-import productDentistBacksidePhoto from "~/assets/photos/product-dentist-backside.jpg";
 import fieldAmbulancePhoto from "~/assets/photos/field-ambulance-interior.jpg";
 import kjerstiPhoto from "~/assets/photos/founder-kjersti-portrait.jpg";
 
@@ -79,12 +77,6 @@ const products = (await getCollection("products", ({ data }) => data.locale === 
             specs={p.data.specs.slice(0, 4)}
             image={p.data.productNumber === 1 ? productHospitalPhoto : productDentistPhoto}
             imageAlt={`${p.data.title}, ${p.data.descriptor}`}
-            imageLabel="Innhold"
-            image2={p.data.productNumber === 1 ? productHospitalBacksidePhoto : productDentistBacksidePhoto}
-            image2Alt={`Baksiden av ${p.data.title} med anafylaksiflytskjema`}
-            image2Label="Flytskjema"
-            prevLabel="Forrige bilde"
-            nextLabel="Neste bilde"
             priceLabel={p.data.priceLabel}
             orderHref={`/kontakt?emne=${encodeURIComponent(p.data.title)}`}
           />

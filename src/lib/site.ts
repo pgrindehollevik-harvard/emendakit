@@ -45,3 +45,13 @@ export function getLocalizedUrl(
   if (targetLocale === SITE.defaultLocale) return defaultPath;
   return altPath;
 }
+
+/** "29. september 2023" / "29 September 2023" */
+export function formatDate(date: Date, locale: Locale): string {
+  return new Intl.DateTimeFormat(locale === "no" ? "nb-NO" : "en-GB", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+    timeZone: "UTC",             // frontmatter dates are date-only; keep the calendar day stable
+  }).format(date);
+}

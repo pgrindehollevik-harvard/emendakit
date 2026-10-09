@@ -1,0 +1,36 @@
+---
+import { getCollection } from "astro:content";
+import { formatDate } from "~/lib/site";
+import ReferenceListPage, { type ReferenceEntry } from "~/components/ReferenceListPage.astro";
+
+const items = (await getCollection("testimonials", ({ data }) => data.locale === "no"))
+  .sort((a, b) => a.data.order - b.data.order);
+
+const entries: ReferenceEntry[] = await Promise.all(
+  items.map(async (t) => ({
+    id: t.slug.replace(/\.no$/, ""),
+    kicker: t.data.date ? `${t.data.role} · ${formatDate(t.data.date, "no")}` : t.data.role,
+    title: t.data.source,
+    url: t.data.url,
+    urlLabel: t.data.url ? new URL(t.data.url).hostname.replace(/^www\./, "") : undefined,
+    Content: (await t.render()).Content,
+  })),
+);
+---
+
+<ReferenceListPage
+  locale="no"
+  altUrl="/en/testimonials"
+  title="Erfaringer fra praksis · EmendaKit"
+  description="Tilbakemeldinger og erfaringer med EmendaKit anafylaksiskrin fra avdelinger og klinikker som bruker det, blant annet Helse Førde."
+  eyebrow="Tilbakemeldinger på produkt"
+  heading="Erfaringer fra praksis."
+  lede="Anafylaksiskrinet er utviklet på en sengepost og testet av dem som bruker det. Her samler vi erfaringer og tilbakemeldinger fra avdelinger og klinikker som har tatt det i bruk."
+  entries={entries}
+  cta={{
+    title: "Bruker din avdeling EmendaKit?",
+    body: "Vi tar gjerne imot erfaringer fra praksis, både det som fungerer og det som kan bli bedre. Tilbakemeldingene går rett inn i videreutviklingen av skrinet.",
+    primary: { href: "/kontakt", label: "Del din erfaring →" },
+    secondary: { href: "/produkter", label: "Se anafylaksiskrinene" },
+  }}
+/>

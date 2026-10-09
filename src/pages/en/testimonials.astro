@@ -1,0 +1,36 @@
+---
+import { getCollection } from "astro:content";
+import { formatDate } from "~/lib/site";
+import ReferenceListPage, { type ReferenceEntry } from "~/components/ReferenceListPage.astro";
+
+const items = (await getCollection("testimonials", ({ data }) => data.locale === "en"))
+  .sort((a, b) => a.data.order - b.data.order);
+
+const entries: ReferenceEntry[] = await Promise.all(
+  items.map(async (t) => ({
+    id: t.slug.replace(/\.en$/, ""),
+    kicker: t.data.date ? `${t.data.role} · ${formatDate(t.data.date, "en")}` : t.data.role,
+    title: t.data.source,
+    url: t.data.url,
+    urlLabel: t.data.url ? new URL(t.data.url).hostname.replace(/^www\./, "") : undefined,
+    Content: (await t.render()).Content,
+  })),
+);
+---
+
+<ReferenceListPage
+  locale="en"
+  altUrl="/erfaringer"
+  title="Experience from practice · EmendaKit"
+  description="Feedback and experience with the EmendaKit anaphylaxis kit from the departments and clinics that use it, including Helse Førde."
+  eyebrow="Product feedback"
+  heading="Experience from practice."
+  lede="The anaphylaxis kit was developed on a hospital ward and tested by the people who use it. Here we collect experience and feedback from departments and clinics that have adopted it."
+  entries={entries}
+  cta={{
+    title: "Does your department use EmendaKit?",
+    body: "We welcome experience from practice, both what works and what could be better. Feedback goes straight into the further development of the kit.",
+    primary: { href: "/en/contact", label: "Share your experience →" },
+    secondary: { href: "/en/products", label: "See the anaphylaxis kits" },
+  }}
+/>

@@ -1,0 +1,37 @@
+---
+import { getCollection } from "astro:content";
+import { formatDate } from "~/lib/site";
+import ReferenceListPage, { type ReferenceEntry } from "~/components/ReferenceListPage.astro";
+
+const press = (await getCollection("press", ({ data }) => data.locale === "en"))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+const entries: ReferenceEntry[] = await Promise.all(
+  press.map(async (p) => ({
+    id: p.slug.replace(/\.en$/, ""),
+    kicker: `${p.data.outlet} · ${formatDate(p.data.date, "en")}`,
+    title: p.data.title,
+    url: p.data.url,
+    urlLabel: p.data.url ? `Read at ${p.data.outlet.split(" · ")[0]}` : undefined,
+    note: p.data.paywalled ? "Subscription required" : undefined,
+    Content: (await p.render()).Content,
+  })),
+);
+---
+
+<ReferenceListPage
+  locale="en"
+  altUrl="/omtale"
+  title="Press · EmendaKit"
+  description="EmendaKit and the anaphylaxis kit in the media: Helse Førde, Firda, Aksello and Drivkraft on the midwife who developed a standardised kit for anaphylactic shock."
+  eyebrow="Press"
+  heading="EmendaKit in the media."
+  lede="From the Helse Førde project to the Drivkraft grant: coverage of the anaphylaxis kit and the story behind it, newest first. The articles are in Norwegian."
+  entries={entries}
+  cta={{
+    title: "Press or trade media?",
+    body: "Kjersti Grinde is available for interviews on anaphylaxis preparedness, the development of the kit and the path from clinic to product.",
+    primary: { href: "/en/contact", label: "Get in touch →" },
+    secondary: { href: "/en/about", label: "About us" },
+  }}
+/>

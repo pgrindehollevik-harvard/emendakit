@@ -91,10 +91,51 @@ const posts = defineCollection({
   }),
 });
 
+const partners = defineCollection({
+  type: "content",
+  schema: z.object({
+    name: z.string(),
+    locale: localeSchema,
+    role: z.string(),                        // "Tannlege og faglig rådgiver"
+    url: z.string().url().optional(),
+    order: z.number().int(),
+    reviewedByKjersti: z.boolean().default(false),
+  }),
+});
+
+const press = defineCollection({
+  type: "content",
+  schema: z.object({
+    title: z.string(),                       // headline as published
+    locale: localeSchema,
+    outlet: z.string(),                      // "Firda", "Helse Førde"
+    date: z.coerce.date(),
+    url: z.string().url().optional(),
+    paywalled: z.boolean().default(false),
+    reviewedByKjersti: z.boolean().default(false),
+  }),
+});
+
+const testimonials = defineCollection({
+  type: "content",
+  schema: z.object({
+    source: z.string(),                      // person or organisation
+    locale: localeSchema,
+    role: z.string(),                        // "Helseforetak · Førde, Nordfjordeid, Lærdal"
+    date: z.coerce.date().optional(),
+    url: z.string().url().optional(),
+    order: z.number().int(),
+    reviewedByKjersti: z.boolean().default(false),
+  }),
+});
+
 export const collections = {
   products,
   services,
   team,
   videos,
   posts,
+  partners,
+  press,
+  testimonials,
 };

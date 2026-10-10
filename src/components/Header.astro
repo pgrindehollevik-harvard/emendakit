@@ -17,6 +17,9 @@ const nav = locale === "no"
       { href: "/tjenester", label: "Tjenester", active: currentPath.startsWith("/tjenester") },
       { href: "/opplaering", label: "Opplæringsfilmer", active: currentPath.startsWith("/opplaering") },
       { href: "/om-oss", label: "Om oss", active: currentPath.startsWith("/om-oss") },
+      { href: "/samarbeidspartnere", label: "Partnere", active: currentPath.startsWith("/samarbeidspartnere") },
+      { href: "/omtale", label: "Omtale", active: currentPath.startsWith("/omtale") },
+      { href: "/erfaringer", label: "Erfaringer", active: currentPath.startsWith("/erfaringer") },
       { href: "/kontakt", label: "Kontakt", active: currentPath.startsWith("/kontakt") },
     ]
   : [
@@ -24,6 +27,9 @@ const nav = locale === "no"
       { href: "/en/services", label: "Services", active: currentPath.startsWith("/en/services") },
       { href: "/en/training", label: "Training videos", active: currentPath.startsWith("/en/training") },
       { href: "/en/about", label: "About", active: currentPath.startsWith("/en/about") },
+      { href: "/en/partners", label: "Partners", active: currentPath.startsWith("/en/partners") },
+      { href: "/en/press", label: "Press", active: currentPath.startsWith("/en/press") },
+      { href: "/en/testimonials", label: "Testimonials", active: currentPath.startsWith("/en/testimonials") },
       { href: "/en/contact", label: "Contact", active: currentPath.startsWith("/en/contact") },
     ];
 
@@ -130,7 +136,12 @@ const menuLabel = locale === "no" ? "Meny" : "Menu";
   .menu-toggle { display: none; }
   .mobile-menu { display: none; }
 
-  @media (max-width: 980px) {
+  @media (max-width: 1320px) {
+    .nav { gap: 28px; }
+    .nav-links { gap: 20px; }
+  }
+
+  @media (max-width: 1200px) {
     .nav {
       gap: 20px;
     }
@@ -230,7 +241,7 @@ const menuLabel = locale === "no" ? "Meny" : "Menu";
       toggle.setAttribute("aria-expanded", String(open));
     });
     window.addEventListener("resize", () => {
-      if (window.innerWidth > 980 && menu.classList.contains("open")) {
+      if (window.innerWidth > 1200 && menu.classList.contains("open")) {
         menu.classList.remove("open");
         toggle.setAttribute("aria-expanded", "false");
       }

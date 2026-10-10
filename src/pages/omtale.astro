@@ -1,0 +1,37 @@
+---
+import { getCollection } from "astro:content";
+import { formatDate } from "~/lib/site";
+import ReferenceListPage, { type ReferenceEntry } from "~/components/ReferenceListPage.astro";
+
+const press = (await getCollection("press", ({ data }) => data.locale === "no"))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+const entries: ReferenceEntry[] = await Promise.all(
+  press.map(async (p) => ({
+    id: p.slug.replace(/\.no$/, ""),
+    kicker: `${p.data.outlet} · ${formatDate(p.data.date, "no")}`,
+    title: p.data.title,
+    url: p.data.url,
+    urlLabel: p.data.url ? `Les hos ${p.data.outlet.split(" · ")[0]}` : undefined,
+    note: p.data.paywalled ? "Krever abonnement" : undefined,
+    Content: (await p.render()).Content,
+  })),
+);
+---
+
+<ReferenceListPage
+  locale="no"
+  altUrl="/en/press"
+  title="Omtale · EmendaKit"
+  description="Omtale av EmendaKit og anafylaksiskrinet i media: Helse Førde, Firda, Aksello og Drivkraft om jordmoren som utviklet et standardisert skrin for allergisk sjokk."
+  eyebrow="Omtale"
+  heading="EmendaKit i media."
+  lede="Fra prosjektet i Helse Førde til Drivkraft-stipendet: her er omtaler av anafylaksiskrinet og historien bak, i kronologisk rekkefølge med nyeste først."
+  entries={entries}
+  cta={{
+    title: "Presse eller fagmedia?",
+    body: "Kjersti Grinde stiller gjerne til intervju om anafylaksiberedskap, utviklingen av skrinet og veien fra klinikk til produkt.",
+    primary: { href: "/kontakt", label: "Ta kontakt →" },
+    secondary: { href: "/om-oss", label: "Om oss" },
+  }}
+/>

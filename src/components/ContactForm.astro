@@ -10,15 +10,15 @@ const t = locale === "no";
 
 const topics = t
   ? [
-      "EmendaKit Anafylaksi – Helse",
-      "EmendaKit Anafylaksi – Tannklinikk",
+      "EmendaKit Anafylaksi Helse",
+      "EmendaKit Anafylaksi Tannklinikk",
       "Behovstilpasset skrin",
       "Opplæring",
       "Annet",
     ]
   : [
-      "EmendaKit Anaphylaxis – Healthcare",
-      "EmendaKit Anaphylaxis – Dental",
+      "EmendaKit Anaphylaxis Healthcare",
+      "EmendaKit Anaphylaxis Dental",
       "Custom kit",
       "Training",
       "Other",
@@ -104,7 +104,7 @@ const subjectPrefix = t ? "Henvendelse fra nettsiden" : "Website enquiry";
     <textarea id="cf-message" name="message" rows="5" required placeholder={labels.messagePlaceholder}></textarea>
   </div>
 
-  <!-- honeypot — hidden from humans, catches bots -->
+  <!-- honeypot, hidden from humans, catches bots -->
   <input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" class="honey" />
 
   <button type="submit" class="submit-btn"><span class="dot"></span> {labels.submit}</button>

@@ -12,7 +12,7 @@ const products = defineCollection({
     productNumber: z.number().int(),         // 1 = Hospital, 2 = Dentist
     audience: z.string(),                    // "for helsepersonell" / "for tannlegeklinikker"
     descriptor: z.string(),                  // "Anafylaksiskrin for helsepersonell"
-    summary: z.string(),                     // 1–2 sentence lede
+    summary: z.string(),                     // 1 to 2 sentence lede
     heroPhoto: z.string().optional(),
     galleryPhotos: z.array(z.string()).default([]),
     specs: z.array(z.object({ key: z.string(), value: z.string() })),
@@ -31,7 +31,7 @@ const products = defineCollection({
     faq: z
       .array(z.object({ question: z.string(), answer: z.string() }))
       .default([]),
-    deliveryTime: z.string().default("Ca. 2–3 uker"),
+    deliveryTime: z.string().default("Ca. 2 til 3 uker"),
     priceLabel: z.string().default("Pris på forespørsel"),
     reviewedByKjersti: z.boolean().default(false),
   }),

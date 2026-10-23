@@ -7,7 +7,7 @@ interface Props {
 
 const { current, altUrl, variant = "header" } = Astro.props;
 const currentUrl = Astro.url.pathname;
-// Norwegian lives on emendakit.no, English on emendakit.com — keep the toggle on the right domain.
+// Norwegian lives on emendakit.no, English on emendakit.com, keep the toggle on the right domain.
 const noPath = current === "no" ? currentUrl : altUrl;
 const enPath = current === "en" ? currentUrl : altUrl;
 const noUrl = `https://emendakit.no${noPath}`;

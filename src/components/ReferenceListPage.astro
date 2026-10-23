@@ -5,6 +5,8 @@
  * Each entry's prose comes from an MDX content-collection body.
  */
 import type { AstroComponentFactory } from "astro/runtime/server/index.js";
+import type { ImageMetadata } from "astro";
+import { Image } from "astro:assets";
 import type { Locale } from "~/lib/site";
 import BaseLayout from "~/layouts/BaseLayout.astro";
 import CTAStrip from "~/components/CTAStrip.astro";
@@ -17,6 +19,8 @@ export interface ReferenceEntry {
   urlLabel?: string;       // "Les hos Firda", "fosen-tools.no"
   note?: string;           // small aside, e.g. "Krever abonnement"
   quote?: boolean;         // render the body as a quoted letter with the title as attribution
+  logo?: ImageMetadata;    // partner logo, shown under the title
+  logoAlt?: string;
   Content: AstroComponentFactory;
 }
 
@@ -59,6 +63,13 @@ const { locale, altUrl, title, description, eyebrow, heading, lede, entries, emp
               <h3>
                 {e.url ? <a href={e.url} rel="noopener">{e.title}</a> : e.title}
               </h3>
+              {e.logo && (
+                <p class="logo">
+                  {e.url
+                    ? <a href={e.url} rel="noopener"><Image src={e.logo} alt={e.logoAlt ?? e.title} height={64} densities={[1, 2]} /></a>
+                    : <Image src={e.logo} alt={e.logoAlt ?? e.title} height={64} densities={[1, 2]} />}
+                </p>
+              )}
               {e.quote
                 ? <blockquote class="body"><e.Content /></blockquote>
                 : <div class="body"><e.Content /></div>}
@@ -158,7 +169,7 @@ const { locale, altUrl, title, description, eyebrow, heading, lede, entries, emp
   .entry h3 a:hover { color: var(--color-navy); }
   .body {
     grid-column: 2;
-    grid-row: 1 / span 3;
+    grid-row: 1 / span 4;
     color: var(--color-ink-2);
     font-size: 17px;
     line-height: 1.65;
@@ -180,6 +191,15 @@ const { locale, altUrl, title, description, eyebrow, heading, lede, entries, emp
   blockquote.body:lang(en) :global(p:last-child)::after { content: "”"; }
   .is-quote .kicker { color: var(--color-ink-3); }
   .is-quote h3 { font-size: clamp(22px, 2.4vw, 28px); }
+  .logo {
+    grid-column: 1;
+    margin: 12px 0 0;
+  }
+  .logo img {
+    display: block;
+    height: 64px;
+    width: auto;
+  }
   .meta {
     grid-column: 1;
     margin: 8px 0 0;

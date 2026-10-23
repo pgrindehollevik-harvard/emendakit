@@ -66,8 +66,8 @@ const { locale, altUrl, title, description, eyebrow, heading, lede, entries, emp
               {e.logo && (
                 <p class="logo">
                   {e.url
-                    ? <a href={e.url} rel="noopener"><Image src={e.logo} alt={e.logoAlt ?? e.title} height={44} /></a>
-                    : <Image src={e.logo} alt={e.logoAlt ?? e.title} height={44} />}
+                    ? <a href={e.url} rel="noopener"><Image src={e.logo} alt={e.logoAlt ?? e.title} height={64} densities={[1, 2]} /></a>
+                    : <Image src={e.logo} alt={e.logoAlt ?? e.title} height={64} densities={[1, 2]} />}
                 </p>
               )}
               {e.quote
@@ -197,7 +197,7 @@ const { locale, altUrl, title, description, eyebrow, heading, lede, entries, emp
   }
   .logo img {
     display: block;
-    height: 44px;
+    height: 64px;
     width: auto;
   }
   .meta {

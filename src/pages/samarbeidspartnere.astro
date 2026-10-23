@@ -1,17 +1,24 @@
 ---
 import { getCollection } from "astro:content";
 import ReferenceListPage, { type ReferenceEntry } from "~/components/ReferenceListPage.astro";
+import fosenToolsLogo from "~/assets/partners/fosen-tools.png";
+
+const logos: Record<string, { src: typeof fosenToolsLogo; alt: string }> = {
+  "fosen-tools": { src: fosenToolsLogo, alt: "Fosen Tools" },
+};
 
 const partners = (await getCollection("partners", ({ data }) => data.locale === "no"))
   .sort((a, b) => a.data.order - b.data.order);
 
 const entries: ReferenceEntry[] = await Promise.all(
   partners.map(async (p) => ({
-    id: p.slug.replace(/\.no$/, ""),
+    id: p.id.replace(/\.(no|en)\.mdx$/, ""),
     kicker: p.data.role,
     title: p.data.name,
     url: p.data.url,
     urlLabel: p.data.url ? new URL(p.data.url).hostname : undefined,
+    logo: logos[p.id.replace(/\.(no|en)\.mdx$/, "")]?.src,
+    logoAlt: logos[p.id.replace(/\.(no|en)\.mdx$/, "")]?.alt,
     Content: (await p.render()).Content,
   })),
 );

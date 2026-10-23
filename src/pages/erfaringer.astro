@@ -13,6 +13,8 @@ const entries: ReferenceEntry[] = await Promise.all(
     title: t.data.source,
     url: t.data.url,
     urlLabel: t.data.url ? new URL(t.data.url).hostname.replace(/^www\./, "") : undefined,
+    note: t.data.translated ? "Oversatt fra norsk" : undefined,
+    quote: t.data.quote,
     Content: (await t.render()).Content,
   })),
 );

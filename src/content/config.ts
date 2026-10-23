@@ -121,7 +121,9 @@ const testimonials = defineCollection({
   schema: z.object({
     source: z.string(),                      // person or organisation
     locale: localeSchema,
-    role: z.string(),                        // "Helseforetak · Førde, Nordfjordeid, Lærdal"
+    role: z.string(),                        // "Administrerende direktør, Helse Førde"
+    quote: z.boolean().default(true),        // render body as a quoted letter (false = plain case note)
+    translated: z.boolean().default(false),  // EN: body is a translation of a Norwegian original
     date: z.coerce.date().optional(),
     url: z.string().url().optional(),
     order: z.number().int(),

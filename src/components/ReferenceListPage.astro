@@ -16,6 +16,7 @@ export interface ReferenceEntry {
   url?: string;
   urlLabel?: string;       // "Les hos Firda", "fosen-tools.no"
   note?: string;           // small aside, e.g. "Krever abonnement"
+  quote?: boolean;         // render the body as a quoted letter with the title as attribution
   Content: AstroComponentFactory;
 }
 
@@ -52,13 +53,15 @@ const { locale, altUrl, title, description, eyebrow, heading, lede, entries, emp
       {entries.length === 0 && emptyText && <p class="empty">{emptyText}</p>}
       <ol class="list">
         {entries.map((e) => (
-          <li class="entry" id={e.id}>
+          <li class:list={["entry", { "is-quote": e.quote }]} id={e.id}>
             <article>
               <p class="kicker">{e.kicker}</p>
               <h3>
                 {e.url ? <a href={e.url} rel="noopener">{e.title}</a> : e.title}
               </h3>
-              <div class="body"><e.Content /></div>
+              {e.quote
+                ? <blockquote class="body"><e.Content /></blockquote>
+                : <div class="body"><e.Content /></div>}
               {(e.url || e.note) && (
                 <p class="meta">
                   {e.url && <a href={e.url} rel="noopener" class="ext">{e.urlLabel ?? e.url} ↗</a>}
@@ -162,6 +165,16 @@ const { locale, altUrl, title, description, eyebrow, heading, lede, entries, emp
   }
   .body :global(p) { margin: 0 0 18px; }
   .body :global(p:last-child) { margin-bottom: 0; }
+  blockquote.body {
+    margin: 0;
+    padding-left: 28px;
+    border-left: 2px solid var(--color-cyan);
+    color: var(--color-ink);
+    font-size: 18px;
+    line-height: 1.6;
+  }
+  .is-quote .kicker { color: var(--color-ink-3); }
+  .is-quote h3 { font-size: clamp(22px, 2.4vw, 28px); }
   .meta {
     grid-column: 1;
     margin: 8px 0 0;

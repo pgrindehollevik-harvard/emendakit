@@ -125,7 +125,7 @@ const gallery = product.data.productNumber === 1
 
   <CTAStrip
     title={`Request a quote for ${product.data.title}`}
-    body={`${product.data.priceLabel} · Delivery time ${product.data.deliveryTime.toLowerCase()}. Send a short description of the department, number of kits and preferred delivery location.`}
+    body={`${product.data.priceLabel} · Delivery time ${product.data.deliveryTime.toLowerCase()}. State the department, number of kits and delivery location.`}
     primary={{
       href: `/en/contact?topic=${encodeURIComponent(product.data.title)}`,
       label: "Request a quote →",

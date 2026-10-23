@@ -125,7 +125,7 @@ const gallery = product.data.productNumber === 1
 
   <CTAStrip
     title={`Be om tilbud på ${product.data.title}`}
-    body={`${product.data.priceLabel} · Leveringstid ${product.data.deliveryTime.toLowerCase()}. Send en kort beskrivelse av avdeling, antall skrin og ønsket leveringssted.`}
+    body={`${product.data.priceLabel} · Leveringstid ${product.data.deliveryTime.toLowerCase()}. Oppgi avdeling, antall skrin og leveringssted.`}
     primary={{
       href: `/kontakt?emne=${encodeURIComponent(product.data.title)}`,
       label: "Be om tilbud →",

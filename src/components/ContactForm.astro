@@ -20,16 +20,16 @@ const orgTypes = no
 
 const intents = no
   ? [
+      { key: "question", label: "Ta kontakt" },
       { key: "order", label: "Bestill skrin" },
       { key: "custom", label: "Tilpasset skrin" },
       { key: "training", label: "Opplæring" },
-      { key: "question", label: "Spørsmål" },
     ]
   : [
+      { key: "question", label: "Get in touch" },
       { key: "order", label: "Order kits" },
       { key: "custom", label: "Custom kit" },
       { key: "training", label: "Training" },
-      { key: "question", label: "Question" },
     ];
 
 const t = no
@@ -42,7 +42,7 @@ const t = no
       customPlaceholder: "f.eks. barn, ambulanse",
       weAreAbout: "Vi er ca.",
       staffTraining: "ansatte som trenger opplæring i bruk av skrinet.",
-      question: "Spørsmålet ditt",
+      question: "Hva gjelder det?",
       name: "Navn",
       email: "E-post",
       orgNo: "Org.nr",
@@ -68,7 +68,7 @@ const t = no
       customPlaceholder: "e.g. children, ambulance",
       weAreAbout: "We are about",
       staffTraining: "staff who need training in using the kit.",
-      question: "Your question",
+      question: "What is it about?",
       name: "Name",
       email: "Email",
       orgNo: "Org. no.",
@@ -112,10 +112,10 @@ const copy = no
         subject: "Opplæring",
       },
       question: {
-        button: "Send spørsmål",
-        after: "Svar innen én virkedag.",
+        button: "Send",
+        after: "Kjersti svarer innen én virkedag.",
         success: "Takk. Kjersti svarer innen én virkedag.",
-        subject: "Spørsmål fra nettsiden",
+        subject: "Henvendelse fra nettsiden",
       },
     }
   : {
@@ -142,10 +142,10 @@ const copy = no
         subject: "Training",
       },
       question: {
-        button: "Send question",
-        after: "Reply within one business day.",
+        button: "Send",
+        after: "Kjersti replies within one business day.",
         success: "Thank you. Kjersti replies within one business day.",
-        subject: "Question from the website",
+        subject: "Enquiry from the website",
       },
     };
 
@@ -174,7 +174,7 @@ const config = JSON.stringify({
 <form id="contact-form" class="contact-form" data-endpoint={SITE.contactFormEndpoint} data-config={config}>
   <div class="intents" role="group" aria-label={t.intents}>
     {intents.map((i) => (
-      <button type="button" class="chip" data-intent={i.key} aria-pressed={i.key === "order"}>
+      <button type="button" class="chip" data-intent={i.key} aria-pressed={i.key === "question"}>
         {i.label}
       </button>
     ))}
@@ -229,7 +229,7 @@ const config = JSON.stringify({
   <div class="panel" data-for="question">
     <div class="field">
       <label for="cf-question">{t.question}</label>
-      <textarea id="cf-question" name={no ? "Spørsmål" : "Question"} rows="4" required></textarea>
+      <textarea id="cf-question" name={no ? "Melding" : "Message"} rows="5" required></textarea>
     </div>
   </div>
 
@@ -255,7 +255,8 @@ const config = JSON.stringify({
     </div>
   </div>
 
-  <div class="field">
+  <!-- "Anything else?" is redundant when the whole enquiry is a free-text message -->
+  <div class="field" data-not-for="question">
     <label for="cf-message">{t.more}</label>
     <textarea id="cf-message" name={no ? "Melding" : "Message"} rows="3"></textarea>
   </div>
@@ -289,7 +290,7 @@ const config = JSON.stringify({
     const L = cfg.labels as Record<string, string>;
 
     const chips = Array.from(form.querySelectorAll<HTMLButtonElement>(".chip"));
-    const panels = Array.from(form.querySelectorAll<HTMLElement>("[data-for]"));
+    const panels = Array.from(form.querySelectorAll<HTMLElement>("[data-for], [data-not-for]"));
     const qty = form.querySelector<HTMLInputElement>('[data-for="order"] .qty')!;
     const product = form.querySelector<HTMLSelectElement>('[data-for="order"] .product')!;
     const button = form.querySelector<HTMLButtonElement>(".submit-btn")!;
@@ -306,7 +307,8 @@ const config = JSON.stringify({
     });
     const kr = (n: number) => `${fmt.format(n)} kr`;
 
-    let intent: Intent = "order";
+    // The menu's "Kontakt" lands on a plain enquiry; order buttons deep-link into ordering.
+    let intent: Intent = "question";
 
     const quantity = () => Math.max(1, Math.min(999, parseInt(qty.value, 10) || 1));
 
@@ -345,7 +347,7 @@ const config = JSON.stringify({
     const render = () => {
       chips.forEach((c) => c.setAttribute("aria-pressed", String(c.dataset.intent === intent)));
       panels.forEach((panel) => {
-        const active = panel.dataset.for === intent;
+        const active = panel.dataset.for ? panel.dataset.for === intent : panel.dataset.notFor !== intent;
         panel.hidden = !active;
         // Disabled controls are skipped by validation and left out of FormData.
         panel.querySelectorAll<HTMLInputElement>("input, select, textarea").forEach((el) => {
@@ -376,9 +378,9 @@ const config = JSON.stringify({
       if (match) {
         intent = "order";
         product.value = match;
-      } else if (/tilpass|custom/.test(r)) intent = "custom";
+      } else if (/bestill|order/.test(r)) intent = "order";
+      else if (/tilpass|custom/.test(r)) intent = "custom";
       else if (/oppl|train/.test(r)) intent = "training";
-      else if (/annet|other|sp/.test(r)) intent = "question";
     }
     render();
 

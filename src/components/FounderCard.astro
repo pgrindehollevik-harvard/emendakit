@@ -4,7 +4,6 @@ import type { ImageMetadata } from "astro";
 
 interface Props {
   name: string;
-  role: string;
   bio: string;
   image?: ImageMetadata;
   imageAlt?: string;
@@ -12,7 +11,7 @@ interface Props {
   accent?: "warm" | "cool";
 }
 
-const { name, role, bio, image, imageAlt = name, imageStamp, accent = "warm" } = Astro.props;
+const { name, bio, image, imageAlt = name, imageStamp, accent = "warm" } = Astro.props;
 ---
 
 <article class="founder">
@@ -25,7 +24,6 @@ const { name, role, bio, image, imageAlt = name, imageStamp, accent = "warm" } =
     {imageStamp && <span class="stamp">{imageStamp}</span>}
   </figure>
   <div class="founder-body">
-    <div class="role">{role}</div>
     <h3>{name}</h3>
     <p>{bio}</p>
   </div>
@@ -68,22 +66,11 @@ const { name, role, bio, image, imageAlt = name, imageStamp, accent = "warm" } =
     bottom: 16px;
     left: 16px;
     right: 16px;
-    font-family: var(--font-mono);
-    font-size: 10px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
+    font-size: 12px;
     color: rgb(255 255 255 / 0.55);
   }
   .founder-body {
     padding: 28px;
-  }
-  .role {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    color: var(--color-navy);
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    margin-bottom: 8px;
   }
   h3 {
     font-family: var(--font-display);

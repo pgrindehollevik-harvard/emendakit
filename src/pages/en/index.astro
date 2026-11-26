@@ -26,17 +26,12 @@ const products = (await getCollection("products", ({ data }) => data.locale === 
   <section class="hero">
     <div class="container hero-grid">
       <div class="hero-copy">
-        <span class="hero-tag">
-          <span class="pulse"></span>
-          Designed and built in Norway by healthcare professionals
-        </span>
         <h1 class="display">
           An emergency kit designed <span>for when every second counts.</span>
         </h1>
         <p class="lede">
-          Anaphylaxis kits developed by midwife Kjersti Grinde, for clinicians
-          who have to act fast. Waterproof. Shock-resistant. Structured in line with
-          the Norwegian anaphylaxis guidelines.
+          Anaphylaxis kits developed by midwife Kjersti Grinde. Waterproof,
+          shock-resistant and in line with the Norwegian anaphylaxis guidelines.
         </p>
         <a href="/en/contact" class="hero-cta"><span class="dot"></span> Order kits</a>
       </div>
@@ -56,14 +51,7 @@ const products = (await getCollection("products", ({ data }) => data.locale === 
   <section class="products">
     <div class="container">
       <div class="products-head">
-        <div>
-          <div class="eyebrow">Two kits · one framework</div>
-          <h2>Prepared for acute situations.</h2>
-        </div>
-        <p>
-          The same clinical framework, two different needs. Both follow the
-          Norwegian national anaphylaxis guidelines.
-        </p>
+        <h2>Prepared for acute situations.</h2>
       </div>
       <div class="product-grid">
         {products.map((p) => (
@@ -72,8 +60,6 @@ const products = (await getCollection("products", ({ data }) => data.locale === 
             summary={p.data.summary}
             href={`/en/product/${p.data.urlSlug}`}
             productNumber={p.data.productNumber}
-            audience={p.data.audience}
-            specs={p.data.specs.slice(0, 4)}
             image={p.data.productNumber === 1 ? productHospitalPhoto : productDentistPhoto}
             imageAlt={`${p.data.title}, ${p.data.descriptor}`}
             priceLabel={p.data.priceLabel}
@@ -91,9 +77,7 @@ const products = (await getCollection("products", ({ data }) => data.locale === 
       <SectionField
         image={fieldAmbulancePhoto}
         imageAlt="Inside the air ambulance: patient care with the anaphylaxis kit within reach"
-        eyebrow="Field experience · Helse Førde"
-        title="Designed by the patient's side, not at a desk."
-        body="EmendaKit was born with patients, not in a meeting room. Every detail comes from a situation where something had to work better."
+        title="EmendaKit was born in acute situations, not in a meeting room."
         quote="“It feels safe to have the kit available in situations where anaphylaxis may occur. Patients express that this is a reassurance for them too.”"
         attribution="Arve Varden, Chief Executive of Helse Førde, March 2026. Translated from Norwegian."
       />
@@ -103,15 +87,13 @@ const products = (await getCollection("products", ({ data }) => data.locale === 
   <section class="founders">
     <div class="container">
       <div class="founders-head">
-        <div class="eyebrow">Built by clinicians</div>
         <h2>A voice from practice. One system for acute situations.</h2>
       </div>
       <div class="founders-grid">
         <FounderCard
           image={kjerstiPhoto}
           imageAlt="Kjersti Grinde, midwife and founder of EmendaKit"
-          role="Founder · Midwife"
-          name="Kjersti Grinde"
+          name="Kjersti Grinde, founder and midwife"
           bio="Midwife with broad experience from emergency medicine, professional development and medical simulation. Developed EmendaKit from clinical practice."
         />
       </div>
@@ -120,7 +102,7 @@ const products = (await getCollection("products", ({ data }) => data.locale === 
 
   <CTAStrip
     title="Need a kit tailored to your needs?"
-    body="We develop emergency kits with you: for maternity wards, vaccination sites, ambulance services and dental clinics, and for settings outside healthcare such as kindergartens, fitness centres, aviation and maritime."
+    body="We develop emergency kits with you: for maternity wards, ambulance services and dental clinics, and for settings outside healthcare."
     primary={{ href: "/en/contact?topic=Custom%20kit", label: "Request a design conversation →" }}
     secondary={{ href: "mailto:kjersti@emendakit.com", label: "kjersti@emendakit.com" }}
   />
@@ -132,20 +114,6 @@ const products = (await getCollection("products", ({ data }) => data.locale === 
   /* ─── hero ─── */
   .hero { padding: 80px 0 0; }
   .hero-grid { display: grid; grid-template-columns: 1fr; }
-  .hero-tag {
-    display: inline-flex; align-items: center; gap: 10px;
-    background: var(--color-cyan-soft);
-    color: var(--color-navy-deep);
-    font-size: 13px; font-weight: 500;
-    padding: 6px 14px 6px 8px;
-    border-radius: var(--radius-pill);
-    margin-bottom: 28px;
-  }
-  .hero-tag .pulse {
-    width: 8px; height: 8px;
-    background: var(--color-navy);
-    border-radius: var(--radius-pill);
-  }
   h1.display {
     font-family: var(--font-display);
     font-size: clamp(44px, 6vw, 76px);
@@ -190,9 +158,9 @@ const products = (await getCollection("products", ({ data }) => data.locale === 
   }
   .hero-photo img {
     width: 100%; height: auto; display: block;
-    aspect-ratio: 21 / 9;
+    aspect-ratio: 16 / 9;
     object-fit: cover;
-    object-position: 50% 22%;
+    object-position: 50% 24%;
   }
   @media (max-width: 960px) {
     .hero-photo { margin-top: 40px; }
@@ -200,19 +168,6 @@ const products = (await getCollection("products", ({ data }) => data.locale === 
   }
   @media (max-width: 640px) {
     .hero-photo img { aspect-ratio: 4 / 5; object-position: 50% 30%; }
-  }
-  .hero-photo figcaption {
-    position: absolute;
-    inset: auto 0 0 0;
-    padding: 14px 18px;
-    background: linear-gradient(180deg, transparent 0%, rgb(8 12 20 / 0.7) 100%);
-  }
-  .stamp {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: rgb(255 255 255 / 0.78);
   }
 
   /* ─── products ─── */
@@ -223,19 +178,7 @@ const products = (await getCollection("products", ({ data }) => data.locale === 
     border-bottom: 1px solid var(--color-rule);
   }
   .products-head {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 48px;
     margin-bottom: 48px;
-    align-items: end;
-  }
-  .products-head .eyebrow {
-    font-family: var(--font-mono);
-    font-size: 12px;
-    color: var(--color-navy);
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    margin-bottom: 12px;
   }
   .products-head h2 {
     font-family: var(--font-display);
@@ -246,18 +189,9 @@ const products = (await getCollection("products", ({ data }) => data.locale === 
     margin: 0;
     max-width: 16ch;
   }
-  .products-head p {
-    font-size: 17px;
-    line-height: 1.6;
-    color: var(--color-ink-2);
-    margin: 0;
-    max-width: 50ch;
-  }
   .product-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
   @media (max-width: 800px) {
-    .products-head,
     .product-grid { grid-template-columns: 1fr; }
-    .products-head { gap: 20px; }
   }
 
   /* ─── field ─── */
@@ -270,11 +204,6 @@ const products = (await getCollection("products", ({ data }) => data.locale === 
     border-top: 1px solid var(--color-rule);
   }
   .founders-head { text-align: center; margin-bottom: 48px; }
-  .founders-head .eyebrow {
-    font-family: var(--font-mono); font-size: 12px; color: var(--color-navy);
-    text-transform: uppercase; letter-spacing: 0.12em;
-    margin-bottom: 14px;
-  }
   .founders-head h2 {
     font-family: var(--font-display); font-size: clamp(32px, 3.6vw, 44px); font-weight: 500;
     letter-spacing: -0.025em; line-height: 1.05;

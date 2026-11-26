@@ -2,18 +2,11 @@
 import { Image } from "astro:assets";
 import type { ImageMetadata } from "astro";
 
-type ProductSpec = {
-  key: string;
-  value: string;
-};
-
 interface Props {
   title: string;
   summary: string;
   href: string;
   productNumber: number;
-  audience: string;
-  specs?: readonly ProductSpec[];
   image?: ImageMetadata;
   imageAlt?: string;
   imageLabel?: string;
@@ -34,8 +27,6 @@ const {
   summary,
   href,
   productNumber,
-  audience,
-  specs = [],
   image,
   imageAlt = title,
   imageLabel,
@@ -53,7 +44,8 @@ const {
 
 const hasToggle = Boolean(image && image2);
 
-const numberLabel = productNumber.toString().padStart(2, "0");
+// Cards show the short name for now; the full product name stays on the detail page.
+const heading = title.replace(/ (Anafylaksi|Anaphylaxis)\b/, "");
 ---
 
 <article class="product-card">
@@ -85,26 +77,12 @@ const numberLabel = productNumber.toString().padStart(2, "0");
   </div>
 
   <div class="product-body">
-    <div class="product-eyebrow">
-      <span>№{numberLabel} · Anafylaksiskrin</span>
-      <span class="pill">{audience}</span>
-    </div>
-    <h3>{title}</h3>
+    <h3>{heading}</h3>
     <p>{summary}</p>
-    {specs.length > 0 && (
-      <ul class="product-spec">
-        {specs.map((spec) => (
-          <li>
-            <span class="k">{spec.key}</span>
-            <span class="v">{spec.value}</span>
-          </li>
-        ))}
-      </ul>
-    )}
     <div class="product-foot">
       <div class="product-actions">
         {orderHref && <a href={orderHref} class="order-btn">{orderLabel}</a>}
-        <a href={href} class="detail-link">{linkLabel} →</a>
+        <a href={href} class="detail-link">{linkLabel}</a>
       </div>
       <span class="price">{priceLabel}</span>
     </div>
@@ -119,6 +97,11 @@ const numberLabel = productNumber.toString().padStart(2, "0");
     overflow: hidden;
     display: flex;
     flex-direction: column;
+    transition: transform 0.4s var(--ease-soft), box-shadow 0.4s var(--ease-soft);
+  }
+  .product-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 20px 48px rgb(18 37 68 / 0.08);
   }
   .product-img {
     position: relative;
@@ -197,10 +180,7 @@ const numberLabel = productNumber.toString().padStart(2, "0");
     transform: translateX(-50%);
     background: rgb(18 37 68 / 0.78);
     color: #fff;
-    font-family: var(--font-mono);
-    font-size: 11px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
+    font-size: 12px;
     padding: 5px 12px;
     border-radius: var(--radius-pill);
     pointer-events: none;
@@ -262,28 +242,6 @@ const numberLabel = productNumber.toString().padStart(2, "0");
     display: flex;
     flex-direction: column;
   }
-  .product-eyebrow {
-    font-family: var(--font-mono);
-    font-size: 12px;
-    color: var(--color-navy);
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    margin-bottom: 14px;
-    display: flex;
-    gap: 14px;
-    align-items: center;
-    flex-wrap: wrap;
-  }
-  .product-eyebrow .pill {
-    background: var(--color-cyan-soft);
-    color: var(--color-navy-deep);
-    font-family: var(--font-sans);
-    font-size: 11px;
-    padding: 3px 10px;
-    border-radius: var(--radius-pill);
-    text-transform: none;
-    letter-spacing: 0;
-  }
   h3 {
     font-family: var(--font-display);
     font-size: 28px;
@@ -297,34 +255,6 @@ const numberLabel = productNumber.toString().padStart(2, "0");
     line-height: 1.6;
     color: var(--color-ink-2);
     margin: 0 0 20px;
-  }
-  .product-spec {
-    list-style: none;
-    padding: 0;
-    margin: 0 0 24px;
-    display: grid;
-    gap: 10px;
-  }
-  .product-spec li {
-    display: flex;
-    gap: 12px;
-    align-items: baseline;
-    font-size: 13px;
-    padding-bottom: 10px;
-    border-bottom: 1px solid var(--color-rule);
-  }
-  .product-spec li:last-child {
-    border-bottom: none;
-  }
-  .product-spec .k {
-    color: var(--color-ink-3);
-    font-family: var(--font-mono);
-    font-size: 11px;
-    letter-spacing: 0.04em;
-    min-width: 110px;
-  }
-  .product-spec .v {
-    color: var(--color-ink);
   }
   .product-foot {
     margin-top: auto;
@@ -340,35 +270,42 @@ const numberLabel = productNumber.toString().padStart(2, "0");
     gap: 18px;
     flex-wrap: wrap;
   }
+  .order-btn,
+  .detail-link {
+    display: inline-flex;
+    align-items: center;
+    padding: 10px 20px;
+    border-radius: var(--radius-pill);
+    border: 1px solid transparent;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.2;
+    transition: background 160ms var(--ease-soft), border-color 160ms var(--ease-soft), color 160ms var(--ease-soft);
+  }
   .order-btn {
     background: var(--color-navy);
     color: var(--color-bg);
-    border-radius: var(--radius-pill);
-    padding: 10px 20px;
-    font-size: 14px;
-    font-weight: 500;
+  }
+  .order-btn:hover,
+  .order-btn:focus-visible {
+    background: var(--color-navy-deep);
   }
   .detail-link {
-    font-size: 14px;
-    font-weight: 500;
     color: var(--color-navy);
-    border-bottom: 1px solid var(--color-navy);
-    padding-bottom: 2px;
+    border-color: var(--color-rule);
+  }
+  .detail-link:hover,
+  .detail-link:focus-visible {
+    background: var(--color-cyan-soft);
+    border-color: var(--color-cyan-soft);
   }
   .price {
-    font-family: var(--font-mono);
-    font-size: 12px;
+    font-size: 13px;
     color: var(--color-ink-3);
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
   }
   @media (max-width: 520px) {
     .product-body {
       padding: 24px;
-    }
-    .product-spec li {
-      display: grid;
-      gap: 6px;
     }
   }
 </style>

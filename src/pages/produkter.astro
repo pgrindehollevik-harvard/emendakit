@@ -19,12 +19,10 @@ const products = (await getCollection("products", ({ data }) => data.locale === 
   <section class="hero">
     <div class="container hero-grid">
       <div>
-        <p class="eyebrow">Anafylaksiskrin · To skrin · ett rammeverk</p>
         <h1>Anafylaksiskrin for norske helsetjenester.</h1>
       </div>
       <p class="lede">
-        Samme kliniske rammeverk, to ulike bruk. Begge følger nasjonal
-        anafylaksiprotokoll og er vanntette og støtsikre.
+        Samme kliniske rammeverk, to ulike bruk.
       </p>
     </div>
   </section>
@@ -38,8 +36,6 @@ const products = (await getCollection("products", ({ data }) => data.locale === 
             summary={p.data.summary}
             href={`/produkt/${p.data.urlSlug}`}
             productNumber={p.data.productNumber}
-            audience={p.data.audience}
-            specs={p.data.specs.slice(0, 5)}
             image={p.data.productNumber === 1 ? productHospitalPhoto : productDentistPhoto}
             imageAlt={`${p.data.title}, ${p.data.descriptor}`}
             priceLabel={p.data.priceLabel}
@@ -52,7 +48,7 @@ const products = (await getCollection("products", ({ data }) => data.locale === 
 
   <CTAStrip
     title="Trenger dere et skrin tilpasset deres behov?"
-    body="Vi tilpasser akuttskrin for avdelinger og miljøer med særskilte behov, også utenfor helsetjenesten."
+    body="Vi tilpasser akuttskrin for miljøer med særskilte behov."
     primary={{ href: "/tjenester", label: "Se tjenester →" }}
     secondary={{ href: "mailto:kjersti@emendakit.com", label: "kjersti@emendakit.com" }}
   />
@@ -60,14 +56,6 @@ const products = (await getCollection("products", ({ data }) => data.locale === 
 
 <style>
   .container { max-width: 1320px; margin: 0 auto; padding: 0 32px; }
-  .eyebrow {
-    margin: 0 0 14px;
-    font-family: var(--font-mono);
-    font-size: 12px;
-    letter-spacing: 0.12em;
-    color: var(--color-navy);
-    text-transform: uppercase;
-  }
   .hero { padding: 88px 0 56px; }
   .hero-grid {
     display: grid;

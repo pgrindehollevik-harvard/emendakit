@@ -40,6 +40,29 @@
   --ease-soft: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+/* ========== scroll reveal ==========
+   Only active once JS has tagged <html class="js">, so crawlers and no-JS visitors see
+   everything immediately. Honours prefers-reduced-motion. */
+html.js [data-reveal] {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 0.75s var(--ease-soft),
+    transform 0.75s var(--ease-soft);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+html.js [data-reveal].is-in {
+  opacity: 1;
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  html.js [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
 /* ========== base ========== */
 html {
   background: var(--color-bg);

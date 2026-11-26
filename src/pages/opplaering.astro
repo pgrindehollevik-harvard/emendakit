@@ -56,7 +56,6 @@ const films: VideoFilm[] = [
 >
   <section class="intro">
     <div class="container">
-      <div class="eyebrow">Opplæring · Anafylaksi</div>
       <h1>Opplæringsfilmer</h1>
       <p class="lede">
         To korte filmer: håndtering av en anafylaktisk reaksjon, og skrinets
@@ -70,7 +69,6 @@ const films: VideoFilm[] = [
       <div class="container">
         <Video
           film={film}
-          indexLabel={`№ ${film.id === "opplaeringsfilm" ? "01" : "02"}`}
           showTranscript={false}
         />
       </div>
@@ -81,12 +79,6 @@ const films: VideoFilm[] = [
 <style>
   .container { max-width: 1080px; margin: 0 auto; padding: 0 32px; }
   .intro { padding: 80px 0 32px; }
-  .intro .eyebrow {
-    font-family: var(--font-mono);
-    font-size: 12px; color: var(--color-navy);
-    text-transform: uppercase; letter-spacing: 0.1em;
-    margin-bottom: 18px;
-  }
   .intro h1 {
     font-family: var(--font-display);
     font-size: clamp(40px, 5.5vw, 64px); font-weight: 500;

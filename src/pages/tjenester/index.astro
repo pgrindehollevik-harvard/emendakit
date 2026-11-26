@@ -24,12 +24,11 @@ const features = [
   <section class="hero">
     <div class="container hero-grid">
       <div>
-        <p class="eyebrow">Tjenester · Medisinske akuttskrin og beredskapsløsninger</p>
         <h1>Når eksisterende løsninger ikke dekker behovet.</h1>
       </div>
       <p class="lede">
-        Vi utvikler og tilpasser medisinske akuttskrin sammen med dere, basert
-        på deres prosedyrer, omgivelser og situasjonene som kan oppstå.
+        Vi utvikler akuttskrin sammen med dere, tilpasset deres prosedyrer og
+        omgivelser.
       </p>
     </div>
   </section>
@@ -37,14 +36,12 @@ const features = [
   <section class="for-whom" aria-labelledby="for-whom-heading">
     <div class="container audience-grid">
       <div>
-        <p class="eyebrow">For hvem</p>
         <h2 id="for-whom-heading">Beredskap som speiler bruken.</h2>
       </div>
       <div class="audience-copy">
         <p>
-          For miljøer der beredskapen må speile konkrete brukssituasjoner og
-          krav: sykehus, ambulansetjenester, tannklinikker, barnehager,
-          treningssentre, luftfart og sjøfart, i offentlig og privat sektor.
+          Sykehus, ambulanse, tannklinikker, barnehager, treningssentre,
+          luftfart og sjøfart.
         </p>
         <ul>
           {features.map((f) => <li>{f}</li>)}
@@ -53,23 +50,9 @@ const features = [
     </div>
   </section>
 
-  <section class="one-system" aria-labelledby="one-system-heading">
-    <div class="container one-system-grid">
-      <div>
-        <p class="eyebrow">Ett system · flere anvendelser</p>
-        <h2 id="one-system-heading">Samme rammeverk, tilpasset miljøet.</h2>
-      </div>
-      <p>
-        Samme systematiske oppbygning, tilpasset ulike miljøer uten å miste
-        oversikt og brukervennlighet.
-      </p>
-    </div>
-  </section>
-
   <section class="process" aria-labelledby="process-heading">
     <div class="container">
       <div class="section-head">
-        <p class="eyebrow">Hvordan vi jobber</p>
         <h2 id="process-heading">Fra behov til levering, i tre steg.</h2>
       </div>
       <ol class="process-list">
@@ -85,8 +68,8 @@ const features = [
   </section>
 
   <CTAStrip
-    title="Praktisk startpunkt: uforpliktende designsamtale."
-    body="Ta med scenarioene dere står i, så skisserer vi en løsning før dere tar stilling til pilot."
+    title="Start med en uforpliktende designsamtale."
+    body="Ta med scenarioene dere står i, så skisserer vi en løsning."
     primary={{ href: "/kontakt?emne=Behovstilpasset%20skrin", label: "Be om designsamtale →" }}
     secondary={{ href: "/produkter", label: "Se anafylaksiskrinene" }}
   />
@@ -94,14 +77,6 @@ const features = [
 
 <style>
   .container { max-width: 1180px; margin: 0 auto; padding: 0 32px; }
-  .eyebrow {
-    margin: 0 0 14px;
-    font-family: var(--font-mono);
-    font-size: 12px;
-    letter-spacing: 0.12em;
-    color: var(--color-navy);
-    text-transform: uppercase;
-  }
   h1, h2, h3 {
     font-family: var(--font-display);
     font-weight: 500;
@@ -127,23 +102,23 @@ const features = [
     font-size: 18px;
     line-height: 1.6;
   }
-  .for-whom, .one-system, .process {
+  .for-whom, .process {
     padding: 78px 0;
     border-top: 1px solid var(--color-rule);
   }
   .for-whom { background: var(--color-cyan-soft); }
-  .audience-grid, .one-system-grid {
+  .audience-grid {
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(300px, 1.1fr);
     gap: 56px;
     align-items: start;
   }
-  .for-whom h2, .one-system h2, .process h2 {
+  .for-whom h2 h2, .process h2 {
     margin: 0;
     font-size: clamp(28px, 3.6vw, 42px);
     line-height: 1.05;
   }
-  .audience-copy p, .one-system p {
+  .audience-copy p p {
     margin: 0 0 18px;
     color: var(--color-ink-2);
     font-size: 17px;
@@ -180,10 +155,8 @@ const features = [
   .process-list span {
     display: block;
     margin-bottom: 32px;
-    font-family: var(--font-mono);
-    color: var(--color-navy);
-    font-size: 12px;
-    letter-spacing: 0.12em;
+    color: var(--color-ink-3);
+    font-size: 13px;
   }
   .process-list h3 {
     margin: 0 0 10px;
@@ -197,7 +170,7 @@ const features = [
     line-height: 1.6;
   }
   @media (max-width: 860px) {
-    .hero-grid, .audience-grid, .one-system-grid { grid-template-columns: 1fr; }
+    .hero-grid, .audience-grid { grid-template-columns: 1fr; }
     .process-list { grid-template-columns: 1fr; }
     .hero { padding-top: 64px; }
   }

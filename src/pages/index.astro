@@ -25,23 +25,18 @@ const products = (await getCollection("products", ({ data }) => data.locale === 
 >
   <section class="hero">
     <div class="container hero-grid">
-      <div class="hero-copy">
-        <span class="hero-tag">
-          <span class="pulse"></span>
-          Designet og bygget i Norge av helsepersonell
-        </span>
+      <div class="hero-copy" data-reveal>
         <h1 class="display">
           Et akuttskrin designet <span>for når hvert sekund teller.</span>
         </h1>
         <p class="lede">
-          Anafylaksiskrin utviklet av jordmor Kjersti Grinde, for klinikere som må
-          handle raskt. Vanntett. Støtsikkert. Strukturert i tråd med norsk
-          anafylaksiveileder.
+          Anafylaksiskrin utviklet av jordmor Kjersti Grinde. Vanntett, støtsikkert
+          og i tråd med norsk anafylaksiveileder.
         </p>
         <a href="/kontakt" class="hero-cta"><span class="dot"></span> Bestill skrin</a>
       </div>
     </div>
-    <figure class="hero-photo">
+    <figure class="hero-photo" data-reveal style="--reveal-delay: 120ms">
       <Image
         src={heroPhoto}
         alt="Kjersti Grinde, jordmor og gründer av EmendaKit, med anafylaksiskrinet"
@@ -55,43 +50,34 @@ const products = (await getCollection("products", ({ data }) => data.locale === 
 
   <section class="products">
     <div class="container">
-      <div class="products-head">
-        <div>
-          <div class="eyebrow">To skrin · ett rammeverk</div>
-          <h2>Klargjort for akutte situasjoner.</h2>
-        </div>
-        <p>
-          Samme kliniske rammeverk, to ulike behov. Begge følger nasjonale
-          retningslinjer for anafylaksi.
-        </p>
+      <div class="products-head" data-reveal>
+        <h2>Klargjort for akutte situasjoner.</h2>
       </div>
       <div class="product-grid">
-        {products.map((p) => (
+        {products.map((p, i) => (
+          <div data-reveal style={`--reveal-delay: ${i * 110}ms`}>
           <ProductCard
             title={p.data.title}
             summary={p.data.summary}
             href={`/produkt/${p.data.urlSlug}`}
             productNumber={p.data.productNumber}
-            audience={p.data.audience}
-            specs={p.data.specs.slice(0, 4)}
             image={p.data.productNumber === 1 ? productHospitalPhoto : productDentistPhoto}
             imageAlt={`${p.data.title}, ${p.data.descriptor}`}
             priceLabel={p.data.priceLabel}
             orderHref={`/kontakt?emne=${encodeURIComponent(p.data.title)}`}
           />
+          </div>
         ))}
       </div>
     </div>
   </section>
 
   <section class="field">
-    <div class="container">
+    <div class="container" data-reveal>
       <SectionField
         image={fieldAmbulancePhoto}
         imageAlt="Inne i luftambulansen: pasientbehandling med anafylaksiskrinet tilgjengelig"
-        eyebrow="Felt-erfaring · Helse Førde"
-        title="Designet ved pasientens side, ikke ved et skrivebord."
-        body="EmendaKit ble til i møte med pasienter, ikke i et møterom. Hver detalj springer ut av situasjoner der noe måtte fungere bedre."
+        title="EmendaKit ble til i akutte situasjoner, ikke i et møterom."
         quote="«Det kjennest trygt å ha skrinet tilgjengeleg i situasjonar der anafylaksi kan oppstå. Pasientane uttrykker at dette er ei tryggheit for dei også.»"
         attribution="Arve Varden, administrerende direktør i Helse Førde, mars 2026."
       />
@@ -100,16 +86,14 @@ const products = (await getCollection("products", ({ data }) => data.locale === 
 
   <section class="founders">
     <div class="container">
-      <div class="founders-head">
-        <div class="eyebrow">Bygd av klinikere</div>
+      <div class="founders-head" data-reveal>
         <h2>Én stemme fra praksis. Ett system for akutte situasjoner.</h2>
       </div>
-      <div class="founders-grid">
+      <div class="founders-grid" data-reveal style="--reveal-delay: 100ms">
         <FounderCard
           image={kjerstiPhoto}
           imageAlt="Kjersti Grinde, jordmor og gründer av EmendaKit"
-          role="Gründer · Jordmor"
-          name="Kjersti Grinde"
+          name="Kjersti Grinde, gründer og jordmor"
           bio="Jordmor med bred erfaring fra akuttmedisin, fagutvikling og medisinsk simulering. Utviklet EmendaKit med utgangspunkt i klinisk praksis."
         />
       </div>
@@ -118,7 +102,7 @@ const products = (await getCollection("products", ({ data }) => data.locale === 
 
   <CTAStrip
     title="Trenger dere et skrin tilpasset deres behov?"
-    body="Vi utvikler akuttskrin sammen med dere: for fødeavdelinger, vaksinestasjoner, ambulanse og tannklinikker, og for miljøer utenfor helsetjenesten som barnehager, treningssentre, luftfart og sjøfart."
+    body="Vi utvikler akuttskrin sammen med dere: for fødeavdelinger, ambulanse og tannklinikker, og for miljøer utenfor helsetjenesten."
     primary={{ href: "/kontakt?emne=Behovstilpasset%20skrin", label: "Be om designsamtale →" }}
     secondary={{ href: "mailto:kjersti@emendakit.com", label: "kjersti@emendakit.com" }}
   />
@@ -130,20 +114,6 @@ const products = (await getCollection("products", ({ data }) => data.locale === 
   /* ─── hero ─── */
   .hero { padding: 80px 0 0; }
   .hero-grid { display: grid; grid-template-columns: 1fr; }
-  .hero-tag {
-    display: inline-flex; align-items: center; gap: 10px;
-    background: var(--color-cyan-soft);
-    color: var(--color-navy-deep);
-    font-size: 13px; font-weight: 500;
-    padding: 6px 14px 6px 8px;
-    border-radius: var(--radius-pill);
-    margin-bottom: 28px;
-  }
-  .hero-tag .pulse {
-    width: 8px; height: 8px;
-    background: var(--color-navy);
-    border-radius: var(--radius-pill);
-  }
   h1.display {
     font-family: var(--font-display);
     font-size: clamp(44px, 6vw, 76px);
@@ -188,9 +158,9 @@ const products = (await getCollection("products", ({ data }) => data.locale === 
   }
   .hero-photo img {
     width: 100%; height: auto; display: block;
-    aspect-ratio: 21 / 9;
+    aspect-ratio: 16 / 9;
     object-fit: cover;
-    object-position: 50% 22%;
+    object-position: 50% 24%;
   }
   @media (max-width: 960px) {
     .hero-photo { margin-top: 40px; }
@@ -198,19 +168,6 @@ const products = (await getCollection("products", ({ data }) => data.locale === 
   }
   @media (max-width: 640px) {
     .hero-photo img { aspect-ratio: 4 / 5; object-position: 50% 30%; }
-  }
-  .hero-photo figcaption {
-    position: absolute;
-    inset: auto 0 0 0;
-    padding: 14px 18px;
-    background: linear-gradient(180deg, transparent 0%, rgb(8 12 20 / 0.7) 100%);
-  }
-  .stamp {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: rgb(255 255 255 / 0.78);
   }
 
   /* ─── products ─── */
@@ -221,19 +178,7 @@ const products = (await getCollection("products", ({ data }) => data.locale === 
     border-bottom: 1px solid var(--color-rule);
   }
   .products-head {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 48px;
     margin-bottom: 48px;
-    align-items: end;
-  }
-  .products-head .eyebrow {
-    font-family: var(--font-mono);
-    font-size: 12px;
-    color: var(--color-navy);
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    margin-bottom: 12px;
   }
   .products-head h2 {
     font-family: var(--font-display);
@@ -244,18 +189,10 @@ const products = (await getCollection("products", ({ data }) => data.locale === 
     margin: 0;
     max-width: 16ch;
   }
-  .products-head p {
-    font-size: 17px;
-    line-height: 1.6;
-    color: var(--color-ink-2);
-    margin: 0;
-    max-width: 50ch;
-  }
   .product-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .product-grid > [data-reveal] { display: grid; }
   @media (max-width: 800px) {
-    .products-head,
     .product-grid { grid-template-columns: 1fr; }
-    .products-head { gap: 20px; }
   }
 
   /* ─── field ─── */
@@ -268,11 +205,6 @@ const products = (await getCollection("products", ({ data }) => data.locale === 
     border-top: 1px solid var(--color-rule);
   }
   .founders-head { text-align: center; margin-bottom: 48px; }
-  .founders-head .eyebrow {
-    font-family: var(--font-mono); font-size: 12px; color: var(--color-navy);
-    text-transform: uppercase; letter-spacing: 0.12em;
-    margin-bottom: 14px;
-  }
   .founders-head h2 {
     font-family: var(--font-display); font-size: clamp(32px, 3.6vw, 44px); font-weight: 500;
     letter-spacing: -0.025em; line-height: 1.05;

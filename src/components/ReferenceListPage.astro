@@ -25,22 +25,20 @@ interface Props {
   altUrl: string;
   title: string;           // <title>
   description: string;     // meta description
-  eyebrow: string;
   heading: string;
   lede: string;
   entries: ReferenceEntry[];
   emptyText?: string;
-  cta: { title: string; body: string; primary: { href: string; label: string }; secondary?: { href: string; label: string } };
+  cta?: { title: string; body: string; primary: { href: string; label: string }; secondary?: { href: string; label: string } };
 }
 
-const { locale, altUrl, title, description, eyebrow, heading, lede, entries, emptyText, cta } = Astro.props;
+const { locale, altUrl, title, description, heading, lede, entries, emptyText, cta } = Astro.props;
 ---
 
 <BaseLayout locale={locale} altUrl={altUrl} title={title} description={description}>
   <section class="hero">
     <div class="container hero-grid">
       <div>
-        <p class="eyebrow">{eyebrow}</p>
         <h1>{heading}</h1>
       </div>
       <p class="lede">{lede}</p>
@@ -75,18 +73,15 @@ const { locale, altUrl, title, description, eyebrow, heading, lede, entries, emp
     </div>
   </section>
 
-  <CTAStrip title={cta.title} body={cta.body} primary={cta.primary} secondary={cta.secondary} />
+  {cta && <CTAStrip title={cta.title} body={cta.body} primary={cta.primary} secondary={cta.secondary} />}
 </BaseLayout>
 
 <style>
   .container { max-width: 1180px; margin: 0 auto; padding: 0 32px; }
-  .eyebrow, .kicker {
-    margin: 0 0 14px;
-    font-family: var(--font-mono);
-    font-size: 12px;
-    letter-spacing: 0.12em;
-    color: var(--color-navy);
-    text-transform: uppercase;
+  .kicker {
+    margin: 0 0 10px;
+    font-size: 14px;
+    color: var(--color-ink-3);
   }
   h1, h3 {
     font-family: var(--font-display);
@@ -194,10 +189,7 @@ const { locale, altUrl, title, description, eyebrow, heading, lede, entries, emp
   }
   .meta .ext:hover { text-decoration: underline; }
   .meta .note {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
+    font-size: 13px;
     color: var(--color-ink-3);
     align-self: center;
   }

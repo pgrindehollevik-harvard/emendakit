@@ -8,7 +8,7 @@ const press = (await getCollection("press", ({ data }) => data.locale === "no"))
 
 const entries: ReferenceEntry[] = await Promise.all(
   press.map(async (p) => ({
-    id: p.slug.replace(/\.no$/, ""),
+    id: p.id.replace(/\.(no|en)\.mdx$/, ""),
     kicker: `${p.data.outlet} · ${formatDate(p.data.date, "no")}`,
     title: p.data.title,
     url: p.data.url,

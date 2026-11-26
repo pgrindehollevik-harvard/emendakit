@@ -8,7 +8,7 @@ const items = (await getCollection("testimonials", ({ data }) => data.locale ===
 
 const entries: ReferenceEntry[] = await Promise.all(
   items.map(async (t) => ({
-    id: t.slug.replace(/\.no$/, ""),
+    id: t.id.replace(/\.(no|en)\.mdx$/, ""),
     kicker: t.data.date ? `${t.data.role} · ${formatDate(t.data.date, "no")}` : t.data.role,
     title: t.data.source,
     url: t.data.url,

@@ -97,6 +97,11 @@ const heading = title.replace(/ (Anafylaksi|Anaphylaxis)\b/, "");
     overflow: hidden;
     display: flex;
     flex-direction: column;
+    transition: transform 0.4s var(--ease-soft), box-shadow 0.4s var(--ease-soft);
+  }
+  .product-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 20px 48px rgb(18 37 68 / 0.08);
   }
   .product-img {
     position: relative;

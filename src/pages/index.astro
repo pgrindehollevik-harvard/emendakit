@@ -25,7 +25,7 @@ const products = (await getCollection("products", ({ data }) => data.locale === 
 >
   <section class="hero">
     <div class="container hero-grid">
-      <div class="hero-copy">
+      <div class="hero-copy" data-reveal>
         <h1 class="display">
           Et akuttskrin designet <span>for når hvert sekund teller.</span>
         </h1>
@@ -36,7 +36,7 @@ const products = (await getCollection("products", ({ data }) => data.locale === 
         <a href="/kontakt" class="hero-cta"><span class="dot"></span> Bestill skrin</a>
       </div>
     </div>
-    <figure class="hero-photo">
+    <figure class="hero-photo" data-reveal style="--reveal-delay: 120ms">
       <Image
         src={heroPhoto}
         alt="Kjersti Grinde, jordmor og gründer av EmendaKit, med anafylaksiskrinet"
@@ -50,11 +50,12 @@ const products = (await getCollection("products", ({ data }) => data.locale === 
 
   <section class="products">
     <div class="container">
-      <div class="products-head">
+      <div class="products-head" data-reveal>
         <h2>Klargjort for akutte situasjoner.</h2>
       </div>
       <div class="product-grid">
-        {products.map((p) => (
+        {products.map((p, i) => (
+          <div data-reveal style={`--reveal-delay: ${i * 110}ms`}>
           <ProductCard
             title={p.data.title}
             summary={p.data.summary}
@@ -65,14 +66,14 @@ const products = (await getCollection("products", ({ data }) => data.locale === 
             priceLabel={p.data.priceLabel}
             orderHref={`/kontakt?emne=${encodeURIComponent(p.data.title)}`}
           />
-        ))}
           </div>
+        ))}
       </div>
     </div>
   </section>
 
   <section class="field">
-    <div class="container">
+    <div class="container" data-reveal>
       <SectionField
         image={fieldAmbulancePhoto}
         imageAlt="Inne i luftambulansen: pasientbehandling med anafylaksiskrinet tilgjengelig"
@@ -85,10 +86,10 @@ const products = (await getCollection("products", ({ data }) => data.locale === 
 
   <section class="founders">
     <div class="container">
-      <div class="founders-head">
+      <div class="founders-head" data-reveal>
         <h2>Én stemme fra praksis. Ett system for akutte situasjoner.</h2>
       </div>
-      <div class="founders-grid">
+      <div class="founders-grid" data-reveal style="--reveal-delay: 100ms">
         <FounderCard
           image={kjerstiPhoto}
           imageAlt="Kjersti Grinde, jordmor og gründer av EmendaKit"
@@ -189,6 +190,7 @@ const products = (await getCollection("products", ({ data }) => data.locale === 
     max-width: 16ch;
   }
   .product-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .product-grid > [data-reveal] { display: grid; }
   @media (max-width: 800px) {
     .product-grid { grid-template-columns: 1fr; }
   }

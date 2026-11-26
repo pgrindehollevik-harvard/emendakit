@@ -15,8 +15,8 @@ const products = no
   : ["EmendaKit Anaphylaxis Healthcare", "EmendaKit Anaphylaxis Dental"];
 
 const orgTypes = no
-  ? ["tannklinikk", "legekontor", "sykehusavdeling", "kommune", "annen virksomhet"]
-  : ["dental clinic", "GP practice", "hospital department", "municipality", "other organisation"];
+  ? ["sykehusavdeling", "tannklinikk", "legekontor", "kommune", "annen virksomhet"]
+  : ["hospital department", "dental clinic", "GP practice", "municipality", "other organisation"];
 
 const intents = no
   ? [
@@ -94,9 +94,9 @@ const copy = no
       order: {
         button: "Bestill {n} skrin",
         quoteButton: "Be om tilbud",
-        after: "Ordrebekreftelse på e-post. Levering ca. 2 til 3 uker.",
+        after: "Ordrebekreftelse på e-post. Betaling via faktura. Levering ca. 2 til 3 uker.",
         quoteAfter: "Tilbud på e-post innen én virkedag.",
-        success: "Takk. Bestillingen er sendt, og Kjersti bekrefter på e-post innen én virkedag.",
+        success: "Takk. Bestillingen er sendt. Kjersti sender ordrebekreftelse på e-post innen én virkedag. Betaling via faktura.",
         quoteSuccess: "Takk. Du får tilbud på e-post innen én virkedag.",
         subject: "Bestilling fra nettsiden",
         quoteSubject: "Tilbudsforespørsel fra nettsiden",
@@ -124,9 +124,9 @@ const copy = no
       order: {
         button: "Order {n} kits",
         quoteButton: "Request a quote",
-        after: "Order confirmation by email. Delivery about 2 to 3 weeks.",
+        after: "Order confirmation by email. Payment by invoice. Delivery about 2 to 3 weeks.",
         quoteAfter: "Quote by email within one business day.",
-        success: "Thank you. Your order has been sent. Kjersti confirms by email within one business day.",
+        success: "Thank you. Your order has been sent. Kjersti sends an order confirmation by email within one business day. Payment by invoice.",
         quoteSuccess: "Thank you. You will get a quote by email within one business day.",
         subject: "Order from the website",
         quoteSubject: "Quote request from the website",
@@ -189,7 +189,7 @@ const config = JSON.stringify({
         {orgTypes.map((o) => <option value={o}>{o}</option>)}
       </select>
       {t.andOrder}
-      <input class="qty" name={no ? "Antall" : "Quantity"} type="number" inputmode="numeric" min="1" max="999" value="1" required aria-label={no ? "Antall skrin" : "Number of kits"} />
+      <input class="qty" name={no ? "Antall" : "Quantity"} type="number" inputmode="numeric" min="1" max="999" value="5" required aria-label={no ? "Antall skrin" : "Number of kits"} />
       {t.pcs}
       <select class="product" name={no ? "Produkt" : "Product"} aria-label={no ? "Produkt" : "Product"}>
         {products.map((p) => <option value={p}>{p}</option>)}
@@ -642,6 +642,16 @@ const config = JSON.stringify({
     cursor: pointer;
     font-size: 14px;
     color: var(--color-ink-2);
+    list-style: none;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-color: var(--color-rule);
+  }
+  .more summary::-webkit-details-marker {
+    display: none;
+  }
+  .more summary:hover {
+    text-decoration-color: currentColor;
   }
   .more textarea {
     margin-top: 10px;

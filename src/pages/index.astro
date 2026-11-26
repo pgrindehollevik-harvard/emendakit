@@ -26,10 +26,6 @@ const products = (await getCollection("products", ({ data }) => data.locale === 
   <section class="hero">
     <div class="container hero-grid">
       <div class="hero-copy">
-        <span class="hero-tag">
-          <span class="pulse"></span>
-          Designet og bygget i Norge av helsepersonell
-        </span>
         <h1 class="display">
           Et akuttskrin designet <span>for når hvert sekund teller.</span>
         </h1>
@@ -57,7 +53,6 @@ const products = (await getCollection("products", ({ data }) => data.locale === 
     <div class="container">
       <div class="products-head">
         <div>
-          <div class="eyebrow">To skrin · ett rammeverk</div>
           <h2>Klargjort for akutte situasjoner.</h2>
         </div>
         <p>
@@ -72,8 +67,6 @@ const products = (await getCollection("products", ({ data }) => data.locale === 
             summary={p.data.summary}
             href={`/produkt/${p.data.urlSlug}`}
             productNumber={p.data.productNumber}
-            audience={p.data.audience}
-            specs={p.data.specs.slice(0, 4)}
             image={p.data.productNumber === 1 ? productHospitalPhoto : productDentistPhoto}
             imageAlt={`${p.data.title}, ${p.data.descriptor}`}
             priceLabel={p.data.priceLabel}
@@ -89,7 +82,6 @@ const products = (await getCollection("products", ({ data }) => data.locale === 
       <SectionField
         image={fieldAmbulancePhoto}
         imageAlt="Inne i luftambulansen: pasientbehandling med anafylaksiskrinet tilgjengelig"
-        eyebrow="Felt-erfaring · Helse Førde"
         title="Designet ved pasientens side, ikke ved et skrivebord."
         body="EmendaKit ble til i møte med pasienter, ikke i et møterom. Hver detalj springer ut av situasjoner der noe måtte fungere bedre."
         quote="«Det kjennest trygt å ha skrinet tilgjengeleg i situasjonar der anafylaksi kan oppstå. Pasientane uttrykker at dette er ei tryggheit for dei også.»"
@@ -101,14 +93,12 @@ const products = (await getCollection("products", ({ data }) => data.locale === 
   <section class="founders">
     <div class="container">
       <div class="founders-head">
-        <div class="eyebrow">Bygd av klinikere</div>
         <h2>Én stemme fra praksis. Ett system for akutte situasjoner.</h2>
       </div>
       <div class="founders-grid">
         <FounderCard
           image={kjerstiPhoto}
           imageAlt="Kjersti Grinde, jordmor og gründer av EmendaKit"
-          role="Gründer · Jordmor"
           name="Kjersti Grinde"
           bio="Jordmor med bred erfaring fra akuttmedisin, fagutvikling og medisinsk simulering. Utviklet EmendaKit med utgangspunkt i klinisk praksis."
         />
@@ -130,20 +120,6 @@ const products = (await getCollection("products", ({ data }) => data.locale === 
   /* ─── hero ─── */
   .hero { padding: 80px 0 0; }
   .hero-grid { display: grid; grid-template-columns: 1fr; }
-  .hero-tag {
-    display: inline-flex; align-items: center; gap: 10px;
-    background: var(--color-cyan-soft);
-    color: var(--color-navy-deep);
-    font-size: 13px; font-weight: 500;
-    padding: 6px 14px 6px 8px;
-    border-radius: var(--radius-pill);
-    margin-bottom: 28px;
-  }
-  .hero-tag .pulse {
-    width: 8px; height: 8px;
-    background: var(--color-navy);
-    border-radius: var(--radius-pill);
-  }
   h1.display {
     font-family: var(--font-display);
     font-size: clamp(44px, 6vw, 76px);
@@ -227,14 +203,6 @@ const products = (await getCollection("products", ({ data }) => data.locale === 
     margin-bottom: 48px;
     align-items: end;
   }
-  .products-head .eyebrow {
-    font-family: var(--font-mono);
-    font-size: 12px;
-    color: var(--color-navy);
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    margin-bottom: 12px;
-  }
   .products-head h2 {
     font-family: var(--font-display);
     font-size: clamp(32px, 3.6vw, 44px);
@@ -268,11 +236,6 @@ const products = (await getCollection("products", ({ data }) => data.locale === 
     border-top: 1px solid var(--color-rule);
   }
   .founders-head { text-align: center; margin-bottom: 48px; }
-  .founders-head .eyebrow {
-    font-family: var(--font-mono); font-size: 12px; color: var(--color-navy);
-    text-transform: uppercase; letter-spacing: 0.12em;
-    margin-bottom: 14px;
-  }
   .founders-head h2 {
     font-family: var(--font-display); font-size: clamp(32px, 3.6vw, 44px); font-weight: 500;
     letter-spacing: -0.025em; line-height: 1.05;

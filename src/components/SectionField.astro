@@ -3,7 +3,7 @@ import { Image } from "astro:assets";
 import type { ImageMetadata } from "astro";
 
 interface Props {
-  eyebrow: string;
+  eyebrow?: string;
   title: string;
   body: string;
   quote?: string;
@@ -30,7 +30,7 @@ const { eyebrow, title, body, quote, attribution, image, imageAlt = "", imageSta
     {imageStamp && <span class="photo-stamp">{imageStamp}</span>}
   </figure>
   <div class="field-copy">
-    <div class="eyebrow">{eyebrow}</div>
+    {eyebrow && <div class="eyebrow">{eyebrow}</div>}
     <h2>{title}</h2>
     <p>{body}</p>
     {quote && <blockquote>{quote}</blockquote>}

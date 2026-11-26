@@ -38,8 +38,6 @@ const products = (await getCollection("products", ({ data }) => data.locale === 
             summary={p.data.summary}
             href={`/produkt/${p.data.urlSlug}`}
             productNumber={p.data.productNumber}
-            audience={p.data.audience}
-            specs={p.data.specs.slice(0, 5)}
             image={p.data.productNumber === 1 ? productHospitalPhoto : productDentistPhoto}
             imageAlt={`${p.data.title}, ${p.data.descriptor}`}
             priceLabel={p.data.priceLabel}

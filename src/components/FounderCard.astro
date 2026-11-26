@@ -4,7 +4,7 @@ import type { ImageMetadata } from "astro";
 
 interface Props {
   name: string;
-  role: string;
+  role?: string;
   bio: string;
   image?: ImageMetadata;
   imageAlt?: string;
@@ -25,7 +25,7 @@ const { name, role, bio, image, imageAlt = name, imageStamp, accent = "warm" } =
     {imageStamp && <span class="stamp">{imageStamp}</span>}
   </figure>
   <div class="founder-body">
-    <div class="role">{role}</div>
+    {role && <div class="role">{role}</div>}
     <h3>{name}</h3>
     <p>{bio}</p>
   </div>

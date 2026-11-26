@@ -54,11 +54,6 @@ const contactLinks = [
     <div class="foot">
       <div>
         <a href={t ? "/" : "/en/"} class="brand"><img src={logo.src} alt="EmendaKit" width="160" height="28" /></a>
-        <p class="lede">
-          {t
-            ? "EmendaKit AS · Innovasjon gjennom kunnskap og erfaring. Designet og bygget i Norge av helsepersonell."
-            : "EmendaKit AS · Innovation through knowledge and experience. Designed and built in Norway by healthcare professionals."}
-        </p>
       </div>
       <div>
         <h4>{t ? "Produkter" : "Products"}</h4>
@@ -109,13 +104,6 @@ const contactLinks = [
   }
   .foot a:hover {
     color: var(--color-navy);
-  }
-  .foot .lede {
-    color: var(--color-ink-2);
-    font-size: 14px;
-    line-height: 1.55;
-    max-width: 32ch;
-    margin-top: 12px;
   }
   .foot .brand img {
     height: 28px;

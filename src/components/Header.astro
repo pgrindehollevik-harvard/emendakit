@@ -51,7 +51,7 @@ const menuLabel = locale === "no" ? "Meny" : "Menu";
       ))}
     </nav>
     <div class="nav-spacer"></div>
-    <LangSwitch current={locale} altUrl={altUrl} variant="header" />
+    <LangSwitch current={locale} altUrl={altUrl} />
     <a href={ctaHref} class="cta-button">
       <span class="dot"></span> {ctaLabel}
     </a>
@@ -92,6 +92,7 @@ const menuLabel = locale === "no" ? "Meny" : "Menu";
   }
   .brand {
     flex: 0 0 auto;
+    padding-left: 8px;
   }
   .brand img {
     height: 28px;

@@ -8,6 +8,11 @@ import tailwindcss from "@tailwindcss/vite";
 export default defineConfig({
   site: "https://www.emendakit.com",
   trailingSlash: "never",
+  // The services overview pages were removed; the custom-kit page is the only service.
+  redirects: {
+    "/tjenester": "/tjenester/behovstilpasset",
+    "/en/services": "/en/services/custom-kit",
+  },
   integrations: [
     mdx(),
     sitemap({

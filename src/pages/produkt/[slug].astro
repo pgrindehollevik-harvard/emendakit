@@ -124,11 +124,11 @@ const gallery = product.data.productNumber === 1
   </article>
 
   <CTAStrip
-    title={`Be om tilbud på ${product.data.title}`}
-    body={`${product.data.priceLabel} · Leveringstid ${product.data.deliveryTime.toLowerCase()}. Oppgi avdeling, antall skrin og leveringssted.`}
+    title={`Bestill ${product.data.title}`}
+    body={`${product.data.priceLabel} per skrin, 3 390 kr fra 5 skrin · Levering ${product.data.deliveryTime.toLowerCase()}.`}
     primary={{
       href: `/kontakt?emne=${encodeURIComponent(product.data.title)}`,
-      label: "Be om tilbud →",
+      label: "Bestill →",
     }}
     secondary={{
       href: "/opplaering",

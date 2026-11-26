@@ -124,11 +124,11 @@ const gallery = product.data.productNumber === 1
   </article>
 
   <CTAStrip
-    title={`Request a quote for ${product.data.title}`}
-    body={`${product.data.priceLabel} · Delivery time ${product.data.deliveryTime.toLowerCase()}. State the department, number of kits and delivery location.`}
+    title={`Order ${product.data.title}`}
+    body={`${product.data.priceLabel} per kit, NOK 3,390 from 5 kits · Delivery ${product.data.deliveryTime.toLowerCase()}.`}
     primary={{
       href: `/en/contact?topic=${encodeURIComponent(product.data.title)}`,
-      label: "Request a quote →",
+      label: "Order →",
     }}
     secondary={{
       href: "/en/training",

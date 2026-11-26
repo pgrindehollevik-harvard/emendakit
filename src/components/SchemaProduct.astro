@@ -40,12 +40,23 @@ const data = {
     url: new URL(url, SITE.url).href,
     availability: "https://schema.org/LimitedAvailability",
     priceCurrency: "NOK",
-    price: undefined,
-    priceSpecification: {
-      "@type": "PriceSpecification",
-      priceCurrency: "NOK",
-      valueAddedTaxIncluded: false,
-    },
+    price: SITE.prices.tier1,
+    priceSpecification: [
+      {
+        "@type": "UnitPriceSpecification",
+        price: SITE.prices.tier1,
+        priceCurrency: "NOK",
+        valueAddedTaxIncluded: false,
+        eligibleQuantity: { "@type": "QuantitativeValue", minValue: 1, maxValue: SITE.prices.tier2From - 1 },
+      },
+      {
+        "@type": "UnitPriceSpecification",
+        price: SITE.prices.tier2,
+        priceCurrency: "NOK",
+        valueAddedTaxIncluded: false,
+        eligibleQuantity: { "@type": "QuantitativeValue", minValue: SITE.prices.tier2From, maxValue: SITE.prices.quoteFrom - 1 },
+      },
+    ],
     seller: {
       "@type": "Organization",
       name: SITE.legalName,

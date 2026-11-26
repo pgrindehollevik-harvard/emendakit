@@ -23,7 +23,7 @@ const telHref = `tel:${SITE.phone.replace(/\s/g, "")}`;
     <div class="container">
       <ContactForm locale="en" />
       <p class="direct">
-        Or directly: <a href={`mailto:${SITE.email}`}>{SITE.email}</a> · <a href={telHref}>{SITE.phone}</a>
+        <a href={`mailto:${SITE.email}`}>{SITE.email}</a> · <a href={telHref}>{SITE.phone}</a>
       </p>
     </div>
   </section>

@@ -640,6 +640,8 @@ const config = JSON.stringify({
   /* submit */
   .cta {
     display: flex;
+    flex-direction: row-reverse; /* button sits at the right edge, text on the left */
+    justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
     gap: 16px;

@@ -21,7 +21,7 @@ const products = (await getCollection("products", ({ data }) => data.locale === 
   locale="en"
   altUrl="/"
   title="EmendaKit: Anaphylaxis kits designed and built in Norway"
-  description="EmendaKit develops anaphylaxis emergency kits for hospitals, ambulances, maternity wards and dental clinics. Developed by a midwife with broad experience from emergency medicine. Packed to the Norwegian national protocol."
+  description="EmendaKit develops anaphylaxis emergency kits for hospitals, ambulances, maternity wards and dental clinics. Developed by a midwife with broad experience from emergency medicine."
 >
   <section class="hero">
     <div class="container hero-grid">
@@ -46,6 +46,23 @@ const products = (await getCollection("products", ({ data }) => data.locale === 
         fetchpriority="high"
       />
     </figure>
+  </section>
+
+  <section class="showcase" data-reveal>
+    <div class="container">
+      <video
+        class="showcase-video"
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="metadata"
+        poster="/media/kit-showcase-poster.jpg"
+        aria-label="The anaphylaxis kit: its contents and the closed case"
+      >
+        <source src="/media/kit-showcase.mp4" type="video/mp4" />
+      </video>
+    </div>
   </section>
 
   <section class="products">
@@ -170,6 +187,21 @@ const products = (await getCollection("products", ({ data }) => data.locale === 
     .hero-photo img { aspect-ratio: 4 / 5; object-position: 50% 30%; }
   }
 
+  /* ─── showcase ─── */
+  .showcase { padding: 72px 0 0; }
+  .showcase-video {
+    display: block;
+    width: 100%;
+    aspect-ratio: 1600 / 700;
+    object-fit: cover;
+    border-radius: var(--radius-xl);
+    background: var(--color-ink);
+  }
+  @media (max-width: 640px) {
+    .showcase { padding-top: 40px; }
+    .showcase-video { border-radius: var(--radius-lg); }
+  }
+
   /* ─── products ─── */
   .products {
     padding: 96px 0;
@@ -217,3 +249,14 @@ const products = (await getCollection("products", ({ data }) => data.locale === 
     margin: 0 auto;
   }
 </style>
+
+<script>
+  // Keep the showcase still for visitors who prefer reduced motion.
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    document.querySelectorAll<HTMLVideoElement>(".showcase-video").forEach((v) => {
+      v.removeAttribute("autoplay");
+      v.pause();
+    });
+  }
+</script>
+

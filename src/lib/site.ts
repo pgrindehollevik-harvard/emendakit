@@ -15,6 +15,15 @@ export const SITE = {
    * After activation you can swap the email for Formsubmit's hashed alias to hide it.
    */
   contactFormEndpoint: "https://formsubmit.co/ajax/kjersti@emendakit.com",
+  /** Prisliste EmendaKit Anafylaksi, gjeldende fra 1. november 2026. NOK eks. mva. */
+  prices: {
+    tier1: 3590, // 1 til 4 skrin
+    tier2: 3390, // 5 til 49 skrin
+    tier2From: 5,
+    quoteFrom: 50, // 50+ etter avtale
+    shipping: 249, // per ordre, 1 til 4 skrin; 5+ avtales
+    vat: 0.25,
+  },
   defaultLocale: "no" as const,
   locales: ["no", "en"] as const,
   taglines: {

@@ -14,7 +14,6 @@ const currentPath = Astro.url.pathname;
 const nav = locale === "no"
   ? [
       { href: "/produkter", label: "Anafylaksiskrin", active: currentPath.startsWith("/produkt") || currentPath === "/produkter" },
-      { href: "/tjenester", label: "Tjenester", active: currentPath.startsWith("/tjenester") },
       { href: "/opplaering", label: "Opplæringsfilmer", active: currentPath.startsWith("/opplaering") },
       { href: "/om-oss", label: "Om oss", active: currentPath.startsWith("/om-oss") },
       { href: "/samarbeidspartnere", label: "Partnere", active: currentPath.startsWith("/samarbeidspartnere") },
@@ -24,7 +23,6 @@ const nav = locale === "no"
     ]
   : [
       { href: "/en/products", label: "Anaphylaxis kits", active: currentPath.startsWith("/en/product") || currentPath === "/en/products" },
-      { href: "/en/services", label: "Services", active: currentPath.startsWith("/en/services") },
       { href: "/en/training", label: "Training videos", active: currentPath.startsWith("/en/training") },
       { href: "/en/about", label: "About", active: currentPath.startsWith("/en/about") },
       { href: "/en/partners", label: "Partners", active: currentPath.startsWith("/en/partners") },

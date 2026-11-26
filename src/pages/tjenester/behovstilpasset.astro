@@ -12,7 +12,6 @@ if (!service) {
   throw new Error("Missing Norwegian service entry: behovstilpasset");
 }
 
-const { Content } = await service.render();
 const process = [
   {
     number: "01",
@@ -47,7 +46,6 @@ const process = [
     <section class="hero">
       <div class="container hero-grid">
         <div>
-          <p class="eyebrow">Behovstilpasset · {service.data.audience}</p>
           <h1>{service.data.title}</h1>
         </div>
         <div class="hero-card">
@@ -62,14 +60,12 @@ const process = [
     <section class="audience" aria-labelledby="audience-heading">
       <div class="container audience-grid">
         <div>
-          <p class="eyebrow">For hvem</p>
           <h2 id="audience-heading">Når standardpakken ikke er presis nok.</h2>
         </div>
         <div class="audience-copy">
           <p>
-            For avdelinger der beredskapen må speile en bestemt pasientgruppe,
-            prosedyre eller arbeidsflyt: fødeavdelinger, vaksinestasjoner,
-            akuttmottak, ambulansetjenester eller enheter med særskilte krav.
+            Fødeavdelinger, vaksinestasjoner, akuttmottak, ambulanse og enheter
+            med særskilte krav.
           </p>
           <ul>
             <li>Fast plass for hvert legemiddel og hver komponent.</li>
@@ -83,7 +79,6 @@ const process = [
     <section class="process" aria-labelledby="process-heading">
       <div class="container">
         <div class="section-head">
-          <p class="eyebrow">Slik jobber vi</p>
           <h2 id="process-heading">
             Fra klinisk behov til ferdig pakket skrin.
           </h2>
@@ -105,31 +100,12 @@ const process = [
       </div>
     </section>
 
-    <section class="content-note" aria-labelledby="source-heading">
-      <div class="container source-grid">
-        <div>
-          <p class="eyebrow">Fra tjenestebeskrivelsen</p>
-          <h2 id="source-heading">
-            Rammeverket er EmendaKit. Innholdet er deres.
-          </h2>
-        </div>
-        <div class="mdx-content">
-          <Content />
-        </div>
-      </div>
-    </section>
-
     <section class="cta">
       <div class="container cta-grid">
         <div>
-          <p class="eyebrow">Neste steg</p>
           <h2>Send Kjersti en kort beskrivelse av behovet.</h2>
         </div>
         <div>
-          <p>
-            Designsamtalen er gratis og uforpliktende. Skriv hvilken avdeling
-            det gjelder og hvilke scenarioer skrinet skal støtte.
-          </p>
           <a href="/kontakt?emne=Behovstilpasset%20skrin" class="button">
             Be om designsamtale →
           </a>
@@ -146,22 +122,12 @@ const process = [
     padding: 0 32px;
   }
 
-  .eyebrow {
-    margin: 0 0 14px;
-    font-family: var(--font-mono);
-    font-size: 12px;
-    letter-spacing: 0.12em;
-    color: var(--color-navy);
-    text-transform: uppercase;
-  }
-
   .hero {
     padding: 84px 0 76px;
   }
 
   .hero-grid,
   .audience-grid,
-  .source-grid,
   .cta-grid {
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(300px, 0.78fr);
@@ -205,8 +171,7 @@ const process = [
   }
 
   .hero-card p,
-  .audience-copy p,
-  .cta p {
+  .audience-copy p {
     margin: 0;
     color: var(--color-ink-2);
     font-size: 17px;
@@ -226,8 +191,7 @@ const process = [
     font-weight: 500;
   }
 
-  .audience,
-  .content-note {
+  .audience {
     padding: 78px 0;
     border-top: 1px solid var(--color-rule);
   }
@@ -278,10 +242,8 @@ const process = [
   .process-list span {
     display: block;
     margin-bottom: 44px;
-    font-family: var(--font-mono);
-    color: var(--color-navy);
+    color: var(--color-ink-3);
     font-size: 12px;
-    letter-spacing: 0.12em;
   }
 
   .process-list p {
@@ -291,38 +253,6 @@ const process = [
     line-height: 1.6;
   }
 
-  .mdx-content {
-    color: var(--color-ink-2);
-    font-size: 16px;
-    line-height: 1.65;
-  }
-
-  .mdx-content :global(h2) {
-    margin: 0 0 14px;
-    font-family: var(--font-display);
-    color: var(--color-ink);
-    font-size: 24px;
-    font-weight: 500;
-    letter-spacing: -0.02em;
-  }
-
-  .mdx-content :global(h2:not(:first-child)) {
-    margin-top: 34px;
-  }
-
-  .mdx-content :global(p) {
-    margin: 0 0 18px;
-  }
-
-  .mdx-content :global(ol) {
-    margin: 0 0 18px;
-    padding-left: 1.2rem;
-  }
-
-  .mdx-content :global(li) {
-    margin-bottom: 9px;
-  }
-
   .cta {
     padding: 74px 0;
     border-top: 1px solid var(--color-rule);
@@ -330,16 +260,8 @@ const process = [
     color: var(--color-bg);
   }
 
-  .cta .eyebrow {
-    color: var(--color-cyan);
-  }
-
   .cta h2 {
     color: var(--color-bg);
-  }
-
-  .cta p {
-    color: rgba(250, 250, 247, 0.78);
   }
 
   .cta .button {
@@ -350,8 +272,7 @@ const process = [
   @media (max-width: 920px) {
     .hero-grid,
     .audience-grid,
-    .source-grid,
-    .cta-grid,
+      .cta-grid,
     .process-list {
       grid-template-columns: 1fr;
     }

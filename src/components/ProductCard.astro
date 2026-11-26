@@ -82,7 +82,7 @@ const heading = title.replace(/ (Anafylaksi|Anaphylaxis)\b/, "");
     <div class="product-foot">
       <div class="product-actions">
         {orderHref && <a href={orderHref} class="order-btn">{orderLabel}</a>}
-        <a href={href} class="detail-link">{linkLabel} →</a>
+        <a href={href} class="detail-link">{linkLabel}</a>
       </div>
       <span class="price">{priceLabel}</span>
     </div>
@@ -175,10 +175,7 @@ const heading = title.replace(/ (Anafylaksi|Anaphylaxis)\b/, "");
     transform: translateX(-50%);
     background: rgb(18 37 68 / 0.78);
     color: #fff;
-    font-family: var(--font-mono);
-    font-size: 11px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
+    font-size: 12px;
     padding: 5px 12px;
     border-radius: var(--radius-pill);
     pointer-events: none;

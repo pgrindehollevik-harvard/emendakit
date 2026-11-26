@@ -1,6 +1,5 @@
 ---
 import { SITE, type Locale } from "~/lib/site";
-import LangSwitch from "./LangSwitch.astro";
 import logo from "~/assets/logo/emendakit-logo.png";
 
 interface Props {
@@ -62,7 +61,6 @@ const contactLinks = [
     </div>
     <div class="colophon">
       <span>© {new Date().getFullYear()} EmendaKit AS · {t ? "Designet og bygget i Norge" : "Designed and built in Norway"}</span>
-      <LangSwitch current={locale} altUrl={altUrl} variant="footer" />
     </div>
   </div>
 </footer>
@@ -103,9 +101,7 @@ const contactLinks = [
     margin-top: 48px;
     padding-top: 24px;
     border-top: 1px solid var(--color-rule);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    text-align: center;
     font-size: 12px;
     color: var(--color-ink-3);
   }
@@ -127,11 +123,6 @@ const contactLinks = [
     .foot {
       grid-template-columns: 1fr;
       gap: 28px;
-    }
-    .colophon {
-      align-items: flex-start;
-      flex-direction: column;
-      gap: 14px;
     }
   }
 </style>

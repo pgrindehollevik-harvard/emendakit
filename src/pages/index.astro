@@ -30,9 +30,8 @@ const products = (await getCollection("products", ({ data }) => data.locale === 
           Et akuttskrin designet <span>for når hvert sekund teller.</span>
         </h1>
         <p class="lede">
-          Anafylaksiskrin utviklet av jordmor Kjersti Grinde, for klinikere som må
-          handle raskt. Vanntett. Støtsikkert. Strukturert i tråd med norsk
-          anafylaksiveileder.
+          Anafylaksiskrin utviklet av jordmor Kjersti Grinde. Vanntett, støtsikkert
+          og i tråd med norsk anafylaksiveileder.
         </p>
         <a href="/kontakt" class="hero-cta"><span class="dot"></span> Bestill skrin</a>
       </div>
@@ -52,13 +51,7 @@ const products = (await getCollection("products", ({ data }) => data.locale === 
   <section class="products">
     <div class="container">
       <div class="products-head">
-        <div>
-          <h2>Klargjort for akutte situasjoner.</h2>
-        </div>
-        <p>
-          Samme kliniske rammeverk, to ulike behov. Begge følger nasjonale
-          retningslinjer for anafylaksi.
-        </p>
+        <h2>Klargjort for akutte situasjoner.</h2>
       </div>
       <div class="product-grid">
         {products.map((p) => (
@@ -196,11 +189,7 @@ const products = (await getCollection("products", ({ data }) => data.locale === 
     border-bottom: 1px solid var(--color-rule);
   }
   .products-head {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 48px;
     margin-bottom: 48px;
-    align-items: end;
   }
   .products-head h2 {
     font-family: var(--font-display);
@@ -211,18 +200,9 @@ const products = (await getCollection("products", ({ data }) => data.locale === 
     margin: 0;
     max-width: 16ch;
   }
-  .products-head p {
-    font-size: 17px;
-    line-height: 1.6;
-    color: var(--color-ink-2);
-    margin: 0;
-    max-width: 50ch;
-  }
   .product-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
   @media (max-width: 800px) {
-    .products-head,
     .product-grid { grid-template-columns: 1fr; }
-    .products-head { gap: 20px; }
   }
 
   /* ─── field ─── */

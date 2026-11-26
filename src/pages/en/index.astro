@@ -30,9 +30,8 @@ const products = (await getCollection("products", ({ data }) => data.locale === 
           An emergency kit designed <span>for when every second counts.</span>
         </h1>
         <p class="lede">
-          Anaphylaxis kits developed by midwife Kjersti Grinde, for clinicians
-          who have to act fast. Waterproof. Shock-resistant. Structured in line with
-          the Norwegian anaphylaxis guidelines.
+          Anaphylaxis kits developed by midwife Kjersti Grinde. Waterproof,
+          shock-resistant and in line with the Norwegian anaphylaxis guidelines.
         </p>
         <a href="/en/contact" class="hero-cta"><span class="dot"></span> Order kits</a>
       </div>
@@ -52,13 +51,7 @@ const products = (await getCollection("products", ({ data }) => data.locale === 
   <section class="products">
     <div class="container">
       <div class="products-head">
-        <div>
-          <h2>Prepared for acute situations.</h2>
-        </div>
-        <p>
-          The same clinical framework, two different needs. Both follow the
-          Norwegian national anaphylaxis guidelines.
-        </p>
+        <h2>Prepared for acute situations.</h2>
       </div>
       <div class="product-grid">
         {products.map((p) => (
@@ -198,11 +191,7 @@ const products = (await getCollection("products", ({ data }) => data.locale === 
     border-bottom: 1px solid var(--color-rule);
   }
   .products-head {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 48px;
     margin-bottom: 48px;
-    align-items: end;
   }
   .products-head h2 {
     font-family: var(--font-display);
@@ -213,18 +202,9 @@ const products = (await getCollection("products", ({ data }) => data.locale === 
     margin: 0;
     max-width: 16ch;
   }
-  .products-head p {
-    font-size: 17px;
-    line-height: 1.6;
-    color: var(--color-ink-2);
-    margin: 0;
-    max-width: 50ch;
-  }
   .product-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
   @media (max-width: 800px) {
-    .products-head,
     .product-grid { grid-template-columns: 1fr; }
-    .products-head { gap: 20px; }
   }
 
   /* ─── field ─── */

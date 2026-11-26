@@ -8,7 +8,7 @@ import MediaCarousel from "~/components/MediaCarousel.astro";
 
 import productHospitalStudio from "~/assets/photos/product-hospital-studio.webp";
 import productHospitalBackside from "~/assets/photos/product-hospital-backside.jpg";
-import productDentistContents from "~/assets/photos/product-dentist-contents.jpg";
+import productDentistStudio from "~/assets/photos/product-dentist-studio.jpg";
 import productDentistBackside from "~/assets/photos/product-dentist-backside.jpg";
 import productHolder from "~/assets/photos/product-holder.jpg";
 
@@ -33,7 +33,7 @@ const gallery = product.data.productNumber === 1
       { src: productHolder, alt: "Veggfestet som følger med skrinet", caption: "Veggfeste inkludert" },
     ]
   : [
-      { src: productDentistContents, alt: `${product.data.title}, innholdet i skrinet`, caption: "Innhold, åpent skrin" },
+      { src: productDentistStudio, alt: `${product.data.title}, innholdet i skrinet`, caption: "Innhold, åpent skrin" },
       { src: productDentistBackside, alt: `Baksiden av ${product.data.title} med flytskjema tilpasset tannhelsetjenesten`, caption: "Flytskjema på baksiden" },
       { src: productHolder, alt: "Veggfestet som følger med skrinet", caption: "Veggfeste inkludert" },
     ];

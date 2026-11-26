@@ -24,16 +24,17 @@ const { product } = Astro.props;
 const { Content } = await product.render();
 const url = `/produkt/${product.data.urlSlug}`;
 const altUrl = `/en/product/${product.data.altSlug}`;
+const orderHref = `/kontakt?emne=${encodeURIComponent(product.data.title)}`;
 
 const gallery = product.data.productNumber === 1
   ? [
-      { src: productHospitalStudio, alt: `${product.data.title}, innholdet i skrinet`, caption: "Innhold · åpent skrin" },
-      { src: productHospitalBackside, alt: `Baksiden av ${product.data.title} med nasjonalt anafylaksiflytskjema`, caption: "Anafylaksiflytskjema (bakside)" },
+      { src: productHospitalStudio, alt: `${product.data.title}, innholdet i skrinet`, caption: "Innhold, åpent skrin" },
+      { src: productHospitalBackside, alt: `Baksiden av ${product.data.title} med nasjonalt anafylaksiflytskjema`, caption: "Flytskjema på baksiden" },
       { src: productHolder, alt: "Veggfestet som følger med skrinet", caption: "Veggfeste inkludert" },
     ]
   : [
-      { src: productDentistContents, alt: `${product.data.title}, innholdet i skrinet`, caption: "Innhold · åpent skrin" },
-      { src: productDentistBackside, alt: `Baksiden av ${product.data.title} med flytskjema tilpasset tannhelsetjenesten`, caption: "Anafylaksiflytskjema (bakside)" },
+      { src: productDentistContents, alt: `${product.data.title}, innholdet i skrinet`, caption: "Innhold, åpent skrin" },
+      { src: productDentistBackside, alt: `Baksiden av ${product.data.title} med flytskjema tilpasset tannhelsetjenesten`, caption: "Flytskjema på baksiden" },
       { src: productHolder, alt: "Veggfestet som følger med skrinet", caption: "Veggfeste inkludert" },
     ];
 ---
@@ -54,167 +55,162 @@ const gallery = product.data.productNumber === 1
   />
   <SchemaFAQPage items={product.data.faq} />
 
-  <article style="padding: 80px 32px; max-width: 880px; margin: 0 auto;">
-    <p style="font-family: var(--font-mono); font-size: 12px; color: var(--color-navy); text-transform: uppercase; letter-spacing: 0.12em; margin: 0 0 14px;">
-      №{product.data.productNumber.toString().padStart(2, "0")} · Anafylaksiskrin · {product.data.audience}
-    </p>
-    <h1 style="font-family: var(--font-display); font-size: clamp(36px, 4.4vw, 56px); font-weight: 500; letter-spacing: -0.03em; line-height: 1; margin: 0 0 18px;">
-      {product.data.title}
-    </h1>
-    <p style="font-size: 19px; line-height: 1.55; color: var(--color-ink-2); margin: 0 0 32px;">
-      {product.data.summary}
-    </p>
+  <article class="product">
+    <header class="intro">
+      <h1>{product.data.title}</h1>
+      <p class="lede">{product.data.summary}</p>
+      <p class="buy">
+        <a href={orderHref} class="order">Bestill</a>
+        <span>{product.data.priceLabel} · Levering {product.data.deliveryTime.toLowerCase()}</span>
+      </p>
+    </header>
 
-    <div style="margin: 0 0 48px;">
-      <MediaCarousel slides={gallery} prevLabel="Forrige bilde" nextLabel="Neste bilde" />
+    <MediaCarousel slides={gallery} prevLabel="Forrige bilde" nextLabel="Neste bilde" />
+
+    <div class="prose">
+      <Content />
     </div>
 
-    <Content />
-
-    <section class="details">
-      <h2>Produktdetaljer</h2>
-
-      <h3 class="group">Spesifikasjoner</h3>
-      <dl class="spec-grid">
-        <dt>Mål (utvendig, L×B×H)</dt><dd>251 × 142 × 67 mm</dd>
-        <dt>Mål (innvendig, L×B×H)</dt><dd>209 × 108 × 57 mm</dd>
-        <dt>Vekt</dt><dd>1,4 kg (ferdig klargjort)</dd>
-        <dt>Materiale</dt><dd>Slitesterk, vanntett og støtsikker polymer</dd>
-        <dt>Tetthetsgrad</dt><dd>IP67: tåler støv og nedsenkning i vann opptil 1 meter i inntil 30 minutter</dd>
-        <dt>Leveringstid</dt><dd>{product.data.deliveryTime}</dd>
+    <section class="specs">
+      <h2>Spesifikasjoner</h2>
+      <dl>
+        {product.data.specs.map((s) => (
+          <>
+            <dt>{s.key}</dt>
+            <dd>{s.value}</dd>
+          </>
+        ))}
       </dl>
-
-      <h3 class="group">Design og funksjon</h3>
-      <ul class="bulleted">
-        <li>Transparent lokk gir rask visuell oversikt over innhold</li>
-        <li>Robust konstruksjon med innvendig gummiforing for ekstra beskyttelse</li>
-        <li>Låseklakk som er enkel å åpne i en akutt situasjon</li>
-        <li>Automatisk trykkutligningsventil for enkel åpning ved transport (f.eks. i fly)</li>
-        <li>Glatt overflate som er enkel å rengjøre</li>
-      </ul>
-
-      <h3 class="group">Innvendig system</h3>
-      <ul class="bulleted">
-        <li>Formtilpasset innlegg med faste plasser for hver komponent</li>
-        <li>Høy fargekontrast og inngravering gir rask identifisering</li>
-        <li>Lyssikret oppbevaring av adrenalin</li>
-        <li>Ikke-absorberende materiale som hindrer at væske trekker inn</li>
-        <li>Slitesterk topplate med mulighet for permanent merking</li>
-      </ul>
-
-      <h3 class="group">Praktisk informasjon</h3>
-      <ul class="bulleted">
-        <li>Flytskjema etter nasjonale retningslinjer godt synlig på baksiden av skrinet</li>
-        <li>Felt for merking av neste kontroll / utløpsdato</li>
-        <li>Veggfeste medfølger</li>
-        <li>Leveres uten medikamenter</li>
-        <li>Livstidsgaranti ved normalt bruk</li>
-      </ul>
     </section>
 
-    <h2 class="qa-heading">Spørsmål og svar</h2>
-    <div style="display: grid; gap: 16px;">
+    <section class="faq">
+      <h2>Spørsmål og svar</h2>
       {product.data.faq.map((q) => (
-        <details style="padding: 16px 0; border-top: 1px solid var(--color-rule);">
-          <summary style="font-family: var(--font-display); font-size: 17px; font-weight: 500; cursor: pointer;">{q.question}</summary>
-          <p style="font-size: 14px; line-height: 1.6; color: var(--color-ink-2); margin: 12px 0 0;">{q.answer}</p>
+        <details>
+          <summary>{q.question}</summary>
+          <p>{q.answer}</p>
         </details>
       ))}
-    </div>
+    </section>
   </article>
 
   <CTAStrip
     title={`Bestill ${product.data.title}`}
-    body={`${product.data.priceLabel} per skrin, 3 390 kr fra 5 skrin · Levering ${product.data.deliveryTime.toLowerCase()}.`}
-    primary={{
-      href: `/kontakt?emne=${encodeURIComponent(product.data.title)}`,
-      label: "Bestill →",
-    }}
-    secondary={{
-      href: "/opplaering",
-      label: "Se opplæringsfilmer",
-    }}
+    body={`${product.data.priceLabel} per skrin, 3 390 kr fra 5 skrin. Levering ${product.data.deliveryTime.toLowerCase()}.`}
+    primary={{ href: orderHref, label: "Bestill →" }}
+    secondary={{ href: "/opplaering", label: "Se opplæringsfilmer" }}
   />
 </BaseLayout>
 
 <style>
-  .details {
-    margin: 48px 0 24px;
-    padding: 32px;
-    background: var(--color-surface);
-    border: 1px solid var(--color-rule);
-    border-radius: var(--radius-xl);
+  .product {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 72px 32px 80px;
   }
-  .details h2 {
-    margin: 0 0 24px;
+  .intro { margin-bottom: 40px; }
+  h1 {
     font-family: var(--font-display);
-    font-size: 24px;
+    font-size: clamp(36px, 4.4vw, 56px);
     font-weight: 500;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.03em;
+    line-height: 1;
+    margin: 0 0 18px;
   }
-  .details .group {
-    margin: 32px 0 14px;
-    font-family: var(--font-mono);
-    font-size: 12px;
-    font-weight: 500;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--color-navy);
+  .lede {
+    font-size: 19px;
+    line-height: 1.55;
+    color: var(--color-ink-2);
+    margin: 0 0 24px;
+    max-width: 60ch;
   }
-  .details .group:first-of-type { margin-top: 0; }
-  .details .spec-grid {
-    display: grid;
-    grid-template-columns: 220px 1fr;
-    gap: 12px 24px;
+  .buy {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    flex-wrap: wrap;
     margin: 0;
     font-size: 14px;
-  }
-  .details .spec-grid dt {
-    font-family: var(--font-mono);
     color: var(--color-ink-3);
-    font-size: 11px;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
   }
-  .details .spec-grid dd {
-    margin: 0;
-    color: var(--color-ink);
+  .order {
+    display: inline-flex;
+    align-items: center;
+    padding: 11px 22px;
+    border-radius: var(--radius-pill);
+    background: var(--color-navy);
+    color: var(--color-bg);
+    font-size: 14px;
     font-weight: 500;
+    transition: background 160ms var(--ease-soft);
   }
-  .details .bulleted {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    display: grid;
-    gap: 10px;
-  }
-  .details .bulleted li {
-    padding: 10px 0 10px 18px;
-    border-top: 1px solid var(--color-rule);
-    color: var(--color-ink);
-    font-size: 15px;
-    line-height: 1.5;
-    position: relative;
-  }
-  .details .bulleted li::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 19px;
-    width: 6px;
-    height: 6px;
-    background: var(--color-cyan);
-    border-radius: 50%;
-  }
-  .qa-heading {
+  .order:hover { background: var(--color-navy-deep); }
+  .prose { margin: 48px 0 0; max-width: 60ch; }
+  .prose :global(h2) {
     font-family: var(--font-display);
-    font-size: 24px;
+    font-size: 22px;
     font-weight: 500;
-    margin: 48px 0 16px;
+    letter-spacing: -0.02em;
+    margin: 32px 0 10px;
+  }
+  .prose :global(h2:first-child) { margin-top: 0; }
+  .prose :global(p) {
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--color-ink-2);
+    margin: 0 0 12px;
+  }
+  .specs, .faq { margin-top: 56px; }
+  h2 {
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    margin: 0 0 16px;
+  }
+  .specs dl {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 0 24px;
+    margin: 0;
+    font-size: 15px;
+  }
+  .specs dt, .specs dd {
+    padding: 12px 0;
+    border-top: 1px solid var(--color-rule);
+    margin: 0;
+  }
+  .specs dt { color: var(--color-ink-3); }
+  .specs dd { color: var(--color-ink); }
+  .faq details { border-top: 1px solid var(--color-rule); padding: 14px 0; }
+  .faq summary {
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+  }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary::after {
+    content: "+";
+    color: var(--color-ink-3);
+    font-weight: 400;
+    flex: 0 0 auto;
+  }
+  .faq details[open] summary::after { content: "−"; }
+  .faq p {
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--color-ink-2);
+    margin: 10px 0 0;
+    max-width: 60ch;
   }
   @media (max-width: 560px) {
-    .details { padding: 24px; }
-    .details .spec-grid { grid-template-columns: 1fr; gap: 4px 0; }
-    .details .spec-grid dt { margin-top: 8px; }
+    .product { padding: 48px 20px 64px; }
+    .specs dl { grid-template-columns: 1fr; }
+    .specs dt { padding-bottom: 2px; }
+    .specs dd { border-top: none; padding-top: 0; }
   }
 </style>

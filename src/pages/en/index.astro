@@ -48,8 +48,11 @@ const products = (await getCollection("products", ({ data }) => data.locale === 
     </figure>
   </section>
 
-  <section class="showcase" data-reveal>
-    <div class="container">
+  <section class="showcase">
+    <div class="container showcase-head" data-reveal>
+      <h2>Prepared for acute situations.</h2>
+    </div>
+    <div data-reveal>
       <video
         class="showcase-video"
         autoplay
@@ -67,9 +70,6 @@ const products = (await getCollection("products", ({ data }) => data.locale === 
 
   <section class="products">
     <div class="container">
-      <div class="products-head">
-        <h2>Prepared for acute situations.</h2>
-      </div>
       <div class="product-grid">
         {products.map((p) => (
           <ProductCard
@@ -188,31 +188,9 @@ const products = (await getCollection("products", ({ data }) => data.locale === 
   }
 
   /* ─── showcase ─── */
-  .showcase { padding: 72px 0 0; }
-  .showcase-video {
-    display: block;
-    width: 100%;
-    aspect-ratio: 1600 / 700;
-    object-fit: cover;
-    border-radius: var(--radius-xl);
-    background: var(--color-ink);
-  }
-  @media (max-width: 640px) {
-    .showcase { padding-top: 40px; }
-    .showcase-video { border-radius: var(--radius-lg); }
-  }
-
-  /* ─── products ─── */
-  .products {
-    padding: 96px 0;
-    background: linear-gradient(180deg, var(--color-bg) 0%, var(--color-cyan-soft) 100%);
-    border-top: 1px solid var(--color-rule);
-    border-bottom: 1px solid var(--color-rule);
-  }
-  .products-head {
-    margin-bottom: 48px;
-  }
-  .products-head h2 {
+  .showcase { padding: 96px 0 0; }
+  .showcase-head { margin-bottom: 40px; }
+  .showcase-head h2 {
     font-family: var(--font-display);
     font-size: clamp(32px, 3.6vw, 44px);
     font-weight: 500;
@@ -220,6 +198,25 @@ const products = (await getCollection("products", ({ data }) => data.locale === 
     line-height: 1.05;
     margin: 0;
     max-width: 16ch;
+  }
+  .showcase-video {
+    display: block;
+    width: 100%;
+    aspect-ratio: 1600 / 700;
+    object-fit: cover;
+    background: var(--color-ink);
+  }
+  @media (max-width: 640px) {
+    .showcase { padding-top: 56px; }
+    .showcase-head { margin-bottom: 24px; }
+    .showcase-video { aspect-ratio: 4 / 3; }
+  }
+
+  /* ─── products ─── */
+  .products {
+    padding: 96px 0;
+    background: linear-gradient(180deg, var(--color-bg) 0%, var(--color-cyan-soft) 100%);
+    border-bottom: 1px solid var(--color-rule);
   }
   .product-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
   @media (max-width: 800px) {

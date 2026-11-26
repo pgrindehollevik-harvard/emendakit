@@ -8,7 +8,7 @@ import MediaCarousel from "~/components/MediaCarousel.astro";
 
 import productHospitalStudio from "~/assets/photos/product-hospital-studio.webp";
 import productHospitalBackside from "~/assets/photos/product-hospital-backside.jpg";
-import productDentistStudio from "~/assets/photos/product-dentist-studio.jpg";
+import productDentistContents from "~/assets/photos/product-dentist-contents.jpg";
 import productDentistBackside from "~/assets/photos/product-dentist-backside.jpg";
 import productHolder from "~/assets/photos/product-holder.jpg";
 
@@ -33,7 +33,7 @@ const gallery = product.data.productNumber === 1
       { src: productHolder, alt: "Wall holder included with the kit", caption: "Wall holder included" },
     ]
   : [
-      { src: productDentistStudio, alt: `${product.data.title}, contents of the kit`, caption: "Contents, open kit" },
+      { src: productDentistContents, alt: `${product.data.title}, contents of the kit`, caption: "Contents, open kit" },
       { src: productDentistBackside, alt: `Back of ${product.data.title} with the flowchart adapted to dental services`, caption: "Flowchart on the back" },
       { src: productHolder, alt: "Wall holder included with the kit", caption: "Wall holder included" },
     ];

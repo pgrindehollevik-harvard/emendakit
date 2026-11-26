@@ -24,55 +24,45 @@ const products = (await getCollection("products", ({ data }) => data.locale === 
   description="EmendaKit utvikler anafylaksiskrin for sykehus, ambulanse, fødestue og tannlegeklinikk. Utviklet av jordmor med bred erfaring fra akuttmedisin."
 >
   <section class="hero">
-    <div class="container hero-grid">
-      <div class="hero-copy" data-reveal>
-        <h1 class="display">
-          Et akuttskrin designet <span>for når hvert sekund teller.</span>
-        </h1>
-        <p class="lede">
-          Anafylaksiskrin utviklet av jordmor Kjersti Grinde. Vanntett, støtsikkert
-          og i tråd med norsk anafylaksiveileder.
-        </p>
-        <a href="/kontakt" class="hero-cta"><span class="dot"></span> Bestill skrin</a>
-      </div>
-    </div>
-    <figure class="hero-photo" data-reveal style="--reveal-delay: 120ms">
-      <Image
-        src={heroPhoto}
-        alt="Kjersti Grinde, jordmor og gründer av EmendaKit, med anafylaksiskrinet"
-        widths={[720, 1080, 1440, 1920]}
-        sizes="100vw"
-        loading="eager"
-        fetchpriority="high"
-      />
-    </figure>
-  </section>
-
-  <section class="showcase" data-reveal>
-    <div class="showcase-media">
+    <div class="hero-media">
       <video
-        class="showcase-video"
+        class="hero-video"
         autoplay
         muted
         loop
         playsinline
-        preload="metadata"
+        preload="auto"
         poster="/media/kit-showcase-poster.jpg"
-        aria-label="Anafylaksiskrinet: innholdet og det lukkede skrinet"
+        aria-label="Anafylaksiskrinet: innholdet i skrinet"
       >
         <source src="/media/kit-showcase.mp4" type="video/mp4" />
       </video>
-      <div class="showcase-overlay">
-        <div class="container showcase-copy">
-          <h2>Klargjort for akutte situasjoner.</h2>
-          <a href="/kontakt" class="showcase-cta"><span class="dot"></span> Bestill skrin</a>
+      <div class="hero-overlay">
+        <div class="container hero-copy">
+          <div class="hero-text">
+            <h1 class="display">Et akuttskrin designet <span>for når hvert sekund teller.</span></h1>
+            <p class="lede">Anafylaksiskrin utviklet av jordmor Kjersti Grinde. Vanntett, støtsikkert og i tråd med norsk anafylaksiveileder.</p>
+          </div>
+          <a href="/kontakt" class="hero-cta"><span class="dot"></span> Bestill skrin</a>
         </div>
       </div>
     </div>
+    <figure class="hero-photo" data-reveal>
+      <Image
+        src={heroPhoto}
+        alt="Kjersti Grinde, jordmor og gründer av EmendaKit, med anafylaksiskrinet"
+        widths={[720, 1080, 1440, 1920]}
+        sizes="(min-width: 1320px) 1256px, 100vw"
+        loading="eager"
+      />
+    </figure>
   </section>
 
   <section class="products">
     <div class="container">
+      <div class="products-head" data-reveal>
+        <h2>Klargjort for akutte situasjoner.</h2>
+      </div>
       <div class="product-grid">
         {products.map((p, i) => (
           <div data-reveal style={`--reveal-delay: ${i * 110}ms`}>
@@ -132,100 +122,48 @@ const products = (await getCollection("products", ({ data }) => data.locale === 
   .container { max-width: 1320px; margin: 0 auto; padding: 0 32px; }
 
   /* ─── hero ─── */
-  .hero { padding: 80px 0 0; }
-  .hero-grid { display: grid; grid-template-columns: 1fr; }
-  h1.display {
-    font-family: var(--font-display);
-    font-size: clamp(44px, 6vw, 76px);
-    line-height: 0.98;
-    letter-spacing: -0.035em;
-    font-weight: 500;
-    margin: 0 0 24px;
-    max-width: 14ch;
-  }
-  h1.display span { color: var(--color-ink-3); }
-  .lede {
-    font-size: 19px; line-height: 1.55;
-    color: var(--color-ink-2);
-    max-width: 540px;
-  }
-  /* CTA shown only on small screens, where the header CTA is hidden */
-  .hero-cta { display: none; }
-  @media (max-width: 640px) {
-    .hero-cta {
-      display: inline-flex;
-      align-items: center;
-      gap: 9px;
-      margin-top: 28px;
-      background: var(--color-navy);
-      color: var(--color-bg);
-      border-radius: var(--radius-pill);
-      padding: 14px 26px;
-      font-size: 15px;
-      font-weight: 500;
-    }
-    .hero-cta .dot {
-      width: 6px; height: 6px;
-      background: var(--color-cyan);
-      border-radius: var(--radius-pill);
-    }
-  }
-  .hero-photo {
-    margin: 56px 0 0;
-    overflow: hidden;
-    background: var(--color-ink);
-    position: relative;
-  }
-  .hero-photo img {
-    width: 100%; height: auto; display: block;
-    aspect-ratio: 16 / 9;
-    object-fit: cover;
-    object-position: 50% 24%;
-  }
-  @media (max-width: 960px) {
-    .hero-photo { margin-top: 40px; }
-    .hero-photo img { aspect-ratio: 16 / 10; }
-  }
-  @media (max-width: 640px) {
-    .hero-photo img { aspect-ratio: 4 / 5; object-position: 50% 30%; }
-  }
-
-  /* ─── showcase ─── */
-  .showcase { padding: 96px 0 0; }
-  .showcase-media { position: relative; background: var(--color-ink); }
-  .showcase-video {
+  .hero { padding: 0; }
+  .hero-media { position: relative; background: var(--color-ink); }
+  .hero-video {
     display: block;
     width: 100%;
-    aspect-ratio: 1600 / 700;
+    aspect-ratio: 1600 / 650;
     object-fit: cover;
   }
-  .showcase-overlay {
+  .hero-overlay {
     position: absolute;
     inset: 0;
     display: flex;
     align-items: flex-end;
-    background: linear-gradient(180deg, rgb(8 12 20 / 0) 35%, rgb(8 12 20 / 0.72) 100%);
+    background: linear-gradient(180deg, rgb(8 12 20 / 0) 30%, rgb(8 12 20 / 0.72) 100%);
   }
-  .showcase-copy {
+  .hero-copy {
     width: 100%;
-    padding-bottom: 48px;
+    padding-bottom: 56px;
     display: flex;
     align-items: flex-end;
     justify-content: space-between;
     gap: 32px;
     flex-wrap: wrap;
   }
-  .showcase-copy h2 {
+  h1.display {
     font-family: var(--font-display);
-    font-size: clamp(32px, 3.6vw, 48px);
+    font-size: clamp(40px, 5.2vw, 68px);
+    line-height: 0.98;
+    letter-spacing: -0.035em;
     font-weight: 500;
-    letter-spacing: -0.025em;
-    line-height: 1.05;
-    margin: 0;
-    max-width: 16ch;
+    margin: 0 0 18px;
+    max-width: 14ch;
     color: var(--color-bg);
   }
-  .showcase-cta {
+  h1.display span { color: rgb(250 250 247 / 0.65); }
+  .lede {
+    font-size: 18px; line-height: 1.55;
+    color: rgb(250 250 247 / 0.85);
+    max-width: 520px;
+    margin: 0;
+  }
+  .hero-cta {
     display: inline-flex;
     align-items: center;
     gap: 9px;
@@ -235,21 +173,49 @@ const products = (await getCollection("products", ({ data }) => data.locale === 
     padding: 14px 26px;
     font-size: 15px;
     font-weight: 500;
+    white-space: nowrap;
     transition: background 160ms var(--ease-soft);
   }
-  .showcase-cta:hover { background: var(--color-bg); }
-  .showcase-cta .dot {
+  .hero-cta:hover { background: var(--color-bg); }
+  .hero-cta .dot {
     width: 8px; height: 8px;
-    border-radius: var(--radius-pill);
     background: var(--color-navy-deep);
+    border-radius: var(--radius-pill);
+  }
+  .hero-photo {
+    margin: 56px auto 0;
+    max-width: 1320px;
+    padding: 0 32px;
+  }
+  .hero-photo img {
+    width: 100%; height: auto; display: block;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    object-position: 50% 24%;
+    border-radius: var(--radius-xl);
+  }
+  @media (max-width: 960px) {
+    .hero-video { aspect-ratio: 4 / 3; }
+    .hero-photo { margin-top: 40px; }
+    .hero-photo img { aspect-ratio: 16 / 10; }
   }
   @media (max-width: 640px) {
-    .showcase { padding-top: 56px; }
-    .showcase-video { aspect-ratio: 4 / 5; }
-    .showcase-copy { padding-bottom: 28px; gap: 18px; }
+    .hero-video { aspect-ratio: 4 / 5; }
+    .hero-copy { padding-bottom: 28px; gap: 18px; }
+    .hero-photo { padding: 0 20px; }
+    .hero-photo img { aspect-ratio: 4 / 5; object-position: 50% 30%; border-radius: var(--radius-lg); }
   }
-
   /* ─── products ─── */
+  .products-head { margin-bottom: 48px; }
+  .products-head h2 {
+    font-family: var(--font-display);
+    font-size: clamp(32px, 3.6vw, 44px);
+    font-weight: 500;
+    letter-spacing: -0.025em;
+    line-height: 1.05;
+    margin: 0;
+    max-width: 16ch;
+  }
   .products {
     padding: 96px 0;
     background: linear-gradient(180deg, var(--color-bg) 0%, var(--color-cyan-soft) 100%);
@@ -286,9 +252,9 @@ const products = (await getCollection("products", ({ data }) => data.locale === 
 </style>
 
 <script>
-  // Keep the showcase still for visitors who prefer reduced motion.
+  // Keep the hero video still for visitors who prefer reduced motion.
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-    document.querySelectorAll<HTMLVideoElement>(".showcase-video").forEach((v) => {
+    document.querySelectorAll<HTMLVideoElement>(".hero-video").forEach((v) => {
       v.removeAttribute("autoplay");
       v.pause();
     });

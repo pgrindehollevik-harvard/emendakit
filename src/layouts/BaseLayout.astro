@@ -36,8 +36,16 @@ const langTag = locale === "no" ? "nb-NO" : "en-US";
     </main>
     <Footer locale={locale} altUrl={altUrl ?? "/"} />
     <script>
+      import Lenis from "lenis";
+
       const targets = document.querySelectorAll<HTMLElement>("[data-reveal]");
       const still = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      // Inertial wheel scrolling (as on audun.co). Touch keeps the native feel.
+      if (!still) {
+        new Lenis({ lerp: 0.2, smoothWheel: true, syncTouch: false, autoRaf: true });
+      }
+
       if (!still && "IntersectionObserver" in window) {
         const io = new IntersectionObserver(
           (entries) => {
